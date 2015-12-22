@@ -6,7 +6,7 @@ import android.os.Bundle;
 public class MainActivity extends AppCompatActivity {
 
     private String name;
-    private String password;
+    private String password = "tanghaibo";
 
 
     @Override
