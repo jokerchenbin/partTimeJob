@@ -8,6 +8,7 @@ public class MainActivity extends AppCompatActivity {
     private String name;
     private String password;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
