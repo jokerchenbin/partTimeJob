@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/top_bar_layout">
+
+    <TextView
+        android:id="@+id/top_button_tim"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="8dp"
+        android:drawablePadding="3dp"
+        android:drawableRight="@mipmap/flq2"
+        android:gravity="center"
+        android:text="@string/all"
+        android:textColor="@color/title_color"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="@string/top_title"
+        android:textColor="@color/title_color"
+        android:textSize="18sp" />
+
+</RelativeLayout>
