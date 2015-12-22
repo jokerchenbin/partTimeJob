@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PartTimeJob</string>
+    <string name="all">重庆市</string>
+    <string name="top_title">蜂鸟兼职</string>
 </resources>
