@@ -7,7 +7,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String name;
     private String password = "tanghaibo";
-
+    private String chenbin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
