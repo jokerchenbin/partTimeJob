@@ -3,4 +3,218 @@
     <string name="all">重庆市</string>
     <string name="top_title">蜂鸟兼职</string>
     <string name="edit_string">请输入职位名称、企业名称进行搜索</string>
+
+
+
+    <!-- # -->
+
+    <string name="viewpager_indicator">%1$d/%2$d</string>
+    <!-- end # -->
+
+
+    <!-- 1 -->
+    <string name="year">年</string>
+    <string name="month">月</string>
+    <string name="day">日</string>
+    <string name="hour">时</string>
+    <string name="minute">分</string>
+    <!-- end 1 -->
+
+
+    <!-- 2 -->
+    <string name="exit">退出</string>
+    <string name="origin">圈子</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确定</string>
+    <string name="launch">发起</string>
+    <string name="agree">同意</string>
+    <string name="today">今天</string>
+    <string name="register">注册</string>
+    <string name="log_in">登录</string>
+    <!-- end 2 -->
+
+
+    <!-- 3 -->
+
+
+    <!-- end 3 -->
+    <string name="alipay">支付宝</string>
+    <string name="next_step">下一步</string>
+    <!-- 4 -->
+    <string name="organization_introduce">圈子介绍</string>
+    <string name="privacy">隐私设置</string>
+    <string name="business_cooperation">商务合作</string>
+    <string name="wipe_cache">清除缓存</string>
+    <string name="version_updating">版本更新</string>
+    <string name="about_us">关于井井</string>
+    <string name="related_interest">关联兴趣</string>
+    <string name="activity_name">活动名称</string>
+    <string name="activity_desc">活动介绍</string>
+    <string name="activity_begin">开始时间</string>
+    <string name="activity_end">结束时间</string>
+    <string name="update_pic">上传图片</string>
+    <string name="netword_error">网络异常</string>
+    <string name="orgin_name">圈子名称</string>
+    <string name="origin_address">圈子位置</string>
+    <string name="origin_info">圈子介绍</string>
+    <string name="refund_type">退款设置</string>
+    <string name="payment">付款详情</string>
+    <string name="payment_mode">付款方式</string>
+    <string name="reimburse">退款说明</string>
+    <string name="payment_guarantee">确认付款</string>
+    <string name="hotcityslot">热门城市</string>
+    <string name="check_update">检查更新</string>
+    <string name="update_immediately">立即更新</string>
+    <string name="update_later">稍后更新</string>
+    <string name="cancel_update">取消更新</string>
+
+    <!-- end 4 -->
+
+
+    <!-- 5 -->
+    <string name="aready_interest">已关联兴趣</string>
+    <string name="can_not_refund">不接受退款</string>
+    <string name="get_auth_code">获取验证码</string>
+
+    <!-- end 5 -->
+
+
+    <!-- 6 -->
+    <string name="edit_personal_information">编辑个人信息</string>
+    <string name="auth_code">请输入验证码</string>
+    <string name="current_location_city">当前定位城市</string>
+    <string name="see_nearby_activities">查看附近活动</string>
+    <string name="app_updating">正在更新应用</string>
+    <string name="app_downloading">正在下载应用</string>
+    <!-- end 6 -->
+
+
+    <!-- 7 -->
+    <string name="can_refund">委托「井井」退款</string>
+    <string name="alipay_alipay">支付宝安全支付</string>
+    <!-- end 7 -->
+
+
+    <!-- 8 隐私设置 -->
+    <string name="organization_message">组织消息</string>
+    <string name="system_message">系统消息</string>
+    <string name="all_stranger_message">所有陌生人消息</string>
+    <string name="community_member_message">圈子成员消息</string>
+    <!-- end 8 -->
+
+
+    <!-- 9 -->
+    <string name="urban_administration_region">城市/行政区/拼音</string>
+
+    <!-- end 9 -->
+
+
+    <!-- more -->
+    <string name="versions">当前版本：v1.0.1</string>
+    <string name="can_refund_hint">如需申请退款请于开始前24小时外申请\n取消参加后，费用会自动退回</string>
+    <string name="can_not_refund_hint">本活动票券一旦售出，恕不退还。无法参加活动，请将票券转让给其他人。</string>
+    <string name="pay_hint">一旦发布后不能更改退款设置</string>
+    <string name="choose_our_favorite_interest">快来选择你喜欢的兴趣吧</string>
+    <!-- end more -->
+
+
+    <!-- other api 其他源码的string -->
+    <string name="push_down_refresh">下拉刷新</string>
+    <string name="view_more">查看更多</string>
+    <string name="hint_loading">正在加载...</string>
+    <string name="last_update_time_dot">上次更新时间：</string>
+    <string name="click_loading">点击加载更多</string>
+    <string name="network_error">网络连接错误</string>
+    <string name="release_refresh_data">松开刷新数据</string>
+    <string name="release_loading_more">松开载入更多</string>
+
+    <!-- Just use standard Pull Down String when pulling up. These can be set for languages which require it -->
+    <string name="pull_to_refresh_from_bottom_pull_label">松开载入更多&#8230;</string>
+    <string name="pull_to_refresh_from_bottom_release_label">上次更新时间&#8230;</string>
+    <string name="pull_to_refresh_from_bottom_refreshing_label">正在加载...&#8230;</string>
+
+    <string name="navi_empty_car">"驾   车"</string>
+    <string name="navi_empty_foot">"步   行"</string>
+    <string name="navi_start">"起    点"</string>
+    <string name="navi_middle">途经点</string>
+    <string name="navi_end">"终    点"</string>
+    <string name="navi_strategy">"策    略"</string>
+    <string name="navi_route">路径规划</string>
+    <string name="navi_navi">模拟导航</string>
+    <string name="start_navi_navi">实时导航</string>
+    <string name="navi_strategy_speed">速度最快</string>
+    <string name="navi_strategy_cost">避免收费</string>
+    <string name="navi_strategy_distance">距离最短</string>
+    <string name="navi_strategy_nohighway">不走高速快速路</string>
+    <string name="navi_strategy_timenojam">时间最短且躲避拥堵</string>
+    <string name="navi_strategy_costnojam">避免收费且躲避拥堵</string>
+
+    <string name="theme_blue">经典蓝</string>
+    <string name="theme_pink">可爱粉</string>
+    <string name="theme_white">简约白</string>
+
+    <string name="setting">设置</string>
+    <string name="night">夜间</string>
+    <string name="yes">"  是  "</string>
+    <string name="no">"  否  "</string>
+    <string name="open">打开</string>
+    <string name="close">关闭</string>
+    <string name="daynightmode">"昼夜模式    "</string>
+    <string name="deviationrecalculation">"偏航重算    "</string>
+    <string name="jamrecalculation">"拥堵重算    "</string>
+    <string name="trafficbroadcast">"交通播报    "</string>
+    <string name="camerabroadcast">摄像头播报</string>
+    <string name="screenon">"屏幕常亮    "</string>
+    <string name="routeshow">线路展示</string>
+    <string name="tapmap">点击地图设置</string>
+    <string name="starttapmap">我的位置（可点击地图设置）</string>
+    <string name="walkdescription">步行状态不可用</string>
+    <string name="routeinfo">全程   --公里/--分钟    收费 --元</string>
+    <string name="routeinfo_1">全程 </string>
+    <string name="routeinfo_2">公里/</string>
+    <string name="routeinfo_3">"分钟    收费"</string>
+    <string name="routeinfo_4">元</string>
+    <string name="routeinfo_default">--</string>
+    <string name="app_id">输入您讯飞的appid</string>
+    <string name="mypoistion">我的位置</string>
+    <string name="mappoistion">地图点选</string>
+    <string name="positioninfo">位置信息</string>
+
+    <string-array name="preference_values_tts_role">
+        <item>xiaoyan</item>
+        <item>xiaoyu</item>
+        <item>vixy</item>
+        <item>vixq</item>
+        <item>vixf</item>
+        <item>vixm</item>
+        <item>vixl</item>
+        <item>vixr</item>
+        <item>vixyun</item>
+        <item>vixk</item>
+        <item>vixqa</item>
+        <item>vixying</item>
+        <item>vixx</item>
+        <item>vinn</item>
+        <item>vils</item>
+    </string-array>
+
+    <string name="preference_default_tts_role">xiaoyan</string>
+    <string name="preference_key_tts_speed">tts_speed</string>
+    <string name="preference_title_tts_speed">语速</string>
+    <string name="preference_default_tts_speed">50</string>
+    <string name="preference_dialog_title_tts_speed">选择语速</string>
+    <string name="preference_key_tts_volume">tts_volume</string>
+    <string name="preference_title_tts_volume">音量</string>
+    <string name="preference_default_tts_volume">50</string>
+    <string name="preference_dialog_title_tts_volume">选择音量</string>
+    <string name="preference_key_tts_pitch">tts_pitch</string>
+    <string name="preference_title_tts_pitch">语调</string>
+    <string name="preference_default_tts_pitch">50</string>
+    <string name="intell_bd_title">智能播报</string>
+
+    <!-- end other api -->
+    <string name="Well_well_let_a_like_minded_people_together">井井，让志同道合的人聚在一起</string>
+    <string name="begin_nav">开始导航</string>
+
+
 </resources>

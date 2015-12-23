@@ -8,4 +8,39 @@
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="main_color">#FF027FFD</color>
+
+
+    <!-- words A color -->
+    <color name="a">#fe601a</color>
+    <!-- words B color -->
+    <color name="b">#09091a</color>
+    <color name="bb">#a009091a</color>
+    <!-- words C color -->
+    <color name="c">#6b6b76</color>
+    <!-- words D color -->
+    <color name="d">#a2a2a2</color>
+    <!-- words E color -->
+    <color name="e">#e7e7e7</color>
+    <!-- words F color -->
+    <color name="f">#bfbfbf</color>
+
+    <!-- word G color -->
+
+
+    <color name="first_category">#09091A</color>
+    <color name="second_category">#242433</color>
+    <color name="half_translate">#33000000</color>
+
+    <color name="translate">#ffffffff</color>
+    <color name="press_bg">#e0e0e0</color>
+    <color name="gray">#cccccc</color>
+    <color name="dimgrey">#333333</color>
+    <color name="list_lines">#e1e1e1</color>
+    <color name="pop_bg">#0A091B</color>
+    <color name="pop_top">#232232</color>
+    <color name="pop_hint">#DDDCE0</color>
+    <color name="dialog_line">#e7e7e7</color>
+    <color name="progress_h">#54FF9F</color>
+    <color name="pull_list_press">#c43c00</color>
+    <color name="log_in_sel">#bfbfbf</color>
 </resources>
