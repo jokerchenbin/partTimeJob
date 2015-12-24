@@ -11,138 +11,12 @@
         layout="@layout/top_bar"></include>
 
     <LinearLayout
-        android:id="@+id/activity_main_layout"
+        android:id="@+id/activity_main_framelayout"
         android:layout_width="match_parent"
-        android:layout_height="32dp"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/activity_main_rg_tabs"
         android:layout_below="@id/activity_main_topbar"
-        android:layout_margin="8dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@null"
-            android:drawableRight="@mipmap/zoom2"
-            android:hint="@string/edit_string"
-            android:textCursorDrawable="@null"
-            android:textSize="14sp" />
-
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/activity_main_img_iamge"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:layout_below="@id/activity_main_layout"
-        android:background="@mipmap/appmain_subject_1" />
-
-    <View
-        android:id="@+id/avtivity_main_view_null"
-        android:layout_width="match_parent"
-        android:layout_height="12dp"
-        android:layout_below="@id/activity_main_img_iamge"
-        android:background="@color/bar_bg"></View>
-
-    <LinearLayout
-        android:id="@+id/activity_main_list_layout2"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_below="@id/avtivity_main_view_null"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2">
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="28dp"
-                android:background="@mipmap/hot"
-                android:layout_margin="12dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="9">
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@mipmap/right_arr"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"/>
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/avtivity_main_view_next"
-        android:layout_width="match_parent"
-        android:layout_height="12dp"
-        android:layout_below="@id/activity_main_list_layout2"
-        android:background="@color/bar_bg"></View>
-
-    <LinearLayout
-        android:id="@+id/activity_main_list_layout"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_below="@id/avtivity_main_view_next"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@mipmap/longjob"
-                android:layout_margin="12dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="9">
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@mipmap/right_arr"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"/>
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/avtivity_main_view_next3"
-        android:layout_width="match_parent"
-        android:layout_height="12dp"
-        android:layout_below="@id/activity_main_list_layout"
-        android:background="@color/bar_bg"></View>
+        android:orientation="vertical"></LinearLayout>
 
 
     <RadioGroup
@@ -151,6 +25,7 @@
         android:gravity="center_vertical">
 
         <RadioButton
+            android:id="@+id/activity_main_rbtn_firstPage"
             style="@style/wrap_wrap_layout"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -158,6 +33,7 @@
             android:button="@null" />
 
         <RadioButton
+            android:id="@+id/activity_main_rbtn_partTimeJob"
             style="@style/wrap_wrap_layout"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -165,6 +41,7 @@
             android:button="@null" />
 
         <RadioButton
+            android:id="@+id/activity_main_rbtn_my"
             style="@style/wrap_wrap_layout"
             android:layout_width="0dp"
             android:layout_weight="1"

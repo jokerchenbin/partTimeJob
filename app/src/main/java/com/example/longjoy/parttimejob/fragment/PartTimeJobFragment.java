@@ -9,12 +9,16 @@ import android.view.ViewGroup;
 
 import com.example.longjoy.parttimejob.R;
 
-public class HomePageFragment extends Fragment {
+/**
+ * Created by longjoy on 2015/12/24.
+ * 2015/12/24
+ */
+public class PartTimeJobFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.firstpage_fragment,container,false);
+        View view = inflater.inflate(R.layout.parttimejob_fragment, container, false);
         return view;
     }
 }
