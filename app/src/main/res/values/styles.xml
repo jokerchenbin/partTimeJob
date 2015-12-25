@@ -96,4 +96,10 @@
         <item name="android:windowExitAnimation">@anim/actionsheet_dialog_out</item>
     </style>
 
+    <!-- editText 样式-->
+    <style name="my_editText">
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:background">@drawable/edittext_bg</item>
+        <item name="android:paddingLeft">8dp</item>
+    </style>
 </resources>

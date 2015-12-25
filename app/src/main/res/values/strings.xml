@@ -218,4 +218,6 @@
 
     <string name="username">请输入您的手机号</string>
     <string name="password">请输入您的密码</string>
+    <string name="reminder">友情提示:为了能让企业联系到您，
+        请务必填写您的真实手机号和姓名，手机号注册后不允许修改</string>
 </resources>
