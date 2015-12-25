@@ -8,12 +8,14 @@ import android.app.Application;
 
 import com.example.longjoy.parttimejob.common.FunctionUtils;
 
+import cn.bmob.v3.Bmob;
+
 
 public class AppApplication extends Application {
 
 	private String updateConfName = "android_update_conf.json";
 	/** 所以的Activity */
-	public List<Activity> activities = new ArrayList<Activity>();
+	public List<Activity> activities = new ArrayList<>();
 
 	@Override
 	public void onCreate() {
@@ -22,6 +24,8 @@ public class AppApplication extends Application {
 		initCommonData();
 		AppConfig.context = this;
 
+		// 使用时请将第二个参数Application ID替换成你在Bmob服务器端创建的Application ID
+		Bmob.initialize(this, "fd7d827e175eaee39ab299f944c564dc");
 	}
 
 	/**
