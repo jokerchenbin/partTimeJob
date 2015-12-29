@@ -31,24 +31,29 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/activity_login_et_username"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@drawable/edittext_bg"
             android:hint="@string/username"
             android:paddingLeft="8dp"
+            android:text="13594350035"
             android:textCursorDrawable="@drawable/cursor_bg" />
 
         <EditText
+            android:id="@+id/activity_login_et_password"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="8dp"
-            android:inputType="textPassword"
             android:background="@drawable/edittext_bg"
             android:hint="@string/password"
+            android:inputType="textPassword"
             android:paddingLeft="8dp"
+            android:text="123456"
             android:textCursorDrawable="@drawable/cursor_bg" />
 
         <Button
+            android:id="@+id/activity_login_btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -58,6 +63,7 @@
             android:textColor="@color/white" />
 
         <Button
+            android:id="@+id/activity_login_btn_registe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
