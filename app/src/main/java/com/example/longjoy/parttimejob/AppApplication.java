@@ -34,11 +34,11 @@ public class AppApplication extends Application {
 	public void initUpdateJsonData() {
 
 		if (AppConfig.prefs == null) {
-			AppConfig.prfsName = "jjConfig.xml";
+			AppConfig.prfsName = "parttime.xml";
 			AppConfig.prefs = getSharedPreferences(AppConfig.prfsName, 0);
 		}
 		if (AppConfig.jPushfs == null) {
-			AppConfig.jPushfsName = "jjConfig1.xml";
+			AppConfig.jPushfsName = "parttime.xml";
 			AppConfig.jPushfs = getSharedPreferences(AppConfig.jPushfsName, 0);
 		}
 	}

@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.longjoy.parttimejob.AppApplication;
@@ -43,6 +44,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Context context;
     private UserInfo userInfo;
 
+    private TextView tv_back;
 
 
 
@@ -67,6 +69,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         et_nextpassword = (EditText) findViewById(R.id.activity_register_nextpassword);
         btn_Register = (Button) findViewById(R.id.activity_register_btn_ok);
         btn_Register.setOnClickListener(this);
+        tv_back = (TextView) findViewById(R.id.top_button_tim);
+        tv_back.setOnClickListener(this);
     }
 
     @Override
@@ -74,6 +78,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         switch (v.getId()) {
             case R.id.activity_register_btn_ok://注册按钮执行相应动作
                 registerUser();
+                break;
+            case R.id.top_button_tim://返回键
+                activity.finish();
                 break;
         }
     }
