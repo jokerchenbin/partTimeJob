@@ -1,12 +1,15 @@
 package com.example.longjoy.parttimejob;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import android.app.Activity;
 import android.app.Application;
 
+import com.example.longjoy.parttimejob.bean.Province;
 import com.example.longjoy.parttimejob.common.FunctionUtils;
+import com.example.longjoy.parttimejob.tools.ProvinceInit;
 
 import cn.bmob.v3.Bmob;
 
@@ -16,7 +19,7 @@ public class AppApplication extends Application {
 	private String updateConfName = "android_update_conf.json";
 	/** 所以的Activity */
 	public List<Activity> activities = new ArrayList<>();
-
+	public static ArrayList<Province> list;
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -26,6 +29,8 @@ public class AppApplication extends Application {
 
 		// 使用时请将第二个参数Application ID替换成你在Bmob服务器端创建的Application ID
 		Bmob.initialize(this, "fd7d827e175eaee39ab299f944c564dc");
+		//得到一个全局的数据
+		list = ProvinceInit.initPrivince();
 	}
 
 	/**
@@ -71,5 +76,7 @@ public class AppApplication extends Application {
 		AppConfig.device = FunctionUtils.getDevice();
 		AppConfig.os = FunctionUtils.getOs();
 	}
+
+
 
 }

@@ -122,7 +122,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             public void done(Integer integer, BmobException e) {
                 if (e == null){
                     Log.v(TAG,integer+"  收到的数据");
-                    et_messageNumber.setText(integer+"");//512580
                 }else {
                     Log.v(TAG,e.toString());
                 }

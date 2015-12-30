@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.longjoy.parttimejob.activity.CityChooseActivity">
+
+    <include layout="@layout/top_bar_common" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/activity_city_choose_lv_left"
+            android:dividerHeight="@dimen/activity_8"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"></ListView>
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/actionsheet_top_pressed" />
+
+        <ListView
+            android:id="@+id/activity_city_choose_lv_right"
+            android:dividerHeight="4dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"></ListView>
+    </LinearLayout>
+
+
+</LinearLayout>
