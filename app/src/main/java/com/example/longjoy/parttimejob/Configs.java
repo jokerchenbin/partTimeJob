@@ -11,11 +11,11 @@ public class Configs {
         /***
          * 保存到本地的目录
          */
-        public static final String SAVE_DIRECTORY = "/zym";
+        public static final String SAVE_DIRECTORY = "/parttimejob";
         /***
          * 保存到本地图片的名字
          */
-        public static final String SAVE_PIC_NAME="head.jpeg";
+        public static final String SAVE_PIC_NAME="head.png";
         /***
          *标记用户点击了从照相机获取图片  即拍照
          */

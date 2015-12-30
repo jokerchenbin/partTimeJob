@@ -50,7 +50,7 @@
                 android:layout_marginTop="8dp">
 
                 <EditText
-                    android:id="@+id/activity_main_identifyCode"
+                    android:id="@+id/activity_main_messageNumber"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -59,10 +59,12 @@
                     android:textCursorDrawable="@drawable/cursor_bg" />
 
                 <TextView
+                    android:id="@+id/activity_register_tv_checknumber"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/activity_vertical_margin"
                     android:layout_weight="1"
+                    android:textColor="@color/text_defulat"
                     android:background="@drawable/edittext_bg"
                     android:gravity="center"
                     android:text="获取验证码" />

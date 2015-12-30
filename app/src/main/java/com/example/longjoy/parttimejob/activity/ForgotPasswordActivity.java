@@ -9,11 +9,12 @@ import android.widget.TextView;
 
 import com.example.longjoy.parttimejob.R;
 
-public class ForgotPasswordActivity extends AppCompatActivity implements View.OnClickListener{
+public class ForgotPasswordActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Activity activity;
     private Context context;
-    private TextView tv_back;
+    private TextView tv_back, tv_topBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +22,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
         activity = this;
         context = this;
         initViewIDs();
+        changeTopBarState();
     }
 
     /**
@@ -34,10 +36,19 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.top_button_tim://返回键
                 activity.finish();
                 break;
         }
+    }
+
+    /**
+     * Created by 陈彬 on 2015/12/30  9:59
+     * 方法描述: 改变头部状态
+     */
+    private void changeTopBarState() {
+        tv_topBar = (TextView) findViewById(R.id.top_bar_common_title);
+        tv_topBar.setText("找回密码");
     }
 }
