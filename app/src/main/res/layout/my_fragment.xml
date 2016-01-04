@@ -59,6 +59,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/my_fragment_ly_myResume"
             android:clickable="true"
             android:background="@drawable/layout_item_bg"
             android:layout_width="match_parent"
@@ -88,6 +89,7 @@
             android:background="@color/alertdialog_line" />
 
         <LinearLayout
+            android:id="@+id/my_fragment_ly_myCollect"
             android:clickable="true"
             android:background="@drawable/layout_item_bg"
             android:layout_width="match_parent"
@@ -117,6 +119,7 @@
             android:background="@color/alertdialog_line" />
 
         <LinearLayout
+            android:id="@+id/my_fragment_ly_signUp"
             android:clickable="true"
             android:background="@drawable/layout_item_bg"
             android:layout_width="match_parent"
@@ -146,6 +149,7 @@
             android:background="@color/alertdialog_line" />
 
         <LinearLayout
+            android:id="@+id/my_fragment_ly_suggest"
             android:clickable="true"
             android:background="@drawable/layout_item_bg"
             android:layout_width="match_parent"
@@ -175,6 +179,7 @@
             android:background="@color/alertdialog_line" />
 
         <LinearLayout
+            android:id="@+id/my_fragment_ly_checkUpdate"
             android:clickable="true"
             android:background="@drawable/layout_item_bg"
             android:layout_width="match_parent"

@@ -23,12 +23,18 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.bmob.BTPFileResponse;
+import com.bmob.BmobProFile;
+import com.bmob.btp.callback.UploadListener;
 import com.example.longjoy.parttimejob.AppApplication;
 import com.example.longjoy.parttimejob.AppConfig;
 import com.example.longjoy.parttimejob.Configs;
 import com.example.longjoy.parttimejob.R;
+import com.example.longjoy.parttimejob.activity.MyResumeActivity;
+import com.example.longjoy.parttimejob.bean.MyUser;
 import com.example.longjoy.parttimejob.common.Logger;
 import com.example.longjoy.parttimejob.tools.FileTools;
 import com.example.longjoy.parttimejob.tools.SelectHeadTools;
@@ -40,12 +46,16 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobFile;
+import cn.bmob.v3.listener.UpdateListener;
+
 /**
  * 我的  界面
  * Created by longjoy on 2015/12/24.
  * 2015/12/24
  */
-public class MyFragment extends Fragment implements View.OnClickListener{
+public class MyFragment extends Fragment implements View.OnClickListener {
 
     private ImageView iv_header;
     private Button btn_logout;
@@ -53,6 +63,9 @@ public class MyFragment extends Fragment implements View.OnClickListener{
     private Activity activity;
     private Fragment fragment;
     private Uri photoUri = null;
+
+    /* 布局按钮 */
+    private LinearLayout ly_resume, ly_myCollect, ly_signUp, ly_suggest, ly_checkUpdate;
 
     @Nullable
     @Override
@@ -72,20 +85,44 @@ public class MyFragment extends Fragment implements View.OnClickListener{
     private void initViewIDs(View view) {
         iv_header = (ImageView) view.findViewById(R.id.my_fragment_iv_head);
         iv_header.setOnClickListener(this);
-        String uriStr = AppConfig.prefs.getString("uri","kong");
-        if (!"kong".equals(uriStr)){
+        String uriStr = AppConfig.prefs.getString("uri", "kong");
+        if (!"kong".equals(uriStr)) {
             photoUri = Uri.parse(uriStr);
             iv_header.setImageURI(photoUri);
         }
         btn_logout = (Button) view.findViewById(R.id.my_fragment_btn_logout);
         btn_logout.setOnClickListener(this);
+
+        ly_resume = (LinearLayout) view.findViewById(R.id.my_fragment_ly_myResume);
+        ly_myCollect = (LinearLayout) view.findViewById(R.id.my_fragment_ly_myCollect);
+        ly_signUp = (LinearLayout) view.findViewById(R.id.my_fragment_ly_signUp);
+        ly_suggest = (LinearLayout) view.findViewById(R.id.my_fragment_ly_suggest);
+        ly_checkUpdate = (LinearLayout) view.findViewById(R.id.my_fragment_ly_checkUpdate);
+        ly_resume.setOnClickListener(this);
+        ly_myCollect.setOnClickListener(this);
+        ly_signUp.setOnClickListener(this);
+        ly_suggest.setOnClickListener(this);
+        ly_checkUpdate.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.my_fragment_iv_head: //点击头像,选择加载头像
                 showPicAnim();
+                break;
+            case R.id.my_fragment_ly_myResume: //我的简历
+                Intent myResumeIntent = new Intent(context, MyResumeActivity.class);
+                startActivity(myResumeIntent);
+                break;
+            case R.id.my_fragment_ly_myCollect: //我的收藏
+                break;
+            case R.id.my_fragment_ly_signUp: //我的报名
+                break;
+            case R.id.my_fragment_ly_suggest: //意见建议
+                break;
+            case R.id.my_fragment_ly_checkUpdate: //检查更新
+                Toast.makeText(context,"已经是最新版本",Toast.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -96,12 +133,12 @@ public class MyFragment extends Fragment implements View.OnClickListener{
      */
     private void showPicAnim() {
         //加载 点击动画
-        Animation alpha = AnimationUtils.loadAnimation(context,R.anim.image_anim);
+        Animation alpha = AnimationUtils.loadAnimation(context, R.anim.image_anim);
         iv_header.startAnimation(alpha);
 
         //弹出头像选择
-        if(!FileTools.hasSdcard()){
-            Toast.makeText(context,"没有找到SD卡，请检查SD卡是否存在",Toast.LENGTH_SHORT).show();
+        if (!FileTools.hasSdcard()) {
+            Toast.makeText(context, "没有找到SD卡，请检查SD卡是否存在", Toast.LENGTH_SHORT).show();
             return;
         }
         try {
@@ -117,24 +154,23 @@ public class MyFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode){
+        switch (requestCode) {
             case Configs.SystemPicture.PHOTO_REQUEST_TAKEPHOTO: // 拍照
                 SelectHeadTools.startPhotoZoom(fragment, photoUri, 600);
                 break;
             case Configs.SystemPicture.PHOTO_REQUEST_GALLERY://相册获取
-                if (data==null) {
+                if (data == null) {
                     return;
                 }
                 SelectHeadTools.startPhotoZoom(fragment, data.getData(), 600);
                 break;
             case Configs.SystemPicture.PHOTO_REQUEST_CUT:  //接收处理返回的图片结果
-                if (data==null) {
+                if (data == null) {
                     return;
                 }
                 Bitmap bit = data.getExtras().getParcelable("data");
                 iv_header.setImageBitmap(bit);
                 saveBitmaptoLocal(bit);
-                //File file = FileTools.getFileByUri(activity,photoUri);
                 break;
         }
     }
@@ -142,18 +178,57 @@ public class MyFragment extends Fragment implements View.OnClickListener{
 
     /**
      * Created by 陈彬 on 2016/1/4  11:38
-     * 方法描述: 保存Bitmap  到本地
+     * 方法描述: 保存头像图片 Bitmap  到本地
      */
-    private void saveBitmaptoLocal(Bitmap bitmap){
+    private void saveBitmaptoLocal(Bitmap bitmap) {
         long l2 = System.currentTimeMillis();
         String fileName = l2 + ".jpg";
-        String tempImgPath = Environment.getExternalStorageDirectory() + Configs.SystemPicture.SAVE_DIRECTORY +fileName;
+        String tempImgPath = Environment.getExternalStorageDirectory() + Configs.SystemPicture.SAVE_DIRECTORY + fileName;
         try {
             BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(tempImgPath));
-            bitmap.compress(Bitmap.CompressFormat.JPEG,75,bos);
-            AppConfig.prefs.edit().putString("uri",tempImgPath).commit();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 75, bos);
+            AppConfig.prefs.edit().putString("uri", tempImgPath).commit();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+        File file = new File(tempImgPath);
+        //上传头像文件
+        uploadFile(file);
+    }
+
+    /**
+     * Created by 陈彬 on 2016/1/4  15:40
+     * 方法描述: 上传头像 并且更新到云端服务器
+     */
+    private void uploadFile(File file) {
+        BTPFileResponse response = BmobProFile.getInstance(context).upload(file.getAbsolutePath(), new UploadListener() {
+
+            @Override
+            public void onSuccess(String fileName, String url, BmobFile file) {
+                AppConfig.prefs.edit().putString("imageUrl", file.getUrl()).commit();
+                MyUser myUser = new MyUser();
+                myUser.setImageUrl(file.getUrl());
+                BmobUser usr = BmobUser.getCurrentUser(context);
+                myUser.update(context, usr.getObjectId(), new UpdateListener() {
+                    @Override
+                    public void onSuccess() {
+                        Toast.makeText(context, "头像更新成功", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(int i, String s) {
+                    }
+                });
+            }
+
+            @Override
+            public void onProgress(int progress) {
+            }
+
+            @Override
+            public void onError(int statuscode, String errormsg) {
+            }
+        });
     }
 }

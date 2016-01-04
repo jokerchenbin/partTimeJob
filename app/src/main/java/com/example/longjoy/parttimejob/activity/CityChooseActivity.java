@@ -36,7 +36,6 @@ public class CityChooseActivity extends AppCompatActivity implements View.OnClic
         activity = this;
         context = this;
         ((AppApplication) getApplication()).addActivity(activity);
-        provincs = getResources().getStringArray(R.array.province);
 
 
         initViewIDs();

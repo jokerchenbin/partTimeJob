@@ -28,6 +28,7 @@ import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static final String TAG = "MainActivity";
     private LinearLayout main_fragment;
     private FragmentManager fm;
     private RadioButton rbtn_FirstPage, rbtn_PartTimeJob, rbtn_My;

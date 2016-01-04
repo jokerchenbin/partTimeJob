@@ -73,8 +73,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         context = this;
         AppConfig.prefs.getString("telephone", "1235");
         AppConfig.prefs.getString("password", "1235");
-        Log.v(TAG, AppConfig.prefs.getString("telephone", "1235"));
-        Log.v(TAG, AppConfig.prefs.getString("password", "1235"));
         ((AppApplication) getApplication()).addActivity(activity);
         initViewID();
     }
@@ -130,17 +128,33 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void done(MyUser myUser, BmobException e) {
                 if (myUser != null) {
                     Toast.makeText(context, "登录成功", Toast.LENGTH_SHORT).show();
+                    //将个人信息写入本地
+                    writeUserInfoToLocal(myUser.getObjectId(),myUser.getUsername(),myUser.getMobilePhoneNumber(),
+                            myUser.getImageUrl(),myUser.getAge(),myUser.getSex());
+                    //跳转到主页面
+                    Intent intent = new Intent(activity,MainActivity.class);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(context, "登录失败", Toast.LENGTH_SHORT).show();
                 }
                 FunctionUtils.dissmisLoadingDialog();
             }
         });
-
-
     }
 
-
+    /**
+     * Created by 陈彬 on 2016/1/4  15:29
+     * 方法描述: 将获取到用户基本信息写入本地
+     */
+    private void writeUserInfoToLocal(String objectId, String username
+            ,String mobilePhoneNumber, String imageUrl, Integer age, String sex) {
+        AppConfig.prefs.edit().putString("objectId",objectId)
+                .putString("username",username)
+                .putString("mobilePhoneNumber",mobilePhoneNumber)
+                .putString("imageUrl",imageUrl)
+                .putInt("age",age)
+                .putString("sex",sex).commit();
+    }
 
 
 }

@@ -23,4 +23,15 @@
         android:textColor="@color/white"
         android:textSize="18sp" />
 
+    <TextView
+        android:id="@+id/top_bar_common_tv_save"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginRight="16dp"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="@string/save"
+        android:textColor="@color/white"/>
+
 </RelativeLayout>
