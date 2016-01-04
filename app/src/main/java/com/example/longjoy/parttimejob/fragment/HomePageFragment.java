@@ -9,6 +9,10 @@ import android.view.ViewGroup;
 
 import com.example.longjoy.parttimejob.R;
 
+/**
+ * Created by 陈彬 on 2015/12/30  16:40
+ * 方法描述:  首页
+ */
 public class HomePageFragment extends Fragment {
 
     @Nullable

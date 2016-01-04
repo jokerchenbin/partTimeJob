@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import com.example.longjoy.parttimejob.R;
 
 /**
- * Created by longjoy on 2015/12/24.
- * 2015/12/24
+ * Created by 陈彬 on 2015/12/30  16:41
+ * 方法描述: 兼职信息展示界面
  */
 public class PartTimeJobFragment extends Fragment {
 

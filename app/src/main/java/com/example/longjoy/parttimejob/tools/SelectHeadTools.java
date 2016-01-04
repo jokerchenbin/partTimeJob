@@ -1,9 +1,11 @@
 package com.example.longjoy.parttimejob.tools;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.v4.app.Fragment;
 
 import com.example.longjoy.parttimejob.Configs;
 import com.example.longjoy.parttimejob.widget.ActionSheetDialog;
@@ -16,10 +18,11 @@ public class SelectHeadTools {
 
     /*****
      * 打开选择框
-     * @param context Context  Activity上下文对象
+     * @param fragment Context  Activity上下文对象
      * @param uri  Uri
      */
-    public static void openDialog(final Activity context, final Uri uri){
+    public static void openDialog(final Fragment fragment, final Uri uri){
+        final Context context = fragment.getContext();
         new ActionSheetDialog(context)
                 .builder()
                 .setTitle("选择图片")
@@ -28,13 +31,13 @@ public class SelectHeadTools {
                 .addSheetItem("拍照", ActionSheetDialog.SheetItemColor.Red, new ActionSheetDialog.OnSheetItemClickListener() {
                     @Override
                     public void onClick(int which) {
-                        startCamearPicCut(context,uri);
+                        startCamearPicCut(fragment,uri);
                     }
                 })
                 .addSheetItem("从手机相册选择", ActionSheetDialog.SheetItemColor.Red, new ActionSheetDialog.OnSheetItemClickListener() {
                     @Override
                     public void onClick(int which) {
-                        startImageCaptrue(context);
+                        startImageCaptrue(fragment);
                     }
                 })
                 .show();
@@ -45,7 +48,7 @@ public class SelectHeadTools {
      * @param context Activity上下文对象
      * @param uri  Uri
      */
-    private static void startCamearPicCut(Activity context,Uri uri) {
+    private static void startCamearPicCut(Fragment context,Uri uri) {
         // 调用系统的拍照功能
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
@@ -61,7 +64,7 @@ public class SelectHeadTools {
      * 调用系统的图库
      * @param context Activity上下文对象
      */
-    private static void startImageCaptrue(Activity context) {
+    private static void startImageCaptrue(Fragment context) {
         Intent intent = new Intent(Intent.ACTION_PICK, null);
         intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
         context.startActivityForResult(intent, Configs.SystemPicture.PHOTO_REQUEST_GALLERY);
@@ -74,7 +77,7 @@ public class SelectHeadTools {
      * @param uri  Uri
      * @param size  大小
      */
-    public static void startPhotoZoom(Activity context,Uri uri, int size) {
+    public static void startPhotoZoom(Fragment context,Uri uri, int size) {
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
         // crop为true是设置在开启的intent中设置显示的view可以剪裁

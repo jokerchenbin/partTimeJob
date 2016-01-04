@@ -2,6 +2,7 @@ package com.example.longjoy.parttimejob.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.longjoy.parttimejob.AppApplication;
+import com.example.longjoy.parttimejob.AppConfig;
 import com.example.longjoy.parttimejob.R;
 import com.example.longjoy.parttimejob.adapter.CityListAdapter;
 
@@ -26,6 +28,7 @@ public class CityChooseActivity extends AppCompatActivity implements View.OnClic
     private Context context;
     private Activity activity;
     private ArrayAdapter<String> arrayAdapter;
+    private String [] cities;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,19 +50,33 @@ public class CityChooseActivity extends AppCompatActivity implements View.OnClic
         cityListAdapter.addAll(AppApplication.list);
 
         leftListView.setAdapter(cityListAdapter);
+        //第一级列表点击事件
         leftListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (AppApplication.list.get(position).getCityList() == null){
-
+                    Intent intent = new Intent();
+                    intent.putExtra("cityName",AppApplication.list.get(position).getProvince_name());
+                    activity.setResult(AppConfig.DEFAULT_REQUEST, intent);
+                    activity.finish();
                 }else {
-                    String [] cities = AppApplication.list.get(position).getCityList();
+                     cities = AppApplication.list.get(position).getCityList();
                     arrayAdapter = new ArrayAdapter<>(context,
                             R.layout.commom_list_item, R.id.commom_list_item_text
                             , cities);
                     rightListView.setAdapter(arrayAdapter);
                 }
 
+            }
+        });
+        //第二级列表点击事件
+        rightListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent();
+                intent.putExtra("cityName",cities[position]);
+                activity.setResult(AppConfig.DEFAULT_REQUEST, intent);
+                activity.finish();
             }
         });
     }
