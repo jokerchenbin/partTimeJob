@@ -49,6 +49,8 @@
                     android:textSize="18sp" />
 
                 <EditText
+                    android:id="@+id/activity_my_resume_et_name"
+                    android:padding="@dimen/activity_8"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -72,6 +74,8 @@
                     android:textSize="18sp" />
 
                 <EditText
+                    android:id="@+id/activity_my_resume_et_age"
+                    android:padding="@dimen/activity_8"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -95,18 +99,21 @@
                     android:textSize="18sp" />
 
                 <RadioGroup
+                    android:id="@+id/activity_my_resume_rg_group"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/activity_my_resume_rb_man"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="男"
                         android:textSize="18sp" />
 
                     <RadioButton
+                        android:id="@+id/activity_my_resume_rb_woman"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/activity_8"
@@ -131,6 +138,8 @@
                     android:textSize="18sp" />
 
                 <EditText
+                    android:id="@+id/activity_my_resume_et_school"
+                    android:padding="@dimen/activity_8"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -154,6 +163,8 @@
                     android:textSize="18sp" />
 
                 <EditText
+                    android:id="@+id/activity_my_resume_et_hight"
+                    android:padding="@dimen/activity_8"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -197,13 +208,16 @@
                     android:layout_weight="3">
 
                     <EditText
+                        android:id="@+id/activity_my_resume_et_wantjob"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:background="@drawable/edittext_bg"
+                        android:background="@drawable/notedit_edittext_bg"
                         android:editable="false" />
 
                     <TextView
+                        android:clickable="true"
+                        android:onClick="onChooseClick"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/activity_8"
@@ -231,6 +245,8 @@
                     android:textSize="18sp" />
 
                 <EditText
+                    android:id="@+id/activity_my_resume_et_selfInfo"
+                    android:padding="@dimen/activity_8"
                     android:inputType="textMultiLine"
                     android:gravity="left|top"
                     android:layout_width="0dp"
@@ -271,6 +287,8 @@
                     android:textSize="18sp" />
 
                 <EditText
+                    android:id="@+id/activity_my_resume_et_email"
+                    android:padding="@dimen/activity_8"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -294,6 +312,8 @@
                     android:textSize="18sp" />
 
                 <EditText
+                    android:id="@+id/activity_my_resume_et_QQ"
+                    android:padding="@dimen/activity_8"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -317,11 +337,13 @@
                     android:textSize="18sp" />
 
                 <EditText
+                    android:id="@+id/activity_my_resume_et_telephone"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
                     android:editable="false"
-                    android:background="@drawable/edittext_bg"
+                    android:textColor="@color/black"
+                    android:background="@drawable/notedit_edittext_bg"
                     android:textSize="18sp" />
             </LinearLayout>
 

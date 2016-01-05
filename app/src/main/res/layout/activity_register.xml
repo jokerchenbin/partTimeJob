@@ -34,7 +34,6 @@
                 style="@style/my_editText"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
-                android:text="13594350035"
                 android:textCursorDrawable="@drawable/cursor_bg" />
 
             <TextView
@@ -96,7 +95,6 @@
                 style="@style/my_editText"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
-                android:text="陈彬"
                 android:textCursorDrawable="@drawable/cursor_bg" />
 
             <TextView
@@ -112,7 +110,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:inputType="textPassword"
-                android:text="123456"
                 android:textCursorDrawable="@drawable/cursor_bg" />
 
             <TextView
@@ -129,7 +126,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:inputType="textPassword"
-                android:text="123456"
                 android:textCursorDrawable="@drawable/cursor_bg" />
 
             <TextView

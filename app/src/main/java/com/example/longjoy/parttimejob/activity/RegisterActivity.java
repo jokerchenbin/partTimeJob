@@ -83,15 +83,16 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         tv_checkNumber.setOnClickListener(this);
         et_messageNumber = (EditText) findViewById(R.id.activity_main_messageNumber);
 
+    }
+
+    @Override
+    public void onClick(View v) {
          /* 得到相应edittext中的值 */
         telephone = et_telephone.getText().toString().trim();
         username = et_username.getText().toString().trim();
         password = et_password.getText().toString().trim();
         nextpassword = et_nextpassword.getText().toString().trim();
-    }
 
-    @Override
-    public void onClick(View v) {
         switch (v.getId()) {
             case R.id.activity_register_btn_ok://注册按钮执行相应动作
                 registerUser();
@@ -115,18 +116,19 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(activity, "手机号码有误，请检查！", Toast.LENGTH_SHORT).show();
             return;
         }
-        Toast.makeText(context,"短信已发送，请注意查收.",Toast.LENGTH_SHORT).show();
         timeHandler.sendEmptyMessageDelayed(1, 100);
-        BmobSMS.requestSMSCode(context, telephone, "注册短信验证", new RequestSMSCodeListener() {
+        //调试期间  关闭功能
+        /*BmobSMS.requestSMSCode(context, telephone, "注册短信验证", new RequestSMSCodeListener() {
             @Override
             public void done(Integer integer, BmobException e) {
+                Toast.makeText(context,"短信已发送，请注意查收.",Toast.LENGTH_SHORT).show();
                 if (e == null){
                     Log.v(TAG,integer+"  收到的数据");
                 }else {
                     Log.v(TAG,e.toString());
                 }
             }
-        });
+        });*/
     }
 
     /**
@@ -149,13 +151,16 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         //检查手机号码是否合理
         if (!isMobile(telephone)) {
             Toast.makeText(activity, "手机号码有误，请检查！", Toast.LENGTH_SHORT).show();
+            FunctionUtils.dissmisLoadingDialog();
             return;
         }
         //检查必须填的信息是否填完整
         if (!isFillCompletion(username, password, nextpassword)) {
             Toast.makeText(activity, errMessage, Toast.LENGTH_SHORT).show();
+            FunctionUtils.dissmisLoadingDialog();
             return;
         }
+        //验证短信号码 调试关闭验证
         checkMessageNumber(messageNumber);
     }
 
@@ -176,10 +181,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             public void onSuccess() {
                 Toast.makeText(context, "注册成功", Toast.LENGTH_SHORT).show();
                 FunctionUtils.dissmisLoadingDialog();
+                Intent intent = new Intent(context,LoginActivity.class);
+                startActivity(intent);
             }
 
             @Override
             public void onFailure(int i, String s) {
+                Log.v(TAG,"失败 -- > "+s);
                 if (i == 202) {
                     Toast.makeText(context, "此电话号码已注册过", Toast.LENGTH_SHORT).show();
                 } else {
@@ -237,19 +245,20 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      * 方法描述: 校验短信验证码是否正确
      */
     private void checkMessageNumber(String number) {
-        BmobSMS.verifySmsCode(context, telephone, number, new VerifySMSCodeListener() {
+        /*BmobSMS.verifySmsCode(context, telephone, number, new VerifySMSCodeListener() {
             @Override
             public void done(BmobException e) {
                 if (e == null){
                     registeHandler.sendEmptyMessage(RESULT_OK);
                 }else {
-                    Log.v(TAG,e.getErrorCode()+"  --- >  "+e.getLocalizedMessage());
                     registeHandler.sendEmptyMessage(RESULT_ERROR);
                     FunctionUtils.dissmisLoadingDialog();
                 }
 
             }
-        });
+        });*/
+        //调试期间   不用验证短信验证码
+        registeHandler.sendEmptyMessage(RESULT_OK);
     }
 
     //短信验证计时器

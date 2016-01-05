@@ -7,7 +7,10 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 
+import com.example.longjoy.parttimejob.AppApplication;
+import com.example.longjoy.parttimejob.AppConfig;
 import com.example.longjoy.parttimejob.Configs;
+import com.example.longjoy.parttimejob.activity.LoginActivity;
 import com.example.longjoy.parttimejob.widget.ActionSheetDialog;
 
 
@@ -38,6 +41,29 @@ public class SelectHeadTools {
                     @Override
                     public void onClick(int which) {
                         startImageCaptrue(fragment);
+                    }
+                })
+                .show();
+    }
+
+   /**
+    * Created by 陈彬 on 2016/1/5  16:15
+    * 方法描述: 打开注销框
+    */
+    public static void openDialogOut(final Fragment fragment){
+        final Context context = fragment.getContext();
+        new ActionSheetDialog(context)
+                .builder()
+                .setTitle("您确定要注销登录？")
+                .setCancelable(true)
+                .setCanceledOnTouchOutside(true)
+                .addSheetItem("确定", ActionSheetDialog.SheetItemColor.BLACK, new ActionSheetDialog.OnSheetItemClickListener() {
+                    @Override
+                    public void onClick(int which) {
+                        //退出系统
+                        AppConfig.prefs.edit().clear().commit();//清空本地数据
+                        Intent intent = new Intent(context, LoginActivity.class);
+                        context.startActivity(intent);
                     }
                 })
                 .show();

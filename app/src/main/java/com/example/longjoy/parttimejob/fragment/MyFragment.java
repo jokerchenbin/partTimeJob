@@ -124,6 +124,9 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             case R.id.my_fragment_ly_checkUpdate: //检查更新
                 Toast.makeText(context,"已经是最新版本",Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.my_fragment_btn_logout: //注销当前账号
+                SelectHeadTools.openDialogOut(fragment);
+                break;
         }
     }
 
@@ -192,9 +195,14 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             e.printStackTrace();
         }
 
-        File file = new File(tempImgPath);
-        //上传头像文件
-        uploadFile(file);
+        final File file = new File(tempImgPath);
+        //上传头像文件  开起线程上传头像
+        new Thread(){
+            @Override
+            public void run() {
+                uploadFile(file);
+            }
+        }.start();
     }
 
     /**
