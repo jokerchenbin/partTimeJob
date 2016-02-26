@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rbtn_My.setOnClickListener(this);
         tv_chooseCity = (TextView) findViewById(R.id.top_button_tim);
         tv_chooseCity.setOnClickListener(this);
-
+		//陈彬
         fm = getSupportFragmentManager();
         fm.beginTransaction().add(R.id.activity_main_framelayout, new HomePageFragment()).commit();
     }
