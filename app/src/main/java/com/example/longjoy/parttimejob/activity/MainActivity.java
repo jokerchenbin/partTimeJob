@@ -27,7 +27,7 @@ import com.example.longjoy.parttimejob.tools.SelectHeadTools;
 import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
+//    This is a Text!!!!!!
     private static final String TAG = "MainActivity";
     private LinearLayout main_fragment;
     private FragmentManager fm;
