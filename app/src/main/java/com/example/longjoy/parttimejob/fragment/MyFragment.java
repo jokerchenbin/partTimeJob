@@ -24,6 +24,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bmob.BTPFileResponse;
@@ -39,6 +40,7 @@ import com.example.longjoy.parttimejob.common.Logger;
 import com.example.longjoy.parttimejob.tools.FileTools;
 import com.example.longjoy.parttimejob.tools.SelectHeadTools;
 import com.example.longjoy.parttimejob.widget.ActionSheetDialog;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -63,6 +65,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private Activity activity;
     private Fragment fragment;
     private Uri photoUri = null;
+    private TextView tv_logotext;
 
     /* 布局按钮 */
     private LinearLayout ly_resume, ly_myCollect, ly_signUp, ly_suggest, ly_checkUpdate;
@@ -85,11 +88,9 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private void initViewIDs(View view) {
         iv_header = (ImageView) view.findViewById(R.id.my_fragment_iv_head);
         iv_header.setOnClickListener(this);
-        String uriStr = AppConfig.prefs.getString("uri", "kong");
-        if (!"kong".equals(uriStr)) {
-            photoUri = Uri.parse(uriStr);
-            iv_header.setImageURI(photoUri);
-        }
+        ImageLoader.getInstance().displayImage(AppConfig.prefs.getString("imageUrl", ""),
+                iv_header, AppConfig.options);
+
         btn_logout = (Button) view.findViewById(R.id.my_fragment_btn_logout);
         btn_logout.setOnClickListener(this);
 
@@ -103,6 +104,8 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         ly_signUp.setOnClickListener(this);
         ly_suggest.setOnClickListener(this);
         ly_checkUpdate.setOnClickListener(this);
+        tv_logotext = (TextView) view.findViewById(R.id.my_fragment_tv_logontext);
+        tv_logotext.setText(AppConfig.prefs.getString("username",""));
     }
 
     @Override
@@ -190,7 +193,6 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         try {
             BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(tempImgPath));
             bitmap.compress(Bitmap.CompressFormat.JPEG, 75, bos);
-            AppConfig.prefs.edit().putString("uri", tempImgPath).commit();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -239,4 +241,5 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             }
         });
     }
+
 }

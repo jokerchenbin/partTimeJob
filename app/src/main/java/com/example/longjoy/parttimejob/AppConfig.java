@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.longjoy.parttimejob.bean.Province;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
 public class AppConfig {
 	public static boolean isDebug = true;
@@ -61,6 +62,7 @@ public class AppConfig {
 	public static long currThreadId; // currThreadId
 	public static int unCheckedCount;
 
+	public static DisplayImageOptions options;
 
 
 

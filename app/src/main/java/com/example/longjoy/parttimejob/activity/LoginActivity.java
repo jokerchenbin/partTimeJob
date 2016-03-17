@@ -71,8 +71,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         activity = this;
         context = this;
-        AppConfig.prefs.getString("telephone", "1235");
-        AppConfig.prefs.getString("password", "1235");
         ((AppApplication) getApplication()).addActivity(activity);
         initViewID();
     }

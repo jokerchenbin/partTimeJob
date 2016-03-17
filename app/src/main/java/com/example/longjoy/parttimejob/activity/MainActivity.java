@@ -73,14 +73,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.activity_main_rbtn_firstPage:
                 HomePageFragment firstPage = new HomePageFragment(); //首页
                 fm.beginTransaction().replace(R.id.activity_main_framelayout, firstPage).commit();
+                changeTopBarState("蜂鸟兼职");
                 break;
             case R.id.activity_main_rbtn_partTimeJob: // 兼职工作
                 PartTimeJobFragment job = new PartTimeJobFragment();
                 fm.beginTransaction().replace(R.id.activity_main_framelayout, job).commit();
+                changeTopBarState("兼职");
                 break;
             case R.id.activity_main_rbtn_my: // 我的
                 MyFragment myFragment = new MyFragment();
                 fm.beginTransaction().replace(R.id.activity_main_framelayout, myFragment).commit();
+                changeTopBarState("我的");
                 break;
             case R.id.top_button_tim: //选择城市
                 Intent cityChooseIntent = new Intent(context,CityChooseActivity.class);
@@ -98,4 +101,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
+
+    /* 头部的相关视图  标题 */
+    private TextView tv_topBar;
+    /**
+     * Created by 陈彬 on 2015/12/30  9:59
+     * 方法描述: 改变头部状态
+     */
+    private void changeTopBarState(String title) {
+        tv_topBar = (TextView) findViewById(R.id.top_bar_tv_title);
+        tv_topBar.setText(title);
+    }
+
+
 }

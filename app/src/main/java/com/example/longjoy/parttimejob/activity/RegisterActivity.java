@@ -118,7 +118,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
         timeHandler.sendEmptyMessageDelayed(1, 100);
         //调试期间  关闭功能
-        /*BmobSMS.requestSMSCode(context, telephone, "注册短信验证", new RequestSMSCodeListener() {
+        BmobSMS.requestSMSCode(context, telephone, "注册短信验证", new RequestSMSCodeListener() {
             @Override
             public void done(Integer integer, BmobException e) {
                 Toast.makeText(context,"短信已发送，请注意查收.",Toast.LENGTH_SHORT).show();
@@ -128,7 +128,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     Log.v(TAG,e.toString());
                 }
             }
-        });*/
+        });
     }
 
     /**
@@ -245,7 +245,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      * 方法描述: 校验短信验证码是否正确
      */
     private void checkMessageNumber(String number) {
-        /*BmobSMS.verifySmsCode(context, telephone, number, new VerifySMSCodeListener() {
+        BmobSMS.verifySmsCode(context, telephone, number, new VerifySMSCodeListener() {
             @Override
             public void done(BmobException e) {
                 if (e == null){
@@ -256,9 +256,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 }
 
             }
-        });*/
+        });
         //调试期间   不用验证短信验证码
-        registeHandler.sendEmptyMessage(RESULT_OK);
+        //registeHandler.sendEmptyMessage(RESULT_OK);
     }
 
     //短信验证计时器
