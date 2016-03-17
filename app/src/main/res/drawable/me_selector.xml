@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:state_checked="true"><bitmap android:gravity="center" android:src="@mipmap/tab_button_my_sel" android:tileMode="disabled" />
+    <item android:state_checked="true">
+        <bitmap android:gravity="center" android:src="@mipmap/wodetianchong" android:tileMode="disabled" />
     </item>
-    <item android:state_selected="true"><bitmap android:gravity="center" android:src="@mipmap/tab_button_my_sel" android:tileMode="disabled" />
+    <item android:state_selected="true">
+        <bitmap android:gravity="center" android:src="@mipmap/wodetianchong" android:tileMode="disabled" />
     </item>
-    <item android:state_pressed="true"><bitmap android:gravity="center" android:src="@mipmap/tab_button_my_sel" android:tileMode="disabled" />
+    <item android:state_pressed="true">
+        <bitmap android:gravity="center" android:src="@mipmap/wodetianchong" android:tileMode="disabled" />
     </item>
-    <item><bitmap android:gravity="center" android:src="@mipmap/tab_button_my_nor" android:tileMode="disabled" />
+    <item>
+        <bitmap android:gravity="center" android:src="@mipmap/wode" android:tileMode="disabled" />
     </item>
 </selector>

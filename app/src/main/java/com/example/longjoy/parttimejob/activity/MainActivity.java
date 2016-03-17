@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    @Override
+    /*@Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode){
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 tv_chooseCity.setText(data.getStringExtra("cityName"));
                 break;
         }
-    }
+    }*/
 
     /* 头部的相关视图  标题 */
     private TextView tv_topBar;

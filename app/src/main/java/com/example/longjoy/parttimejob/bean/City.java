@@ -6,13 +6,32 @@ package com.example.longjoy.parttimejob.bean;
  * 创建时间：2015/12/30 14:19
  */
 public class City {
-    private String city_name;
+    public String name;
+    public String pinyi;
 
-    public String getCity_name() {
-        return city_name;
+    public City(String name, String pinyi) {
+        super();
+        this.name = name;
+        this.pinyi = pinyi;
     }
 
-    public void setCity_name(String city_name) {
-        this.city_name = city_name;
+    public City() {
+        super();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPinyi() {
+        return pinyi;
+    }
+
+    public void setPinyi(String pinyi) {
+        this.pinyi = pinyi;
     }
 }

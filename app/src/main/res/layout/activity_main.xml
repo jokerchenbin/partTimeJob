@@ -29,24 +29,34 @@
             style="@style/wrap_wrap_layout"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:background="@drawable/home_selector"
-            android:button="@null" />
+            android:button="@null"
+            android:checked="true"
+            android:drawableTop="@drawable/home_selector"
+            android:gravity="center_horizontal"
+            android:text="首页"
+            android:textColor="@color/select_menu_txt" />
 
         <RadioButton
             android:id="@+id/activity_main_rbtn_partTimeJob"
             style="@style/wrap_wrap_layout"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:background="@drawable/job_selector"
-            android:button="@null" />
+            android:button="@null"
+            android:drawableTop="@drawable/job_selector"
+            android:gravity="center_horizontal"
+            android:text="消息"
+            android:textColor="@color/select_menu_txt" />
 
         <RadioButton
             android:id="@+id/activity_main_rbtn_my"
             style="@style/wrap_wrap_layout"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:background="@drawable/me_selector"
-            android:button="@null" />
+            android:button="@null"
+            android:drawableTop="@drawable/me_selector"
+            android:gravity="center_horizontal"
+            android:text="我的"
+            android:textColor="@color/select_menu_txt" />
     </RadioGroup>
 
 </RelativeLayout>

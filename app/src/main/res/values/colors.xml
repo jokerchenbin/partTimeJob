@@ -51,4 +51,7 @@
     <color name="actionsheet_gray">#8F8F8F</color>
     <color name="text_defulat">#8F8F8F</color>
     <color name="layout_press">#e7e7e7</color>
+
+    <color name="tab_select">#FFFFD802</color>
+
 </resources>
