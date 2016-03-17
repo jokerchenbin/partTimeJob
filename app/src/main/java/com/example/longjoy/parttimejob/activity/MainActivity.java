@@ -27,7 +27,7 @@ import com.example.longjoy.parttimejob.tools.SelectHeadTools;
 import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
+//    This is a Text!!!!!!第五次
     private static final String TAG = "MainActivity";
     private LinearLayout main_fragment;
     private FragmentManager fm;
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rbtn_My.setOnClickListener(this);
         tv_chooseCity = (TextView) findViewById(R.id.top_button_tim);
         tv_chooseCity.setOnClickListener(this);
-
+		//陈彬 22222
         fm = getSupportFragmentManager();
         fm.beginTransaction().add(R.id.activity_main_framelayout, new HomePageFragment()).commit();
     }
