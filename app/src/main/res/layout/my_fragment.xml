@@ -26,21 +26,20 @@
                 android:layout_weight="1" />
         </LinearLayout>
 
-        <ImageView
-            android:clickable="true"
-            android:scaleType="fitXY"
+        <com.example.longjoy.parttimejob.widget.CircleImageView
             android:id="@+id/my_fragment_iv_head"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_centerInParent="true"
-            android:background="@mipmap/head" />
+            android:clickable="true"
+            android:src="@mipmap/touxiang" />
 
         <TextView
             android:id="@+id/my_fragment_tv_logontext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/my_fragment_iv_head"
-            android:layout_marginTop="@dimen/activity_8"
+            android:layout_marginTop="4dp"
             android:gravity="center"
             android:text="点击头像登录"
             android:textColor="@color/black"
@@ -59,11 +58,41 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/my_fragment_ly_myResume"
-            android:clickable="true"
-            android:background="@drawable/layout_item_bg"
+            android:id="@+id/my_fragment_ly_myInfo"
             android:layout_width="match_parent"
-            android:layout_height="48dp">
+            android:layout_height="48dp"
+            android:background="@drawable/layout_item_bg"
+            android:clickable="true">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:background="@mipmap/s_icn7"
+                android:padding="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
+                android:gravity="center_vertical"
+                android:text="我的信息"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/alertdialog_line" />
+
+        <LinearLayout
+            android:id="@+id/my_fragment_ly_myResume"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/layout_item_bg"
+            android:clickable="true">
 
             <ImageView
                 android:layout_width="36dp"
@@ -90,10 +119,10 @@
 
         <LinearLayout
             android:id="@+id/my_fragment_ly_myCollect"
-            android:clickable="true"
-            android:background="@drawable/layout_item_bg"
             android:layout_width="match_parent"
-            android:layout_height="48dp">
+            android:layout_height="48dp"
+            android:background="@drawable/layout_item_bg"
+            android:clickable="true">
 
             <ImageView
                 android:layout_width="36dp"
@@ -120,17 +149,17 @@
 
         <LinearLayout
             android:id="@+id/my_fragment_ly_signUp"
-            android:clickable="true"
-            android:background="@drawable/layout_item_bg"
             android:layout_width="match_parent"
-            android:layout_height="48dp">
+            android:layout_height="48dp"
+            android:background="@drawable/layout_item_bg"
+            android:clickable="true">
 
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/activity_vertical_margin"
-                android:background="@mipmap/s_icn7"
+                android:background="@mipmap/s_icn10"
                 android:padding="8dp" />
 
             <TextView
@@ -149,41 +178,11 @@
             android:background="@color/alertdialog_line" />
 
         <LinearLayout
-            android:id="@+id/my_fragment_ly_suggest"
-            android:clickable="true"
-            android:background="@drawable/layout_item_bg"
-            android:layout_width="match_parent"
-            android:layout_height="48dp">
-
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/activity_vertical_margin"
-                android:background="@mipmap/s_icn10"
-                android:padding="8dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/activity_vertical_margin"
-                android:gravity="center_vertical"
-                android:text="意见建议"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/alertdialog_line" />
-
-        <LinearLayout
             android:id="@+id/my_fragment_ly_checkUpdate"
-            android:clickable="true"
-            android:background="@drawable/layout_item_bg"
             android:layout_width="match_parent"
-            android:layout_height="48dp">
+            android:layout_height="48dp"
+            android:background="@drawable/layout_item_bg"
+            android:clickable="true">
 
             <ImageView
                 android:layout_width="36dp"

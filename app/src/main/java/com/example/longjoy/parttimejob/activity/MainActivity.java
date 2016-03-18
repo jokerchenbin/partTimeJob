@@ -13,6 +13,10 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
 import com.example.longjoy.parttimejob.AppApplication;
 import com.example.longjoy.parttimejob.AppConfig;
 import com.example.longjoy.parttimejob.Configs;
@@ -27,7 +31,7 @@ import com.example.longjoy.parttimejob.tools.SelectHeadTools;
 import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-//    This is a Text!!!!!!第五次
+    //    This is a Text!!!!!!第五次
     private static final String TAG = "MainActivity";
     private LinearLayout main_fragment;
     private FragmentManager fm;
@@ -35,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView tv_chooseCity;
     private Context context;
     private Activity activity;
+    private LocationClient mLocationClient;
+    private MyLocationListener mMyLocationListener = new MyLocationListener();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +48,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         activity = this;
         context = this;
+        mLocationClient = new LocationClient(getApplicationContext());     //声明LocationClient类
+        mLocationClient.registerLocationListener(mMyLocationListener);    //注册监听函数
+        InitLocation();
+        mLocationClient.start();
         ((AppApplication) getApplication()).addActivity(activity);
         initViewIds();
     }
@@ -62,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rbtn_My.setOnClickListener(this);
         tv_chooseCity = (TextView) findViewById(R.id.top_button_tim);
         tv_chooseCity.setOnClickListener(this);
-		//陈彬 22222
+        //陈彬 22222
         fm = getSupportFragmentManager();
         fm.beginTransaction().add(R.id.activity_main_framelayout, new HomePageFragment()).commit();
     }
@@ -86,24 +96,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 changeTopBarState("我的");
                 break;
             case R.id.top_button_tim: //选择城市
-                Intent cityChooseIntent = new Intent(context,CityChooseActivity.class);
+                Intent cityChooseIntent = new Intent(context, CityChooseActivity.class);
                 startActivityForResult(cityChooseIntent, AppConfig.DEFAULT_RESULT);
                 break;
         }
     }
 
-    /*@Override
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode){
+        switch (resultCode) {
             case AppConfig.DEFAULT_REQUEST: // 城市选择的返回数据
                 tv_chooseCity.setText(data.getStringExtra("cityName"));
                 break;
         }
-    }*/
+    }
 
     /* 头部的相关视图  标题 */
     private TextView tv_topBar;
+
     /**
      * Created by 陈彬 on 2015/12/30  9:59
      * 方法描述: 改变头部状态
@@ -111,7 +122,50 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void changeTopBarState(String title) {
         tv_topBar = (TextView) findViewById(R.id.top_bar_tv_title);
         tv_topBar.setText(title);
+        if ("我的".equals(title)) {
+            findViewById(R.id.top_button_tim).setVisibility(View.GONE);
+        } else {
+            findViewById(R.id.top_button_tim).setVisibility(View.VISIBLE);
+        }
+    }
+
+    /**
+     * 实现实位回调监听
+     */
+    public class MyLocationListener implements BDLocationListener {
+
+        @Override
+        public void onReceiveLocation(BDLocation location) {
+            //Log.e("info", "city = " + arg0.getCity());
+            Logger.getInstance().v("chenbin", "city = " + location.getCity());
+            if (!"".equals(location.getCity())) {
+                tv_chooseCity.setText(location.getCity());
+                mLocationClient.stop();
+            }
+
+        }
+
     }
 
 
+    private void InitLocation() {
+        // 设置定位参数
+        LocationClientOption option = new LocationClientOption();
+        option.setCoorType("bd09ll"); // 设置坐标类型
+        option.setScanSpan(10000); // 10分钟扫描1次
+        // 需要地址信息，设置为其他任何值（string类型，且不能为null）时，都表示无地址信息。
+        option.setAddrType("all");
+        // 设置是否返回POI的电话和地址等详细信息。默认值为false，即不返回POI的电话和地址信息。
+        //option.setPoiExtraInfo(true);
+        // 设置产品线名称。强烈建议您使用自定义的产品线名称，方便我们以后为您提供更高效准确的定位服务。
+        option.setProdName("通过GPS定位我当前的位置");
+        // 禁用启用缓存定位数据
+        option.disableCache(true);
+        // 设置最多可返回的POI个数，默认值为3。由于POI查询比较耗费流量，设置最多返回的POI个数，以便节省流量。
+        //option.setPoiNumber(3);
+        // 设置定位方式的优先级。
+        // 当gps可用，而且获取了定位结果时，不再发起网络请求，直接返回给用户坐标。这个选项适合希望得到准确坐标位置的用户。如果gps不可用，再发起网络请求，进行定位。
+        option.setPriority(LocationClientOption.GpsFirst);
+        mLocationClient.setLocOption(option);
+    }
 }

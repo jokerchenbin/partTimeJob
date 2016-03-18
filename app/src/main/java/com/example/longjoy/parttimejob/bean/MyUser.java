@@ -9,10 +9,28 @@ import cn.bmob.v3.BmobUser;
  */
 public class MyUser extends BmobUser {
 
-    private String  sex = "男";
-    private Integer age = 18;
+    private String  sex ;
+    private int age ;
     private String  imageUrl;
+    private String height;//身高
+    private String school;//学校
 
+
+    public String getHeight() {
+        return height;
+    }
+
+    public void setHeight(String height) {
+        this.height = height;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
 
     public String getSex() {
         return sex;
@@ -22,11 +40,11 @@ public class MyUser extends BmobUser {
         this.sex = sex;
     }
 
-    public Integer getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
@@ -36,5 +54,16 @@ public class MyUser extends BmobUser {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    @Override
+    public String toString() {
+        return "MyUser{" +
+                "sex='" + sex + '\'' +
+                ", age=" + age +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", height='" + height + '\'' +
+                ", school='" + school + '\'' +
+                '}';
     }
 }

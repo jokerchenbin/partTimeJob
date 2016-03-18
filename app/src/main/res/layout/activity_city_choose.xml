@@ -12,6 +12,7 @@
         android:background="@color/main_color">
 
         <ImageView
+            android:id="@+id/activity_city_choose_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"

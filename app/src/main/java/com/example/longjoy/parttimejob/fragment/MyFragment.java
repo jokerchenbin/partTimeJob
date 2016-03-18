@@ -9,6 +9,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -35,11 +37,13 @@ import com.example.longjoy.parttimejob.AppConfig;
 import com.example.longjoy.parttimejob.Configs;
 import com.example.longjoy.parttimejob.R;
 import com.example.longjoy.parttimejob.activity.MyResumeActivity;
+import com.example.longjoy.parttimejob.activity.UserInfoActivity;
 import com.example.longjoy.parttimejob.bean.MyUser;
 import com.example.longjoy.parttimejob.common.Logger;
 import com.example.longjoy.parttimejob.tools.FileTools;
 import com.example.longjoy.parttimejob.tools.SelectHeadTools;
 import com.example.longjoy.parttimejob.widget.ActionSheetDialog;
+import com.example.longjoy.parttimejob.widget.CircleImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.BufferedOutputStream;
@@ -59,16 +63,16 @@ import cn.bmob.v3.listener.UpdateListener;
  */
 public class MyFragment extends Fragment implements View.OnClickListener {
 
-    private ImageView iv_header;
+    private static CircleImageView iv_header;
     private Button btn_logout;
     private Context context;
     private Activity activity;
     private Fragment fragment;
     private Uri photoUri = null;
-    private TextView tv_logotext;
+    private static TextView tv_logotext;
 
     /* 布局按钮 */
-    private LinearLayout ly_resume, ly_myCollect, ly_signUp, ly_suggest, ly_checkUpdate;
+    private LinearLayout ly_resume, ly_myCollect, ly_signUp, ly_myInfo, ly_checkUpdate;
 
     @Nullable
     @Override
@@ -86,7 +90,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
      * 方法描述: 初始化 View  ID
      */
     private void initViewIDs(View view) {
-        iv_header = (ImageView) view.findViewById(R.id.my_fragment_iv_head);
+        iv_header = (CircleImageView) view.findViewById(R.id.my_fragment_iv_head);
         iv_header.setOnClickListener(this);
         ImageLoader.getInstance().displayImage(AppConfig.prefs.getString("imageUrl", ""),
                 iv_header, AppConfig.options);
@@ -97,15 +101,15 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         ly_resume = (LinearLayout) view.findViewById(R.id.my_fragment_ly_myResume);
         ly_myCollect = (LinearLayout) view.findViewById(R.id.my_fragment_ly_myCollect);
         ly_signUp = (LinearLayout) view.findViewById(R.id.my_fragment_ly_signUp);
-        ly_suggest = (LinearLayout) view.findViewById(R.id.my_fragment_ly_suggest);
+        ly_myInfo = (LinearLayout) view.findViewById(R.id.my_fragment_ly_myInfo);
         ly_checkUpdate = (LinearLayout) view.findViewById(R.id.my_fragment_ly_checkUpdate);
         ly_resume.setOnClickListener(this);
         ly_myCollect.setOnClickListener(this);
         ly_signUp.setOnClickListener(this);
-        ly_suggest.setOnClickListener(this);
+        ly_myInfo.setOnClickListener(this);
         ly_checkUpdate.setOnClickListener(this);
         tv_logotext = (TextView) view.findViewById(R.id.my_fragment_tv_logontext);
-        tv_logotext.setText(AppConfig.prefs.getString("username",""));
+        tv_logotext.setText(AppConfig.prefs.getString("username", ""));
     }
 
     @Override
@@ -122,10 +126,12 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.my_fragment_ly_signUp: //我的报名
                 break;
-            case R.id.my_fragment_ly_suggest: //意见建议
+            case R.id.my_fragment_ly_myInfo: //我的信息
+                Intent myInfo = new Intent(context, UserInfoActivity.class);
+                startActivity(myInfo);
                 break;
             case R.id.my_fragment_ly_checkUpdate: //检查更新
-                Toast.makeText(context,"已经是最新版本",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "已经是最新版本", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.my_fragment_btn_logout: //注销当前账号
                 SelectHeadTools.openDialogOut(fragment);
@@ -199,7 +205,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
         final File file = new File(tempImgPath);
         //上传头像文件  开起线程上传头像
-        new Thread(){
+        new Thread() {
             @Override
             public void run() {
                 uploadFile(file);
@@ -217,6 +223,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onSuccess(String fileName, String url, BmobFile file) {
                 AppConfig.prefs.edit().putString("imageUrl", file.getUrl()).commit();
+                handler.sendEmptyMessage(2);
                 MyUser myUser = new MyUser();
                 myUser.setImageUrl(file.getUrl());
                 BmobUser usr = BmobUser.getCurrentUser(context);
@@ -241,5 +248,21 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             }
         });
     }
+
+    public static Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            int what = msg.what;
+            switch (what) {
+                case 1://更改页面的名字
+                    tv_logotext.setText(AppConfig.prefs.getString("username", ""));
+                    break;
+                case 2://重新加载头像
+                    ImageLoader.getInstance().displayImage(AppConfig.prefs.getString("imageUrl", ""),
+                            iv_header, AppConfig.options);
+                    break;
+            }
+        }
+    };
 
 }

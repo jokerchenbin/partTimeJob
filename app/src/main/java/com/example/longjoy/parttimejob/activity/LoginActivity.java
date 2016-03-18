@@ -28,6 +28,7 @@ import com.example.longjoy.parttimejob.R;
 import com.example.longjoy.parttimejob.bean.MyUser;
 import com.example.longjoy.parttimejob.bean.UserInfo;
 import com.example.longjoy.parttimejob.common.FunctionUtils;
+import com.example.longjoy.parttimejob.common.Logger;
 import com.example.longjoy.parttimejob.tools.FileTools;
 import com.example.longjoy.parttimejob.tools.SelectHeadTools;
 
@@ -128,8 +129,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (myUser != null) {
                     Toast.makeText(context, "登录成功", Toast.LENGTH_SHORT).show();
                     //将个人信息写入本地
-                    writeUserInfoToLocal(myUser.getObjectId(),myUser.getUsername(),myUser.getMobilePhoneNumber(),
-                            myUser.getImageUrl(),myUser.getAge(),myUser.getSex());
+                    FunctionUtils.writeUserInfoToLocal(myUser);
                     //跳转到主页面
                     Intent intent = new Intent(activity,MainActivity.class);
                     startActivity(intent);
@@ -144,16 +144,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     /**
      * Created by 陈彬 on 2016/1/4  15:29
      * 方法描述: 将获取到用户基本信息写入本地
-     */
-    private void writeUserInfoToLocal(String objectId, String username
-            ,String mobilePhoneNumber, String imageUrl, Integer age, String sex) {
-        AppConfig.prefs.edit().putString("objectId",objectId)
-                .putString("username",username)
-                .putString("mobilePhoneNumber",mobilePhoneNumber)
-                .putString("imageUrl",imageUrl)
-                .putInt("age",age)
-                .putString("sex",sex).commit();
-    }
+     *//*
+    private void writeUserInfoToLocal(MyUser user) {
+        AppConfig.prefs.edit()
+                .putString("username", user.getUsername())
+                .putString("mobilePhoneNumber",user.getMobilePhoneNumber())
+                .putString("imageUrl",user.getImageUrl())
+                .putInt("age", user.getAge())
+                .putString("school",user.getSchool())
+                .putString("height",user.getHeight())
+                .putString("sex",user.getSex()).commit();
+    }*/
 
 
 }

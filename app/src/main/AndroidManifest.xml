@@ -74,12 +74,12 @@
         <activity
             android:name=".activity.ChooseJobActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Anim_fade"></activity>
+            android:theme="@style/Anim_fade" />
 
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote" >
+            android:process=":remote">
             <intent-filter>
                 <action android:name="com.baidu.location.service_v2.2" />
             </intent-filter>
@@ -88,7 +88,9 @@
         <!-- meta-data需要写在application中 -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="vc8gixf5F6k7789nX9nscmiG" />
+            android:value="hTA9KMpu9uG6Lph3mtscwfaY" />
+
+        <activity android:name=".activity.UserInfoActivity"></activity>
     </application>
 
 </manifest>

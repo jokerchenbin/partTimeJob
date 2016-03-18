@@ -22,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -36,6 +37,7 @@ import com.example.longjoy.parttimejob.AppConfig;
 import com.example.longjoy.parttimejob.R;
 import com.example.longjoy.parttimejob.adapter.CityListAdapter;
 import com.example.longjoy.parttimejob.bean.City;
+import com.example.longjoy.parttimejob.common.Logger;
 import com.example.longjoy.parttimejob.db.DBHelper;
 import com.example.longjoy.parttimejob.db.DatabaseHelper;
 import com.example.longjoy.parttimejob.tools.PingYinUtil;
@@ -74,18 +76,31 @@ public class CityChooseActivity extends AppCompatActivity implements AbsListView
     private TextView tv_noresult;
 
     private LocationClient mLocationClient;
-    private MyLocationListener mMyLocationListener;
+    private MyLocationListener mMyLocationListener = new MyLocationListener();
 
     private String currentCity; // 用于保存定位到的城市
     private int locateProcess = 1; // 记录当前定位的状态 正在定位-定位成功-定位失败
     private boolean isNeedFresh;
+    private Context context;
 
     private DatabaseHelper helper;
+    private ImageView iv_back;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city_choose);
+        context = this;
+        iv_back = (ImageView) findViewById(R.id.activity_city_choose_back);
+        iv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setResult(10);
+                finish();
+            }
+        });
+        mLocationClient = new LocationClient(getApplicationContext());     //声明LocationClient类
+        mLocationClient.registerLocationListener(mMyLocationListener );    //注册监听函数
         personList = (ListView) findViewById(R.id.list_view);
         allCity_lists = new ArrayList<City>();
         city_hot = new ArrayList<City>();
@@ -148,6 +163,10 @@ public class CityChooseActivity extends AppCompatActivity implements AbsListView
                     Toast.makeText(getApplicationContext(),
                             allCity_lists.get(position).getName(),
                             Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent();
+                    intent.putExtra("cityName",allCity_lists.get(position).getName());
+                    setResult(AppConfig.DEFAULT_REQUEST, intent);
+                    finish();
                 }
             }
         });
@@ -164,6 +183,10 @@ public class CityChooseActivity extends AppCompatActivity implements AbsListView
                 Toast.makeText(getApplicationContext(),
                         city_result.get(position).getName(), Toast.LENGTH_SHORT)
                         .show();
+                Intent intent = new Intent();
+                intent.putExtra("cityName",city_result.get(position).getName());
+                setResult(AppConfig.DEFAULT_REQUEST,intent);
+                finish();
             }
         });
         initOverlay();
@@ -199,13 +222,13 @@ public class CityChooseActivity extends AppCompatActivity implements AbsListView
         // 需要地址信息，设置为其他任何值（string类型，且不能为null）时，都表示无地址信息。
         option.setAddrType("all");
         // 设置是否返回POI的电话和地址等详细信息。默认值为false，即不返回POI的电话和地址信息。
-        option.setPoiExtraInfo(true);
+        //option.setPoiExtraInfo(true);
         // 设置产品线名称。强烈建议您使用自定义的产品线名称，方便我们以后为您提供更高效准确的定位服务。
         option.setProdName("通过GPS定位我当前的位置");
         // 禁用启用缓存定位数据
         option.disableCache(true);
         // 设置最多可返回的POI个数，默认值为3。由于POI查询比较耗费流量，设置最多返回的POI个数，以便节省流量。
-        option.setPoiNumber(3);
+        //option.setPoiNumber(3);
         // 设置定位方式的优先级。
         // 当gps可用，而且获取了定位结果时，不再发起网络请求，直接返回给用户坐标。这个选项适合希望得到准确坐标位置的用户。如果gps不可用，再发起网络请求，进行定位。
         option.setPriority(LocationClientOption.GpsFirst);
@@ -339,29 +362,26 @@ public class CityChooseActivity extends AppCompatActivity implements AbsListView
     public class MyLocationListener implements BDLocationListener {
 
         @Override
-        public void onReceiveLocation(BDLocation arg0) {
-            Log.e("info", "city = " + arg0.getCity());
+        public void onReceiveLocation(BDLocation location) {
+            //Log.e("info", "city = " + arg0.getCity());
+            Logger.getInstance().v("chenbin","city = " + location.getCity());
             if (!isNeedFresh) {
                 return;
             }
             isNeedFresh = false;
-            if (arg0.getCity() == null) {
+            if (location.getCity() == null) {
                 locateProcess = 3; // 定位失败
                 personList.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 return;
             }
-            currentCity = arg0.getCity().substring(0,
-                    arg0.getCity().length() - 1);
+            currentCity = location.getCity().substring(0,
+                    location.getCity().length() - 1);
             locateProcess = 2; // 定位成功
             personList.setAdapter(adapter);
             adapter.notifyDataSetChanged();
         }
 
-        @Override
-        public void onReceivePoi(BDLocation arg0) {
-
-        }
     }
 
     private class ResultListAdapter extends BaseAdapter {
@@ -484,6 +504,10 @@ public class CityChooseActivity extends AppCompatActivity implements AbsListView
                             Toast.makeText(getApplicationContext(),
                                     city.getText().toString(),
                                     Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent();
+                            intent.putExtra("cityName",city.getText());
+                            setResult(AppConfig.DEFAULT_REQUEST,intent);
+                            finish();
                         } else if (locateProcess == 3) {
                             locateProcess = 1;
                             personList.setAdapter(adapter);
@@ -529,6 +553,10 @@ public class CityChooseActivity extends AppCompatActivity implements AbsListView
                         Toast.makeText(getApplicationContext(),
                                 city_history.get(position), Toast.LENGTH_SHORT)
                                 .show();
+                        Intent intent = new Intent();
+                        intent.putExtra("cityName",city_history.get(position));
+                        setResult(AppConfig.DEFAULT_REQUEST,intent);
+                        finish();
 
                     }
                 });
@@ -548,6 +576,10 @@ public class CityChooseActivity extends AppCompatActivity implements AbsListView
                         Toast.makeText(getApplicationContext(),
                                 city_hot.get(position).getName(),
                                 Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent();
+                        intent.putExtra("cityName",city_hot.get(position).getName());
+                        setResult(AppConfig.DEFAULT_REQUEST,intent);
+                        finish();
 
                     }
                 });
