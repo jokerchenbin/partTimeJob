@@ -18,10 +18,18 @@ public class JobInfo extends BmobObject {
     private String money;
     private String palce;
     private String workDate;
+    private String addr;
     private String desc;
     private String linkman;
     private String telephone;
 
+    public String getAddr() {
+        return addr;
+    }
+
+    public void setAddr(String addr) {
+        this.addr = addr;
+    }
 
     public String getName() {
         return name;

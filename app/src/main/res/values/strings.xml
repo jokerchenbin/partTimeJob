@@ -225,5 +225,11 @@
     <string name="back">返回</string>
     <string name="save">保存</string>
 
+    <string name="text">1、负责现场设备接线、软件调试\n
+2、硬件设备维修、维护\n
+3、客户需求的采集和上报\n
+熟悉计算机软硬件、有强弱电经验优先。</string>
 
+    <string name="contact">联系我时,请说明是在淘兼职上看到的,谢谢！</string>
+    <string name="hint">遇到需要收取费用或索亚现金的商家,均有诈骗嫌疑,请保持警惕！工作中,请注意人身财务安全。</string>
 </resources>

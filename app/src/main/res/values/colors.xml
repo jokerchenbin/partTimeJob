@@ -56,5 +56,5 @@
     <color name="layout_press">#e7e7e7</color>
 
     <color name="tab_select">#FFFFD802</color>
-
+    <color name="sign_bg">#56bc23</color>
 </resources>

@@ -90,7 +90,8 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="hTA9KMpu9uG6Lph3mtscwfaY" />
 
-        <activity android:name=".activity.UserInfoActivity"></activity>
+        <activity android:name=".activity.UserInfoActivity" />
+        <activity android:name=".activity.JobDetailActivity"></activity>
     </application>
 
 </manifest>

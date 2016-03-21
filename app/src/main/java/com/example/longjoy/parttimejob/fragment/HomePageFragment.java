@@ -1,16 +1,19 @@
 package com.example.longjoy.parttimejob.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.longjoy.parttimejob.R;
+import com.example.longjoy.parttimejob.activity.JobDetailActivity;
 import com.example.longjoy.parttimejob.adapter.JobInfoAdapter;
 import com.example.longjoy.parttimejob.adapter.JobListAdapter;
 import com.example.longjoy.parttimejob.bean.JobInfo;
@@ -32,6 +35,7 @@ public class HomePageFragment extends Fragment {
     private Button btn_add;
     private ListView list;
     private JobInfoAdapter mAdapter;
+    private List<JobInfo> jobList;
 
     @Nullable
     @Override
@@ -52,6 +56,7 @@ public class HomePageFragment extends Fragment {
         query.findObjects(context, new FindListener<JobInfo>() {
             @Override
             public void onSuccess(List<JobInfo> jobInfolist) {
+                jobList = jobInfolist;
                 mAdapter = new JobInfoAdapter(context, jobInfolist);
                 list.setAdapter(mAdapter);
             }
@@ -67,6 +72,14 @@ public class HomePageFragment extends Fragment {
         list = (ListView) view.findViewById(R.id.firstpage_list);
         View v = View.inflate(getContext(),R.layout.head,null);
         list.addHeaderView(v);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(), JobDetailActivity.class);
+                intent.putExtra("data",jobList.get(position-1));
+                startActivity(intent);
+            }
+        });
     }
 
 
