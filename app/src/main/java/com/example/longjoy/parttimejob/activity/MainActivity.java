@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +23,7 @@ import com.example.longjoy.parttimejob.AppApplication;
 import com.example.longjoy.parttimejob.AppConfig;
 import com.example.longjoy.parttimejob.Configs;
 import com.example.longjoy.parttimejob.R;
+import com.example.longjoy.parttimejob.adapter.FragmentAdapter;
 import com.example.longjoy.parttimejob.common.Logger;
 import com.example.longjoy.parttimejob.fragment.HomePageFragment;
 import com.example.longjoy.parttimejob.fragment.MyFragment;
@@ -29,18 +32,23 @@ import com.example.longjoy.parttimejob.tools.FileTools;
 import com.example.longjoy.parttimejob.tools.SelectHeadTools;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    //    This is a Text!!!!!!第五次
     private static final String TAG = "MainActivity";
-    private LinearLayout main_fragment;
-    private FragmentManager fm;
     private RadioButton rbtn_FirstPage, rbtn_PartTimeJob, rbtn_My;
     private TextView tv_chooseCity;
     private Context context;
     private Activity activity;
     private LocationClient mLocationClient;
     private MyLocationListener mMyLocationListener = new MyLocationListener();
+    private ViewPager viewPager;
+    private FragmentManager bg;
+    private HomePageFragment homeFragment;
+    private PartTimeJobFragment partJobFragment;
+    private MyFragment myFragment;
+    private List<Fragment> listfraFragments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 初始化View上的布局ID
      */
     private void initViewIds() {
-        main_fragment = (LinearLayout) findViewById(R.id.activity_main_framelayout);
+        viewPager = (ViewPager) findViewById(R.id.activity_main_framelayout);
         /* 单选按钮 */
         rbtn_FirstPage = (RadioButton) findViewById(R.id.activity_main_rbtn_firstPage);
         rbtn_FirstPage.setOnClickListener(this);
@@ -72,27 +80,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rbtn_My.setOnClickListener(this);
         tv_chooseCity = (TextView) findViewById(R.id.top_button_tim);
         tv_chooseCity.setOnClickListener(this);
-        //陈彬 22222
-        fm = getSupportFragmentManager();
-        fm.beginTransaction().add(R.id.activity_main_framelayout, new HomePageFragment()).commit();
+        bg = getSupportFragmentManager();
+        homeFragment = new HomePageFragment();
+        partJobFragment = new PartTimeJobFragment();
+        myFragment = new MyFragment();
+        listfraFragments = new ArrayList<>();
+        listfraFragments.add(homeFragment);
+        listfraFragments.add(partJobFragment);
+        listfraFragments.add(myFragment);
+        FragmentAdapter fadpter = new FragmentAdapter(bg, listfraFragments);
+        viewPager.setOffscreenPageLimit(2);
+        viewPager.setAdapter(fadpter);
+        viewPager.setCurrentItem(0);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.activity_main_rbtn_firstPage:
-                HomePageFragment firstPage = new HomePageFragment(); //首页
-                fm.beginTransaction().replace(R.id.activity_main_framelayout, firstPage).commit();
+            case R.id.activity_main_rbtn_firstPage://首页
+                viewPager.setCurrentItem(0);
                 changeTopBarState("蜂鸟兼职");
                 break;
             case R.id.activity_main_rbtn_partTimeJob: // 兼职工作
-                PartTimeJobFragment job = new PartTimeJobFragment();
-                fm.beginTransaction().replace(R.id.activity_main_framelayout, job).commit();
+                viewPager.setCurrentItem(1);
                 changeTopBarState("兼职");
                 break;
             case R.id.activity_main_rbtn_my: // 我的
-                MyFragment myFragment = new MyFragment();
-                fm.beginTransaction().replace(R.id.activity_main_framelayout, myFragment).commit();
+                viewPager.setCurrentItem(2);
                 changeTopBarState("我的");
                 break;
             case R.id.top_button_tim: //选择城市

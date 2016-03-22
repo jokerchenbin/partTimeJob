@@ -2,6 +2,7 @@ package com.example.longjoy.parttimejob.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,17 +15,16 @@ import android.widget.ListView;
 
 import com.example.longjoy.parttimejob.R;
 import com.example.longjoy.parttimejob.activity.JobDetailActivity;
+import com.example.longjoy.parttimejob.adapter.ImageAdapter;
+import com.example.longjoy.parttimejob.widget.AutoScrollViewPager;
 import com.example.longjoy.parttimejob.adapter.JobInfoAdapter;
-import com.example.longjoy.parttimejob.adapter.JobListAdapter;
 import com.example.longjoy.parttimejob.bean.JobInfo;
-import com.example.longjoy.parttimejob.common.Logger;
 import com.example.longjoy.parttimejob.tools.ToastDiy;
 
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.SaveListener;
 
 /**
  * Created by 陈彬 on 2015/12/30  16:40
@@ -37,6 +37,9 @@ public class HomePageFragment extends Fragment {
     private JobInfoAdapter mAdapter;
     private List<JobInfo> jobList;
     private View view;
+    private AutoScrollViewPager viewPager;
+    private ImageAdapter adapter;
+    private Drawable[] drawables;
 
     @Nullable
     @Override
@@ -72,8 +75,14 @@ public class HomePageFragment extends Fragment {
     }
 
     private void initView(View view) {
+        Drawable able = getResources().getDrawable(R.mipmap.banner_jiazaizhong);
+        drawables = new Drawable[]{able, getResources().getDrawable(R.mipmap.wodeneiyebeijing), able, getResources().getDrawable(R.mipmap.wodeneiyebeijing)};
         list = (ListView) view.findViewById(R.id.firstpage_list);
         View v = View.inflate(getContext(), R.layout.head, null);
+        viewPager = (AutoScrollViewPager) v.findViewById(R.id.view_pager);
+        adapter = new ImageAdapter(getContext(), drawables);
+        viewPager.setAdapter(adapter);
+        viewPager.startAutoScroll();
         list.addHeaderView(v);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
