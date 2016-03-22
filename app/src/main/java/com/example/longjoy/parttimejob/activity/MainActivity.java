@@ -113,6 +113,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent cityChooseIntent = new Intent(context, CityChooseActivity.class);
                 startActivityForResult(cityChooseIntent, AppConfig.DEFAULT_RESULT);
                 break;
+            case R.id.top_bar_tv_right: //设置界面
+                startActivity(new Intent(context, SettingActivity.class));
+                break;
         }
     }
 
@@ -127,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /* 头部的相关视图  标题 */
-    private TextView tv_topBar;
+    private TextView tv_topBar, tv_right;
 
     /**
      * Created by 陈彬 on 2015/12/30  9:59
@@ -135,11 +138,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private void changeTopBarState(String title) {
         tv_topBar = (TextView) findViewById(R.id.top_bar_tv_title);
+        tv_right = (TextView) findViewById(R.id.top_bar_tv_right);
+        tv_right.setOnClickListener(this);
         tv_topBar.setText(title);
         if ("我的".equals(title)) {
             findViewById(R.id.top_button_tim).setVisibility(View.GONE);
+            tv_right.setText("设置");
+            tv_right.setVisibility(View.VISIBLE);
         } else {
             findViewById(R.id.top_button_tim).setVisibility(View.VISIBLE);
+            tv_right.setVisibility(View.GONE);
         }
     }
 

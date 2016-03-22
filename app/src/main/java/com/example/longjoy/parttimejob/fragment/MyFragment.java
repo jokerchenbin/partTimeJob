@@ -40,6 +40,7 @@ import com.example.longjoy.parttimejob.activity.MyCollectActivity;
 import com.example.longjoy.parttimejob.activity.MyResumeActivity;
 import com.example.longjoy.parttimejob.activity.UserInfoActivity;
 import com.example.longjoy.parttimejob.bean.MyUser;
+import com.example.longjoy.parttimejob.common.FunctionUtils;
 import com.example.longjoy.parttimejob.common.Logger;
 import com.example.longjoy.parttimejob.tools.FileTools;
 import com.example.longjoy.parttimejob.tools.SelectHeadTools;

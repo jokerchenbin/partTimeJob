@@ -49,9 +49,7 @@
         <activity
             android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Anim_fade">
-
-        </activity>
+            android:theme="@style/Anim_fade"></activity>
         <activity
             android:name=".activity.RegisterActivity"
             android:screenOrientation="portrait"
@@ -102,6 +100,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.MyCollectActivity"
+            android:configChanges="locale"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SettingActivity"
             android:configChanges="locale"
             android:screenOrientation="portrait"></activity>
     </application>
