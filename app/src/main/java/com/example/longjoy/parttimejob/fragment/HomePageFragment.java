@@ -36,13 +36,16 @@ public class HomePageFragment extends Fragment {
     private ListView list;
     private JobInfoAdapter mAdapter;
     private List<JobInfo> jobList;
+    private View view;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.firstpage_fragment, container, false);
-        initView(view);
-        getData(getContext());
+        if (view == null) {
+            view = inflater.inflate(R.layout.firstpage_fragment, container, false);
+            initView(view);
+            getData(getContext());
+        }
         return view;
     }
 
@@ -70,19 +73,17 @@ public class HomePageFragment extends Fragment {
 
     private void initView(View view) {
         list = (ListView) view.findViewById(R.id.firstpage_list);
-        View v = View.inflate(getContext(),R.layout.head,null);
+        View v = View.inflate(getContext(), R.layout.head, null);
         list.addHeaderView(v);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getContext(), JobDetailActivity.class);
-                intent.putExtra("data",jobList.get(position-1));
+                intent.putExtra("data", jobList.get(position - 1));
                 startActivity(intent);
             }
         });
     }
-
-
 
 
 }
