@@ -39,16 +39,18 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.MainActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.LoginActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Anim_fade">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Anim_fade">
+
         </activity>
         <activity
             android:name=".activity.RegisterActivity"
@@ -90,8 +92,18 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="hTA9KMpu9uG6Lph3mtscwfaY" />
 
-        <activity android:name=".activity.UserInfoActivity" />
-        <activity android:name=".activity.JobDetailActivity"></activity>
+        <activity
+            android:name=".activity.UserInfoActivity"
+            android:configChanges="locale"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.JobDetailActivity"
+            android:configChanges="locale"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.MyCollectActivity"
+            android:configChanges="locale"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

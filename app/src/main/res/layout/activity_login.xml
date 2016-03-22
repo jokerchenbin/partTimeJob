@@ -38,7 +38,7 @@
             android:background="@drawable/edittext_bg"
             android:hint="@string/username"
             android:paddingLeft="8dp"
-            android:text="13594350035"
+            android:text="18996439445"
             android:textCursorDrawable="@drawable/cursor_bg" />
 
         <EditText

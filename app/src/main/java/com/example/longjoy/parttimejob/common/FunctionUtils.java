@@ -537,6 +537,7 @@ public class FunctionUtils {
      */
     public static void writeUserInfoToLocal(MyUser user) {
         AppConfig.prefs.edit()
+                .putString("id",user.getObjectId())
                 .putString("username", user.getUsername())
                 .putString("mobilePhoneNumber", user.getMobilePhoneNumber())
                 .putInt("age", user.getAge())

@@ -88,6 +88,7 @@ public class HomePageFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getContext(), JobDetailActivity.class);
+                intent.putExtra("type","home");
                 intent.putExtra("data", jobList.get(position - 1));
                 startActivity(intent);
             }

@@ -13,6 +13,8 @@ import com.example.longjoy.parttimejob.Configs;
 import com.example.longjoy.parttimejob.activity.LoginActivity;
 import com.example.longjoy.parttimejob.widget.ActionSheetDialog;
 
+import cn.bmob.v3.BmobUser;
+
 
 /**
  * Created by ZYMAppOne on 2015/12/16.
@@ -21,10 +23,11 @@ public class SelectHeadTools {
 
     /*****
      * 打开选择框
+     *
      * @param fragment Context  Activity上下文对象
-     * @param uri  Uri
+     * @param uri      Uri
      */
-    public static void openDialog(final Fragment fragment, final Uri uri){
+    public static void openDialog(final Fragment fragment, final Uri uri) {
         final Context context = fragment.getContext();
         new ActionSheetDialog(context)
                 .builder()
@@ -34,7 +37,7 @@ public class SelectHeadTools {
                 .addSheetItem("拍照", ActionSheetDialog.SheetItemColor.Red, new ActionSheetDialog.OnSheetItemClickListener() {
                     @Override
                     public void onClick(int which) {
-                        startCamearPicCut(fragment,uri);
+                        startCamearPicCut(fragment, uri);
                     }
                 })
                 .addSheetItem("从手机相册选择", ActionSheetDialog.SheetItemColor.Red, new ActionSheetDialog.OnSheetItemClickListener() {
@@ -46,11 +49,11 @@ public class SelectHeadTools {
                 .show();
     }
 
-   /**
-    * Created by 陈彬 on 2016/1/5  16:15
-    * 方法描述: 打开注销框
-    */
-    public static void openDialogOut(final Fragment fragment){
+    /**
+     * Created by 陈彬 on 2016/1/5  16:15
+     * 方法描述: 打开注销框
+     */
+    public static void openDialogOut(final Fragment fragment) {
         final Context context = fragment.getContext();
         new ActionSheetDialog(context)
                 .builder()
@@ -62,6 +65,7 @@ public class SelectHeadTools {
                     public void onClick(int which) {
                         //退出系统
                         AppConfig.prefs.edit().clear().commit();//清空本地数据
+                        BmobUser.logOut(context);   //清除缓存用户对象
                         Intent intent = new Intent(context, LoginActivity.class);
                         context.startActivity(intent);
                     }
@@ -71,10 +75,11 @@ public class SelectHeadTools {
 
     /****
      * 调用系统的拍照功能
+     *
      * @param context Activity上下文对象
-     * @param uri  Uri
+     * @param uri     Uri
      */
-    private static void startCamearPicCut(Fragment context,Uri uri) {
+    private static void startCamearPicCut(Fragment context, Uri uri) {
         // 调用系统的拍照功能
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
@@ -86,8 +91,10 @@ public class SelectHeadTools {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
         context.startActivityForResult(intent, Configs.SystemPicture.PHOTO_REQUEST_TAKEPHOTO);
     }
+
     /***
      * 调用系统的图库
+     *
      * @param context Activity上下文对象
      */
     private static void startImageCaptrue(Fragment context) {
@@ -99,11 +106,12 @@ public class SelectHeadTools {
 
     /*****
      * 进行截图
+     *
      * @param context Activity上下文对象
-     * @param uri  Uri
-     * @param size  大小
+     * @param uri     Uri
+     * @param size    大小
      */
-    public static void startPhotoZoom(Fragment context,Uri uri, int size) {
+    public static void startPhotoZoom(Fragment context, Uri uri, int size) {
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
         // crop为true是设置在开启的intent中设置显示的view可以剪裁

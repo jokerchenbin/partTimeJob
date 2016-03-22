@@ -434,16 +434,25 @@
         android:background="#f8f8f8">
 
         <LinearLayout
+            android:id="@+id/activity_job_detail_collect"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center">
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <TextView
+            <ImageView
+                android:id="@+id/activity_job_detail_iv_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawablePadding="2dp"
-                android:drawableTop="@mipmap/xingxingxian"
+                android:background="@mipmap/xingxingxian" />
+
+            <TextView
+                android:id="@+id/activity_job_detail_tv_collect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="收藏"
                 android:textSize="15sp" />
         </LinearLayout>

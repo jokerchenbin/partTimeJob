@@ -2,6 +2,7 @@ package com.example.longjoy.parttimejob.bean;
 
 import cn.bmob.v3.BmobObject;
 
+
 /**
  * 类描述：兼职信息表
  * 创建人：陈彬
@@ -22,6 +23,7 @@ public class JobInfo extends BmobObject {
     private String desc;
     private String linkman;
     private String telephone;
+
 
     public String getAddr() {
         return addr;

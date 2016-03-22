@@ -36,6 +36,7 @@ import com.example.longjoy.parttimejob.AppApplication;
 import com.example.longjoy.parttimejob.AppConfig;
 import com.example.longjoy.parttimejob.Configs;
 import com.example.longjoy.parttimejob.R;
+import com.example.longjoy.parttimejob.activity.MyCollectActivity;
 import com.example.longjoy.parttimejob.activity.MyResumeActivity;
 import com.example.longjoy.parttimejob.activity.UserInfoActivity;
 import com.example.longjoy.parttimejob.bean.MyUser;
@@ -123,6 +124,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 startActivity(myResumeIntent);
                 break;
             case R.id.my_fragment_ly_myCollect: //我的收藏
+                startActivity(new Intent(context, MyCollectActivity.class));
                 break;
             case R.id.my_fragment_ly_signUp: //我的报名
                 break;

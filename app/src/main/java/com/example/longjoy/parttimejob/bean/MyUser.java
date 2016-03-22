@@ -1,6 +1,7 @@
 package com.example.longjoy.parttimejob.bean;
 
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobRelation;
 
 /**
  * 类描述：用户管理类
@@ -14,7 +15,24 @@ public class MyUser extends BmobUser {
     private String  imageUrl;
     private String height;//身高
     private String school;//学校
+    private BmobRelation likes;
+    private JobInfo jobInfo;
 
+    public BmobRelation getLikes() {
+        return likes;
+    }
+
+    public void setLikes(BmobRelation likes) {
+        this.likes = likes;
+    }
+
+    public JobInfo getJobInfo() {
+        return jobInfo;
+    }
+
+    public void setJobInfo(JobInfo jobInfo) {
+        this.jobInfo = jobInfo;
+    }
 
     public String getHeight() {
         return height;
