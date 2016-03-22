@@ -169,7 +169,7 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
             case R.id.top_button_tim:
                 if (type.equals("collect")) {//从收藏页面进来的
                     Intent intent = new Intent();
-                    intent.putExtra("data", jobInfo);
+                    intent.putExtra("isCollect", isCollect);
                     setResult(10086, intent);
                 }
                 finish();
@@ -267,7 +267,7 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (type.equals("collect")) {//从收藏页面进来的
             Intent intent = new Intent();
-            intent.putExtra("data", jobInfo);
+            intent.putExtra("isCollect", isCollect);
             setResult(10086, intent);
         }
         finish();

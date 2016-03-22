@@ -114,6 +114,10 @@ public class MyCollectActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        getData();
+        if (resultCode == 10086) {
+            if (!data.getBooleanExtra("isCollect", true)) {//判定是否做过改动
+                getData();
+            }
+        }
     }
 }
