@@ -5,8 +5,8 @@
     android:orientation="vertical">
 
 
-    <com.example.longjoy.parttimejob.widget.AutoScrollViewPager
-        android:id="@+id/view_pager"
+    <com.daimajia.slider.library.SliderLayout
+        android:id="@+id/slider"
         android:layout_width="match_parent"
-        android:layout_height="160dp"></com.example.longjoy.parttimejob.widget.AutoScrollViewPager>
+        android:layout_height="200dp"></com.daimajia.slider.library.SliderLayout>
 </LinearLayout>
