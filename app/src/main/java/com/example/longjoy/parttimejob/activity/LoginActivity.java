@@ -31,6 +31,7 @@ import com.example.longjoy.parttimejob.common.FunctionUtils;
 import com.example.longjoy.parttimejob.common.Logger;
 import com.example.longjoy.parttimejob.tools.FileTools;
 import com.example.longjoy.parttimejob.tools.SelectHeadTools;
+import com.example.longjoy.parttimejob.tools.ToastDiy;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,6 +46,7 @@ import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.LogInListener;
+import cn.bmob.v3.listener.SaveListener;
 
 /**
  * Created by 陈彬 on 2015/12/29  14:31
@@ -123,7 +125,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         telephone = et_username.getText().toString().trim();
         password = et_password.getText().toString().trim();
         //两种登录方式    电话号码 + 密码     用户名 + 密码
-        BmobUser.loginByAccount(context, telephone, password, new LogInListener<MyUser>() {
+        /*BmobUser.loginByAccount(context, telephone, password, new LogInListener<MyUser>() {
             @Override
             public void done(MyUser myUser, BmobException e) {
                 if (myUser != null) {
@@ -136,6 +138,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 } else {
                     Toast.makeText(context, "登录失败", Toast.LENGTH_SHORT).show();
                 }
+                FunctionUtils.dissmisLoadingDialog();
+            }
+        });*/
+        BmobUser user = new BmobUser();
+        user.setUsername(telephone);
+        user.setPassword(password);
+        user.login(context, new SaveListener() {
+            @Override
+            public void onSuccess() {
+                Toast.makeText(context, "登录成功", Toast.LENGTH_SHORT).show();
+                //将个人信息写入本地
+                FunctionUtils.writeUserInfoToLocal(BmobUser.getCurrentUser(context, MyUser.class));
+                //跳转到主页面
+                Intent intent = new Intent(activity,MainActivity.class);
+                startActivity(intent);
+                FunctionUtils.dissmisLoadingDialog();
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+                ToastDiy.showShort(context,s);
                 FunctionUtils.dissmisLoadingDialog();
             }
         });

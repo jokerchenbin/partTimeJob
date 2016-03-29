@@ -207,15 +207,7 @@
             android:layout_height="0.5dp"
             android:background="@color/alertdialog_line" />
 
-        <Button
-            android:id="@+id/my_fragment_btn_logout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_vertical_margin"
-            android:background="@drawable/log_out_bg"
-            android:text="注销当前账号"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
+
 
     </LinearLayout>
 

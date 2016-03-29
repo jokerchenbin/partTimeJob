@@ -53,8 +53,7 @@ public class SelectHeadTools {
      * Created by 陈彬 on 2016/1/5  16:15
      * 方法描述: 打开注销框
      */
-    public static void openDialogOut(final Fragment fragment) {
-        final Context context = fragment.getContext();
+    public static void openDialogOut(final Context context) {
         new ActionSheetDialog(context)
                 .builder()
                 .setTitle("您确定要注销登录？")

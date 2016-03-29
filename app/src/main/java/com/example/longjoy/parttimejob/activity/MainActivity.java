@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rbtn_My = (RadioButton) findViewById(R.id.activity_main_rbtn_my);
         rbtn_My.setOnClickListener(this);
         tv_chooseCity = (TextView) findViewById(R.id.top_button_tim);
+        tv_chooseCity.setText("重庆市");
         tv_chooseCity.setOnClickListener(this);
         bg = getSupportFragmentManager();
         homeFragment = new HomePageFragment();
@@ -124,7 +125,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onActivityResult(requestCode, resultCode, data);
         switch (resultCode) {
             case AppConfig.DEFAULT_REQUEST: // 城市选择的返回数据
-                tv_chooseCity.setText(data.getStringExtra("cityName"));
+                if (!"".equals(data.getStringExtra("cityName"))) {
+                    tv_chooseCity.setText(data.getStringExtra("cityName"));
+                }
                 break;
         }
     }
@@ -158,13 +161,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         @Override
         public void onReceiveLocation(BDLocation location) {
-            //Log.e("info", "city = " + arg0.getCity());
-            Logger.getInstance().v("chenbin", "city = " + location.getCity());
-            if (!"".equals(location.getCity())) {
+            if (location.getCity().length()>1) {
                 tv_chooseCity.setText(location.getCity());
                 mLocationClient.stop();
             }
-
         }
 
     }

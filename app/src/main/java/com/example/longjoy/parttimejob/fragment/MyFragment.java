@@ -97,8 +97,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         ImageLoader.getInstance().displayImage(AppConfig.prefs.getString("imageUrl", ""),
                 iv_header, AppConfig.options);
 
-        btn_logout = (Button) view.findViewById(R.id.my_fragment_btn_logout);
-        btn_logout.setOnClickListener(this);
+
 
         ly_resume = (LinearLayout) view.findViewById(R.id.my_fragment_ly_myResume);
         ly_myCollect = (LinearLayout) view.findViewById(R.id.my_fragment_ly_myCollect);
@@ -135,9 +134,6 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.my_fragment_ly_checkUpdate: //检查更新
                 Toast.makeText(context, "已经是最新版本", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.my_fragment_btn_logout: //注销当前账号
-                SelectHeadTools.openDialogOut(fragment);
                 break;
         }
     }

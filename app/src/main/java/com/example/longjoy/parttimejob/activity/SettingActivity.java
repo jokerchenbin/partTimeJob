@@ -6,10 +6,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.longjoy.parttimejob.AppApplication;
 import com.example.longjoy.parttimejob.R;
+import com.example.longjoy.parttimejob.tools.SelectHeadTools;
+import com.example.longjoy.parttimejob.tools.ToastDiy;
 
 /**
  * Created by 陈彬 on 2016/3/22  17:28
@@ -18,6 +22,8 @@ import com.example.longjoy.parttimejob.R;
 public class SettingActivity extends AppCompatActivity implements View.OnClickListener {
     private Activity activity;
     private Context context;
+    private RelativeLayout mpdLayout,suggestLayout,messLayout;
+    private Button btn_out;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +36,19 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         initView();
     }
 
+    /**
+     * Created by 陈彬 on 2016/3/29  17:47
+     * 方法描述: 初始化视图
+     */
     private void initView() {
-
+        mpdLayout = (RelativeLayout) findViewById(R.id.activity_setting_layout_modify);
+        messLayout = (RelativeLayout) findViewById(R.id.activity_setting_layout_mess);
+        suggestLayout = (RelativeLayout) findViewById(R.id.activity_setting_layout_suggest);
+        btn_out = (Button) findViewById(R.id.activity_setting_layout_out);
+        btn_out.setOnClickListener(this);
+        mpdLayout.setOnClickListener(this);
+        messLayout.setOnClickListener(this);
+        suggestLayout.setOnClickListener(this);
     }
 
 
@@ -61,6 +78,18 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         switch (v.getId()) {
             case R.id.top_button_tim:
                 finish();
+                break;
+            case R.id.activity_setting_layout_modify://修改密码
+                startActivity(new Intent(context, ModifyPwdActivity.class));
+                break;
+            case R.id.activity_setting_layout_mess://消息提醒
+                ToastDiy.showShort(context, "功能建设中...");
+                break;
+            case R.id.activity_setting_layout_suggest://给点意见
+                startActivity(new Intent(context, CommentActivity.class));
+                break;
+            case R.id.activity_setting_layout_out://退出按钮
+                SelectHeadTools.openDialogOut(context);
                 break;
         }
     }

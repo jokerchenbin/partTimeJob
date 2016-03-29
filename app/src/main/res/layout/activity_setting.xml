@@ -20,9 +20,10 @@
     <View style="@style/line_heng" />
 
     <RelativeLayout
+        android:id="@+id/activity_setting_layout_modify"
         android:layout_width="match_parent"
         android:layout_height="54dp"
-        android:background="@color/white">
+        android:background="@drawable/layout_item_bg">
 
         <TextView
             android:layout_width="wrap_content"
@@ -48,9 +49,10 @@
         android:background="#dddddd" />
 
     <RelativeLayout
+        android:id="@+id/activity_setting_layout_suggest"
         android:layout_width="match_parent"
         android:layout_height="54dp"
-        android:background="@color/white">
+        android:background="@drawable/layout_item_bg">
 
         <TextView
             android:layout_width="wrap_content"
@@ -76,9 +78,10 @@
         android:background="#dddddd" />
 
     <RelativeLayout
+        android:id="@+id/activity_setting_layout_mess"
         android:layout_width="match_parent"
         android:layout_height="54dp"
-        android:background="@color/white">
+        android:background="@drawable/layout_item_bg">
 
         <TextView
             android:layout_width="wrap_content"
@@ -101,5 +104,18 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="#dddddd" />
+
+
+    <Button
+        android:id="@+id/activity_setting_layout_out"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/log_out_bg"
+        android:text="注销当前账号"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
 
 </LinearLayout>
