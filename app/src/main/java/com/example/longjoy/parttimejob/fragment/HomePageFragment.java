@@ -77,22 +77,21 @@ public class HomePageFragment extends Fragment implements BaseSliderView.OnSlide
             @Override
             public void onSuccess(List<AD> list) {
                 adList = list;
-                Logger.getInstance().v("chenbin","数据长度为 ： "+list.size());
+                Logger.getInstance().v("chenbin", "数据长度为 ： " + list.size());
                 putIntoMap(adList);//将返回数据放进map
             }
 
             @Override
             public void onError(int i, String s) {
-                Logger.getInstance().v("chenbin",s);
+                Logger.getInstance().v("chenbin", s);
             }
         });
     }
 
     private void putIntoMap(List<AD> adList) {
         HashMap<String, String> url_maps = new HashMap<>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < adList.size(); i++) {
             AD ad = adList.get(i);
-            Logger.getInstance().v("chenbin","name = "+ad.getContent()+" vaule = "+ad.getFile().getFileUrl(getContext()));
             url_maps.put(ad.getContent(), ad.getFile().getFileUrl(getContext()));
         }
         showViewPager(url_maps);
@@ -101,7 +100,6 @@ public class HomePageFragment extends Fragment implements BaseSliderView.OnSlide
     private void showViewPager(HashMap<String, String> map) {
         for (String name : map.keySet()) {
             TextSliderView textSliderView = new TextSliderView(getContext());
-            Logger.getInstance().v("chenbin",map.get(name));
             textSliderView
                     .description(name)
                     .image(map.get(name))

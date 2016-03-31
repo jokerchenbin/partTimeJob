@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -92,22 +93,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         FragmentAdapter fadpter = new FragmentAdapter(bg, listfraFragments);
         viewPager.setOffscreenPageLimit(2);
         viewPager.setAdapter(fadpter);
-        viewPager.setCurrentItem(0);
+        viewPager.setCurrentItem(0,false);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.activity_main_rbtn_firstPage://首页
-                viewPager.setCurrentItem(0);
+                viewPager.setCurrentItem(0,false);
                 changeTopBarState("蜂鸟兼职");
                 break;
             case R.id.activity_main_rbtn_partTimeJob: // 兼职工作
-                viewPager.setCurrentItem(1);
+                viewPager.setCurrentItem(1,false);
                 changeTopBarState("兼职");
                 break;
             case R.id.activity_main_rbtn_my: // 我的
-                viewPager.setCurrentItem(2);
+                viewPager.setCurrentItem(2,false);
                 changeTopBarState("我的");
                 break;
             case R.id.top_button_tim: //选择城市
@@ -190,4 +191,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         option.setPriority(LocationClientOption.GpsFirst);
         mLocationClient.setLocOption(option);
     }
+
 }
