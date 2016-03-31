@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/press_bg"
+    android:background="@color/white"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -22,7 +22,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_margin="12dp"
-            android:background="@mipmap/logo" />
+            android:background="@mipmap/logo_red" />
     </LinearLayout>
 
     <LinearLayout
@@ -36,9 +36,11 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@drawable/edittext_bg"
+            android:drawableLeft="@mipmap/zhanghao"
+            android:drawablePadding="@dimen/activity_horizontal_margin"
             android:hint="@string/username"
             android:paddingLeft="8dp"
-            android:text="18996439445"
+            android:text="13594350035"
             android:textCursorDrawable="@drawable/cursor_bg" />
 
         <EditText
@@ -47,6 +49,8 @@
             android:layout_height="48dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/edittext_bg"
+            android:drawableLeft="@mipmap/suo"
+            android:drawablePadding="@dimen/activity_horizontal_margin"
             android:hint="@string/password"
             android:inputType="textPassword"
             android:paddingLeft="8dp"
