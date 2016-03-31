@@ -49,9 +49,6 @@ public class HomePageFragment extends Fragment implements BaseSliderView.OnSlide
     private JobInfoAdapter mAdapter;
     private List<JobInfo> jobList;
     private View view;
-    private AutoScrollViewPager viewPager;
-    private ImageAdapter adapter;
-    private Drawable[] drawables;
     private SliderLayout mSlider;
     private List<AD> adList;
 
@@ -77,7 +74,6 @@ public class HomePageFragment extends Fragment implements BaseSliderView.OnSlide
             @Override
             public void onSuccess(List<AD> list) {
                 adList = list;
-                Logger.getInstance().v("chenbin", "数据长度为 ： " + list.size());
                 putIntoMap(adList);//将返回数据放进map
             }
 
@@ -143,8 +139,6 @@ public class HomePageFragment extends Fragment implements BaseSliderView.OnSlide
     }
 
     private void initView(View view) {
-        Drawable able = getResources().getDrawable(R.mipmap.banner_jiazaizhong);
-        drawables = new Drawable[]{able, getResources().getDrawable(R.mipmap.wodeneiyebeijing), able, getResources().getDrawable(R.mipmap.wodeneiyebeijing)};
         list = (ListView) view.findViewById(R.id.firstpage_list);
         View v = View.inflate(getContext(), R.layout.head, null);
         mSlider = (SliderLayout) v.findViewById(R.id.slider);

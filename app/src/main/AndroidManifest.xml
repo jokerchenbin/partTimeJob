@@ -113,6 +113,9 @@
         <activity
             android:name=".activity.CommentActivity"
             android:configChanges="locale"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.MessageActivity"
+            android:configChanges="locale"
             android:screenOrientation="portrait"></activity>
     </application>
 

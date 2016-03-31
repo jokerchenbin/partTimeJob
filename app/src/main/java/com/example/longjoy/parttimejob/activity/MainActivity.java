@@ -31,6 +31,7 @@ import com.example.longjoy.parttimejob.fragment.MyFragment;
 import com.example.longjoy.parttimejob.fragment.PartTimeJobFragment;
 import com.example.longjoy.parttimejob.tools.FileTools;
 import com.example.longjoy.parttimejob.tools.SelectHeadTools;
+import com.example.longjoy.parttimejob.widget.CustomViewPager;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Activity activity;
     private LocationClient mLocationClient;
     private MyLocationListener mMyLocationListener = new MyLocationListener();
-    private ViewPager viewPager;
+    private CustomViewPager viewPager;
     private FragmentManager bg;
     private HomePageFragment homeFragment;
     private PartTimeJobFragment partJobFragment;
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 初始化View上的布局ID
      */
     private void initViewIds() {
-        viewPager = (ViewPager) findViewById(R.id.activity_main_framelayout);
+        viewPager = (CustomViewPager) findViewById(R.id.activity_main_framelayout);
         /* 单选按钮 */
         rbtn_FirstPage = (RadioButton) findViewById(R.id.activity_main_rbtn_firstPage);
         rbtn_FirstPage.setOnClickListener(this);
@@ -93,22 +94,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         FragmentAdapter fadpter = new FragmentAdapter(bg, listfraFragments);
         viewPager.setOffscreenPageLimit(2);
         viewPager.setAdapter(fadpter);
-        viewPager.setCurrentItem(0,false);
+        viewPager.setCurrentItem(0);
+        viewPager.setPagingEnabled(false);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.activity_main_rbtn_firstPage://首页
-                viewPager.setCurrentItem(0,false);
+                viewPager.setCurrentItem(0);
                 changeTopBarState("蜂鸟兼职");
                 break;
             case R.id.activity_main_rbtn_partTimeJob: // 兼职工作
-                viewPager.setCurrentItem(1,false);
+                viewPager.setCurrentItem(1);
                 changeTopBarState("兼职");
                 break;
             case R.id.activity_main_rbtn_my: // 我的
-                viewPager.setCurrentItem(2,false);
+                viewPager.setCurrentItem(2);
                 changeTopBarState("我的");
                 break;
             case R.id.top_button_tim: //选择城市

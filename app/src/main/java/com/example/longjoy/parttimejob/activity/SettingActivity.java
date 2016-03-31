@@ -83,7 +83,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(new Intent(context, ModifyPwdActivity.class));
                 break;
             case R.id.activity_setting_layout_mess://消息提醒
-                ToastDiy.showShort(context, "功能建设中...");
+                startActivity(new Intent(context, MessageActivity.class));
                 break;
             case R.id.activity_setting_layout_suggest://给点意见
                 startActivity(new Intent(context, CommentActivity.class));

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.longjoy.parttimejob.activity.MessageActivity">
+
+
+    <include
+        android:id="@+id/activity_main_topbar"
+        layout="@layout/top_bar_common"></include>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="#f8f8f8" />
+
+    <View style="@style/line_heng" />
+
+    <RelativeLayout
+        android:id="@+id/activity_setting_layout_modify"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/layout_item_bg">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="14dp"
+            android:text="声音"
+            android:textColor="#222222"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/activity_message_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:background="@mipmap/set_button_yes" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="13dp"
+        android:background="#dddddd" />
+
+    <RelativeLayout
+        android:id="@+id/activity_setting_layout_suggest"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:background="@drawable/layout_item_bg">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="14dp"
+            android:text="震动"
+            android:textColor="#222222"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/activity_message_shock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:background="@mipmap/set_button_yes"
+            android:clickable="true" />
+    </RelativeLayout>
+    <View style="@style/line_heng" />
+
+</LinearLayout>
