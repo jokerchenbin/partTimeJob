@@ -26,6 +26,7 @@ import com.example.longjoy.parttimejob.activity.MainActivity;
 import com.example.longjoy.parttimejob.adapter.ImageAdapter;
 import com.example.longjoy.parttimejob.bean.AD;
 import com.example.longjoy.parttimejob.common.FunctionUtils;
+import com.example.longjoy.parttimejob.common.Logger;
 import com.example.longjoy.parttimejob.widget.AutoScrollViewPager;
 import com.example.longjoy.parttimejob.adapter.JobInfoAdapter;
 import com.example.longjoy.parttimejob.bean.JobInfo;
@@ -76,12 +77,13 @@ public class HomePageFragment extends Fragment implements BaseSliderView.OnSlide
             @Override
             public void onSuccess(List<AD> list) {
                 adList = list;
+                Logger.getInstance().v("chenbin","数据长度为 ： "+list.size());
                 putIntoMap(adList);//将返回数据放进map
             }
 
             @Override
             public void onError(int i, String s) {
-
+                Logger.getInstance().v("chenbin",s);
             }
         });
     }
@@ -90,26 +92,16 @@ public class HomePageFragment extends Fragment implements BaseSliderView.OnSlide
         HashMap<String, String> url_maps = new HashMap<>();
         for (int i = 0; i < 4; i++) {
             AD ad = adList.get(i);
-            url_maps.put("测试" + i, "http://cdn3.nflximg.net/images/3093/2043093.jpg");
+            Logger.getInstance().v("chenbin","name = "+ad.getContent()+" vaule = "+ad.getFile().getFileUrl(getContext()));
+            url_maps.put(ad.getContent(), ad.getFile().getFileUrl(getContext()));
         }
         showViewPager(url_maps);
     }
 
     private void showViewPager(HashMap<String, String> map) {
-        /*HashMap<String,String> url_maps = new HashMap<String, String>();
-        url_maps.put("Hannibal", "http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg");
-        url_maps.put("Big Bang Theory", "http://tvfiles.alphacoders.com/100/hdclearart-10.png");
-        url_maps.put("House of Cards", "http://cdn3.nflximg.net/images/3093/2043093.jpg");
-        url_maps.put("Game of Thrones", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
-
-        HashMap<String,Integer> file_maps = new HashMap<String, Integer>();
-        file_maps.put("Hannibal",R.mipmap.hannibal);
-        file_maps.put("Big Bang Theory",R.mipmap.bigbang);
-        file_maps.put("House of Cards",R.mipmap.house);
-        file_maps.put("Game of Thrones", R.mipmap.game_of_thrones);*/
-
         for (String name : map.keySet()) {
             TextSliderView textSliderView = new TextSliderView(getContext());
+            Logger.getInstance().v("chenbin",map.get(name));
             textSliderView
                     .description(name)
                     .image(map.get(name))
