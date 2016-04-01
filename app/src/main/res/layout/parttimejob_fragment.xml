@@ -5,8 +5,8 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <ListView
+    <com.example.longjoy.parttimejob.widget.pullToRefresh.XListView
         android:id="@+id/parttime_fragment_lv_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+        android:layout_height="match_parent"></com.example.longjoy.parttimejob.widget.pullToRefresh.XListView>
 </LinearLayout>
