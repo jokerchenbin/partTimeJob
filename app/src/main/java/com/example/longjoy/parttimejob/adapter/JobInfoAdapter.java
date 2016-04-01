@@ -57,6 +57,7 @@ public class JobInfoAdapter extends BaseAdapter {
             holder.tv_date = (TextView) convertView.findViewById(R.id.job_info_item_date);
             holder.tv_money = (TextView) convertView.findViewById(R.id.job_info_item_money);
             holder.iv_photo = (ImageView) convertView.findViewById(R.id.job_info_item_photo);
+            holder.tv_state = (TextView) convertView.findViewById(R.id.job_int_item_tv_state);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -69,6 +70,9 @@ public class JobInfoAdapter extends BaseAdapter {
         setTag(holder, info.getTag());
         holder.tv_money.setText(info.getMoney());
         setImage(holder.iv_photo, info.getType()+"");
+        if (info.isChecked()){
+            holder.tv_state.setVisibility(View.GONE);
+        }
         return convertView;
     }
 
@@ -141,5 +145,6 @@ public class JobInfoAdapter extends BaseAdapter {
     private class ViewHolder {
         TextView tv_name, tv_tag1, tv_tag2, tv_tag3, tv_tag4, tv_place, tv_date, tv_money;
         ImageView iv_photo;
+        TextView tv_state;
     }
 }

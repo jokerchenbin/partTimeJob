@@ -114,7 +114,12 @@
             android:name=".activity.CommentActivity"
             android:configChanges="locale"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.MessageActivity"
+        <activity
+            android:name=".activity.MessageActivity"
+            android:configChanges="locale"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.PublishJobActivity"
             android:configChanges="locale"
             android:screenOrientation="portrait"></activity>
     </application>

@@ -23,7 +23,25 @@ public class JobInfo extends BmobObject {
     private String desc;
     private String linkman;
     private String telephone;
+    private boolean isChecked;
+    private String creatPerson;
 
+
+    public String getCreatPerson() {
+        return creatPerson;
+    }
+
+    public void setCreatPerson(String creatPerson) {
+        this.creatPerson = creatPerson;
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setIsChecked(boolean isChecked) {
+        this.isChecked = isChecked;
+    }
 
     public String getAddr() {
         return addr;

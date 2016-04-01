@@ -121,6 +121,7 @@ public class HomePageFragment extends Fragment implements BaseSliderView.OnSlide
     private void getData(final Context context) {
         FunctionUtils.showLoadingDialog(getActivity());
         BmobQuery<JobInfo> query = new BmobQuery<>();
+        query.addWhereEqualTo("isChecked", true);
         query.findObjects(context, new FindListener<JobInfo>() {
             @Override
             public void onSuccess(List<JobInfo> jobInfolist) {

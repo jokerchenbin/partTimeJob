@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
@@ -13,6 +13,23 @@
         android:text="选择性别"
         android:textColor="@color/white"
         android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/all"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:drawableRight="@drawable/my_gender_select"
+        android:gravity="center_vertical"
+        android:paddingLeft="34dp"
+        android:paddingRight="31dp"
+        android:text="不限"
+        android:textColor="@color/c"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/dialog_line" />
 
     <TextView
         android:id="@+id/boy"

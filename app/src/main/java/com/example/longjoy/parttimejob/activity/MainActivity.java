@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.activity_main_rbtn_partTimeJob: // 兼职工作
                 viewPager.setCurrentItem(1);
-                changeTopBarState("兼职");
+                changeTopBarState("我的发布");
                 break;
             case R.id.activity_main_rbtn_my: // 我的
                 viewPager.setCurrentItem(2);
@@ -118,7 +118,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivityForResult(cityChooseIntent, AppConfig.DEFAULT_RESULT);
                 break;
             case R.id.top_bar_tv_right: //设置界面
-                startActivity(new Intent(context, SettingActivity.class));
+                String temp = tv_right.getText().toString();
+                if ("设置".equals(temp)) {
+                    startActivity(new Intent(context, SettingActivity.class));
+                } else {//提交兼职信息
+                    startActivity(new Intent(context,PublishJobActivity.class));
+                }
                 break;
         }
     }
@@ -151,6 +156,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             findViewById(R.id.top_button_tim).setVisibility(View.GONE);
             tv_right.setText("设置");
             tv_right.setVisibility(View.VISIBLE);
+        } else if ("我的发布".equals(title)) {
+            findViewById(R.id.top_button_tim).setVisibility(View.GONE);
+            tv_right.setText("发布");
+            tv_right.setVisibility(View.VISIBLE);
         } else {
             findViewById(R.id.top_button_tim).setVisibility(View.VISIBLE);
             tv_right.setVisibility(View.GONE);
@@ -164,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         @Override
         public void onReceiveLocation(BDLocation location) {
-            if (location.getCity().length()>1) {
+            if (location.getCity().length() > 1) {
                 tv_chooseCity.setText(location.getCity());
                 mLocationClient.stop();
             }

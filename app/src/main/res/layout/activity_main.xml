@@ -44,7 +44,7 @@
             android:button="@null"
             android:drawableTop="@drawable/job_selector"
             android:gravity="center_horizontal"
-            android:text="消息"
+            android:text="发布"
             android:textColor="@color/select_menu_txt" />
 
         <RadioButton

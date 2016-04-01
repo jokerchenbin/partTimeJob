@@ -128,23 +128,42 @@
         android:layout_height="match_parent"
         android:layout_weight="3"
         android:gravity="bottom|right"
-        android:paddingBottom="5dp"
-        android:paddingRight="4dp">
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/job_info_item_money"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="150"
+            android:id="@+id/job_int_item_tv_state"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical|right"
+            android:paddingRight="20dp"
+            android:text="待审核"
             android:textColor="#fe5d02"
-            android:textSize="22sp" />
+            android:textSize="16sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="元/天"
-            android:textColor="#b8b8b8"
-            android:textSize="14sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="bottom|right"
+            android:paddingRight="8dp">
+
+            <TextView
+                android:id="@+id/job_info_item_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="150"
+                android:textColor="#fe5d02"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="元/天"
+                android:textColor="#b8b8b8"
+                android:textSize="14sp" />
+        </LinearLayout>
+
 
     </LinearLayout>
 
