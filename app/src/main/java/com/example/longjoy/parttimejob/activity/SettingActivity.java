@@ -14,6 +14,7 @@ import com.example.longjoy.parttimejob.AppApplication;
 import com.example.longjoy.parttimejob.R;
 import com.example.longjoy.parttimejob.tools.SelectHeadTools;
 import com.example.longjoy.parttimejob.tools.ToastDiy;
+import com.example.longjoy.parttimejob.widget.catloading.CatLoadingView;
 
 /**
  * Created by 陈彬 on 2016/3/22  17:28
@@ -81,6 +82,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             case R.id.activity_setting_layout_modify://修改密码
                 startActivity(new Intent(context, ModifyPwdActivity.class));
+                /*CatLoadingView view = new CatLoadingView();
+                view.show(getSupportFragmentManager(),"");*/
                 break;
             case R.id.activity_setting_layout_mess://消息提醒
                 startActivity(new Intent(context, MessageActivity.class));
