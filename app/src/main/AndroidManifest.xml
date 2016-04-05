@@ -121,6 +121,10 @@
         <activity
             android:name=".activity.PublishJobActivity"
             android:configChanges="locale"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.JobTypeActivity"
+            android:configChanges="locale"
             android:screenOrientation="portrait"></activity>
     </application>
 

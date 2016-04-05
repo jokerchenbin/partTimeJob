@@ -3,6 +3,7 @@ package com.example.longjoy.parttimejob.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +27,8 @@ public class PublishJobActivity extends AppCompatActivity implements View.OnClic
     private TextView tv_sex, tv_name;
     private Context context;
     private Activity activity;
+    private TextView tv_type;
+    private int type;//类别
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,8 @@ public class PublishJobActivity extends AppCompatActivity implements View.OnClic
         tv_money = (TextView) findViewById(R.id.parttime_fragment_tv_money);
         tv_sex = (TextView) findViewById(R.id.parttime_fragment_tv_sex);
         tv_name = (TextView) findViewById(R.id.parttime_fragment_tv_name);
+        tv_type = (TextView) findViewById(R.id.activity_publish_tv_type);
+        tv_type.setOnClickListener(this);
         tv_sex.setOnClickListener(this);
         tv_eat.setOnClickListener(this);
         tv_live.setOnClickListener(this);
@@ -100,6 +105,10 @@ public class PublishJobActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.parttime_fragment_tv_sex://选择性别
                 showPop();//选择性别
+                break;
+            case R.id.activity_publish_tv_type://选择类别
+                Intent intent = new Intent(context,JobTypeActivity.class);
+                startActivityForResult(intent,10086);
                 break;
         }
     }
@@ -160,5 +169,14 @@ public class PublishJobActivity extends AppCompatActivity implements View.OnClic
                 //ChangeInfo("sex", sexnume + "");
             }
         });
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == 10086){
+            tv_type.setText(data.getStringExtra("type"));
+            type = data.getIntExtra("id",1);
+        }
     }
 }

@@ -54,7 +54,6 @@
                     android:background="@null"
                     android:gravity="center_vertical"
                     android:hint="5-15字的岗位名称"
-                    android:inputType="textPassword"
                     android:paddingLeft="13dp"
                     android:textColorHint="#808080"
                     android:textSize="16sp" />
@@ -82,6 +81,7 @@
                     android:background="#dddddd" />
 
                 <TextView
+                    android:id="@+id/activity_publish_tv_type"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginRight="15dp"
@@ -181,7 +181,6 @@
                     android:background="@null"
                     android:gravity="center_vertical"
                     android:hint="请输入工作区域"
-                    android:inputType="textPassword"
                     android:paddingLeft="13dp"
                     android:textColorHint="#808080"
                     android:textSize="16sp" />
@@ -214,7 +213,6 @@
                     android:background="@null"
                     android:gravity="center_vertical"
                     android:hint="请输入具体工作地址"
-                    android:inputType="textPassword"
                     android:paddingLeft="13dp"
                     android:textColorHint="#808080"
                     android:textSize="16sp" />
@@ -254,7 +252,6 @@
                     android:background="@null"
                     android:gravity="center_vertical"
                     android:hint="请输入人数"
-                    android:inputType="textPassword"
                     android:paddingLeft="13dp"
                     android:textColorHint="#808080"
                     android:textSize="16sp" />
@@ -328,6 +325,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginRight="15dp"
                     android:layout_weight="1"
+                    android:inputType="number"
                     android:background="@null"
                     android:gravity="center_vertical"
                     android:hint="请输入工资"
@@ -462,6 +460,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginRight="15dp"
                     android:background="@null"
+                    android:gravity="top|left"
                     android:hint="请输入具体描述，如工作时间，岗位要求，工作内容等"
                     android:paddingLeft="13dp"
                     android:textColorHint="#808080"
