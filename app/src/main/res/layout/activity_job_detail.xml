@@ -32,6 +32,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
+                        android:id="@+id/activity_job_detail_iv_phono"
                         android:layout_width="44dp"
                         android:layout_height="44dp"
                         android:layout_centerInParent="true"
@@ -503,7 +504,7 @@
                 android:layout_width="140dp"
                 android:layout_height="44dp"
                 android:background="@drawable/sign_bg"
-                android:text="立刻报名"
+                android:text="联系商家"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
         </LinearLayout>

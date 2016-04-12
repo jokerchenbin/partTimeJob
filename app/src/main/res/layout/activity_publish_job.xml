@@ -49,11 +49,44 @@
                     android:background="#dddddd" />
 
                 <EditText
+                    android:id="@+id/activity_publish_et_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@null"
                     android:gravity="center_vertical"
                     android:hint="5-15字的岗位名称"
+                    android:paddingLeft="13dp"
+                    android:textColorHint="#808080"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <View style="@style/line_heng" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="96dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="发 布 方"
+                    android:textColor="#222222"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="7dp"
+                    android:layout_marginTop="7dp"
+                    android:background="#dddddd" />
+
+                <EditText
+                    android:id="@+id/activity_publish_et_company"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:hint="请输入发布方"
                     android:paddingLeft="13dp"
                     android:textColorHint="#808080"
                     android:textSize="16sp" />
@@ -89,7 +122,6 @@
                     android:drawableRight="@mipmap/youjiantou"
                     android:gravity="center_vertical"
                     android:hint="请选择岗位类型"
-                    android:inputType="textPassword"
                     android:paddingLeft="13dp"
                     android:textColorHint="#808080"
                     android:textSize="16sp" />
@@ -125,12 +157,13 @@
                     android:background="#dddddd" />
 
                 <TextView
+                    android:id="@+id/activity_publish_tv_startTime"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@null"
                     android:gravity="center"
-                    android:text="开始时间"
+                    android:hint="开始时间"
                     android:textColorHint="#808080"
                     android:textSize="16sp" />
 
@@ -144,12 +177,13 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/activity_publish_tv_endTime"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@null"
                     android:gravity="center"
-                    android:text="结束时间"
+                    android:hint="结束时间"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -175,6 +209,7 @@
                     android:background="#dddddd" />
 
                 <EditText
+                    android:id="@+id/activity_publish_et_place"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginRight="15dp"
@@ -208,6 +243,7 @@
                     android:background="#dddddd" />
 
                 <EditText
+                    android:id="@+id/activity_publish_et_addr"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@null"
@@ -247,6 +283,7 @@
                     android:background="#dddddd" />
 
                 <EditText
+                    android:id="@+id/activity_publish_et_number"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@null"
@@ -321,6 +358,7 @@
                     android:background="#dddddd" />
 
                 <EditText
+                    android:id="@+id/activity_publish_et_money"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="15dp"
@@ -456,6 +494,7 @@
                     android:background="#dddddd" />
 
                 <EditText
+                    android:id="@+id/activity_publish_et_desc"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginRight="15dp"
@@ -530,6 +569,7 @@
                     android:background="#dddddd" />
 
                 <EditText
+                    android:id="@+id/activity_publish_et_telephono"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginRight="15dp"

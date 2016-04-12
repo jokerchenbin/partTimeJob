@@ -51,7 +51,7 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
     private LinearLayout layout;
     private boolean isCollect = false;//判断该用户是否收藏了该工作
     private TextView tv_collect;
-    private ImageView iv_image;
+    private ImageView iv_image,iv_phone;
     private String colletId;
     private String type;
 
@@ -68,35 +68,7 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
         getData();
     }
 
-    /**
-     * 查询数据
-     */
-    private void getData() {
-        FunctionUtils.showLoadingDialog(this);
-        BmobQuery<JobInfo> query = new BmobQuery<>();
-        MyUser myUser = BmobUser.getCurrentUser(context, MyUser.class);
-        query.addWhereRelatedTo("likes", new BmobPointer(myUser));
-        query.findObjects(context, new FindListener<JobInfo>() {
-            @Override
-            public void onSuccess(List<JobInfo> list) {
-                for (JobInfo info : list) {
-                    if (info.getObjectId().equals(jobId)) {
-                        isCollect = true;
-                        FunctionUtils.dissmisLoadingDialog();
-                        handler.sendEmptyMessage(1);
-                        return;
-                    }
-                }
-                FunctionUtils.dissmisLoadingDialog();
-            }
 
-            @Override
-            public void onError(int i, String s) {
-                Logger.getInstance().v("chenbin", "查询错误为 == " + s);
-                FunctionUtils.dissmisLoadingDialog();
-            }
-        });
-    }
 
     /* 头部的相关视图   标题，返回，保存*/
     private TextView tv_topBar;
@@ -137,6 +109,7 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
         tv_linkman.setText(jobInfo.getLinkman());
         tv_telephone.setText(jobInfo.getTelephone());
         tv_addr.setText(jobInfo.getAddr());
+        FunctionUtils.setImage(context,iv_phone,jobInfo.getType()+"");
     }
 
 
@@ -146,6 +119,7 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
      */
     private void initView() {
         iv_image = (ImageView) findViewById(R.id.activity_job_detail_iv_image);
+        iv_phone = (ImageView) findViewById(R.id.activity_job_detail_iv_phono);
         tv_collect = (TextView) findViewById(R.id.activity_job_detail_tv_collect);
         tv_addr = (TextView) findViewById(R.id.activity_job_detail_addr);
         tv_name = (TextView) findViewById(R.id.activity_job_detail_name);
@@ -272,5 +246,34 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
         }
         finish();
         return super.onKeyDown(keyCode, event);
+    }
+
+    /**
+     * 查询数据
+     */
+    private void getData() {
+        FunctionUtils.showLoadingDialog(this);
+        BmobQuery<JobInfo> query = new BmobQuery<>();
+        MyUser myUser = BmobUser.getCurrentUser(context, MyUser.class);
+        query.addWhereRelatedTo("likes", new BmobPointer(myUser));
+        query.findObjects(context, new FindListener<JobInfo>() {
+            @Override
+            public void onSuccess(List<JobInfo> list) {
+                for (JobInfo info : list) {
+                    if (info.getObjectId().equals(jobId)) {
+                        isCollect = true;
+                        FunctionUtils.dissmisLoadingDialog();
+                        handler.sendEmptyMessage(1);
+                        return;
+                    }
+                }
+                FunctionUtils.dissmisLoadingDialog();
+            }
+
+            @Override
+            public void onError(int i, String s) {
+                FunctionUtils.dissmisLoadingDialog();
+            }
+        });
     }
 }

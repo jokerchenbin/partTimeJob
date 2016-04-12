@@ -108,6 +108,9 @@
                 android:layout_marginLeft="4dp"
                 android:gravity="center_vertical"
                 android:text="沙坪坝区"
+                android:maxEms="8"
+                android:singleLine="true"
+                android:ellipsize="end"
                 android:textColor="#b8b8b8"
                 android:textSize="13sp" />
 

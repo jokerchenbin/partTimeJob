@@ -60,4 +60,8 @@
 
     <color name="tab_select">#FFFFD802</color>
     <color name="sign_bg">#56bc23</color>
+
+    <!-- word G color  线的颜色 -->
+    <color name="g">#f1f1f1</color>
+    <color name="f0">#f0f0f0</color>
 </resources>

@@ -1,0 +1,120 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/alertLayout"
+    style="@style/layout_alert_dialog"
+    android:layout_width="280dp"
+    android:layout_height="200dp"
+    android:background="@drawable/circle"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        style="@style/layout_match_wrap"
+        android:gravity="center_vertical" >
+
+        <TextView
+            android:id="@+id/alertTitleView"
+            style="@style/dialog_title_text"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:singleLine="true" />
+    </RelativeLayout>
+
+    <LinearLayout
+        style="@style/layout_alert_dialog"
+        android:layout_height="120dp"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <com.example.longjoy.parttimejob.widget.wheel.WheelView
+                android:id="@+id/wheelYear2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:text="@string/year" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <com.example.longjoy.parttimejob.widget.wheel.WheelView
+                android:id="@+id/wheelMonth2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:text="@string/month" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <com.example.longjoy.parttimejob.widget.wheel.WheelView
+                android:id="@+id/wheelDay2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:text="@string/day" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/g" />
+
+    <LinearLayout
+        style="@style/layout_match_wrap"
+        android:layout_height="38dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/negativeButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/ff_f0_selector"
+            android:text="@string/cancel" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/g" />
+
+        <Button
+            android:id="@+id/positiveButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/ff_f0_selector"
+            android:text="@string/confirm"
+            android:textColor="@color/a" />
+    </LinearLayout>
+
+</LinearLayout>

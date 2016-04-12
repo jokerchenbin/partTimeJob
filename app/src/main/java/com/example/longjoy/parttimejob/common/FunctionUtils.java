@@ -39,6 +39,7 @@ import android.provider.MediaStore;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.example.longjoy.parttimejob.AppApplication;
 import com.example.longjoy.parttimejob.AppConfig;
@@ -546,6 +547,46 @@ public class FunctionUtils {
                 .putString("sex", user.getSex()).commit();
         if (!"".equals(user.getImageUrl())) {
             AppConfig.prefs.edit().putString("imageUrl", user.getImageUrl()).commit();
+        }
+    }
+
+
+    /**
+     * Created by 陈彬 on 2016/3/18  17:09
+     * 方法描述: 设置背景图片
+     */
+    public static void setImage(Context context,ImageView iv_photo, String tag) {
+        switch (tag){
+            case "1":
+                iv_photo.setImageDrawable(context.getResources().getDrawable(R.mipmap.cuxiao2));
+                break;
+            case "2":
+                iv_photo.setImageDrawable(context.getResources().getDrawable(R.mipmap.fuwuyuan2));
+                break;
+            case "3":
+                iv_photo.setImageDrawable(context.getResources().getDrawable(R.mipmap.huawuyuan2));
+                break;
+            case "4":
+                iv_photo.setImageDrawable(context.getResources().getDrawable(R.mipmap.liyi2));
+                break;
+            case "5":
+                iv_photo.setImageDrawable(context.getResources().getDrawable(R.mipmap.jiajiao2));
+                break;
+            case "6":
+                iv_photo.setImageDrawable(context.getResources().getDrawable(R.mipmap.paidan2));
+                break;
+            case "7":
+                iv_photo.setImageDrawable(context.getResources().getDrawable(R.mipmap.yinyeyuan2));
+                break;
+            case "8":
+                iv_photo.setImageDrawable(context.getResources().getDrawable(R.mipmap.xiaoshou2));
+                break;
+            case "9":
+                iv_photo.setImageDrawable(context.getResources().getDrawable(R.mipmap.shixi2));
+                break;
+            case "10":
+                iv_photo.setImageDrawable(context.getResources().getDrawable(R.mipmap.qita2));
+                break;
         }
     }
 

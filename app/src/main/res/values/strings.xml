@@ -243,4 +243,24 @@
 
     <string name="contact">联系我时,请说明是在淘兼职上看到的,谢谢！</string>
     <string name="hint">遇到需要收取费用或索亚现金的商家,均有诈骗嫌疑,请保持警惕！工作中,请注意人身财务安全。</string>
+    <string name="start_date">开始时间</string>
+    <string name="end_date">结束时间</string>
+
+
+    <array name="job_type">
+        <item>促销</item>
+        <item>服务员</item>
+        <item>话务员</item>
+        <item>礼仪</item>
+        <item>家教</item>
+        <item>派单</item>
+        <item>营业员</item>
+        <item>销售</item>
+        <item>实习</item>
+        <item>其他</item>
+    </array>
+
+
+
+
 </resources>
