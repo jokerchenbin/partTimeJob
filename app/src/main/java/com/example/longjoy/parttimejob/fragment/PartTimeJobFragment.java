@@ -27,7 +27,9 @@ import com.example.longjoy.parttimejob.R;
 import com.example.longjoy.parttimejob.activity.JobDetailActivity;
 import com.example.longjoy.parttimejob.adapter.JobInfoAdapter;
 import com.example.longjoy.parttimejob.bean.JobInfo;
+import com.example.longjoy.parttimejob.common.FunctionUtils;
 import com.example.longjoy.parttimejob.common.Logger;
+import com.example.longjoy.parttimejob.tools.ToastDiy;
 import com.example.longjoy.parttimejob.widget.swipemenuListview.SwipeMenu;
 import com.example.longjoy.parttimejob.widget.swipemenuListview.SwipeMenuCreator;
 import com.example.longjoy.parttimejob.widget.swipemenuListview.SwipeMenuItem;
@@ -39,6 +41,7 @@ import java.util.List;
 import java.util.Locale;
 
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.DeleteListener;
 import cn.bmob.v3.listener.FindListener;
 
 /**
@@ -131,9 +134,11 @@ public class PartTimeJobFragment extends Fragment implements View.OnClickListene
             public void onMenuItemClick(int position, SwipeMenu menu, int index) {
                 switch (index) {
                     case 0:
+                        JobInfo jobInfo = jobList.get(position);
                         jobList.remove(position);
                         mAdapter.notifyDataSetChanged();
                         //删除数据
+                        deleteJobInfo(jobInfo);
                         break;
                 }
             }
@@ -146,6 +151,27 @@ public class PartTimeJobFragment extends Fragment implements View.OnClickListene
                 intent.putExtra("type", "home");
                 intent.putExtra("data", jobList.get(position));
                 startActivity(intent);
+            }
+        });
+    }
+
+    /**
+     * Created by 陈彬 on 2016/4/13  16:56
+     * 方法描述: 删除服务端的兼职信息
+     */
+    private void deleteJobInfo(JobInfo jobInfo) {
+        FunctionUtils.showLoadingDialog(getActivity());
+        jobInfo.delete(context, new DeleteListener() {
+            @Override
+            public void onSuccess() {
+                ToastDiy.showShort(context,"删除成功!");
+                FunctionUtils.dissmisLoadingDialog();
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+                ToastDiy.showShort(context,s);
+                FunctionUtils.dissmisLoadingDialog();
             }
         });
     }

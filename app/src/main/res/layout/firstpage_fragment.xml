@@ -5,10 +5,10 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <ListView
+    <com.example.longjoy.parttimejob.widget.pullToRefresh.XListView
         android:id="@+id/firstpage_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none"></ListView>
+        android:scrollbars="none"></com.example.longjoy.parttimejob.widget.pullToRefresh.XListView>
 
 </LinearLayout>

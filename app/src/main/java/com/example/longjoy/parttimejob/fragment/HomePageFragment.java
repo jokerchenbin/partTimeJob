@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -31,9 +32,13 @@ import com.example.longjoy.parttimejob.widget.AutoScrollViewPager;
 import com.example.longjoy.parttimejob.adapter.JobInfoAdapter;
 import com.example.longjoy.parttimejob.bean.JobInfo;
 import com.example.longjoy.parttimejob.tools.ToastDiy;
+import com.example.longjoy.parttimejob.widget.pullToRefresh.XListView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
@@ -42,13 +47,14 @@ import cn.bmob.v3.listener.FindListener;
  * Created by 陈彬 on 2015/12/30  16:40
  * 方法描述:  首页
  */
-public class HomePageFragment extends Fragment implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
+public class HomePageFragment extends Fragment implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener, XListView.IXListViewListener {
 
     private Button btn_add;
-    private ListView list;
+    private XListView list;
     private JobInfoAdapter mAdapter;
     private List<JobInfo> jobList;
     private View view;
+    private Handler mHandler;
     private SliderLayout mSlider;
     private List<AD> adList;
 
@@ -140,7 +146,13 @@ public class HomePageFragment extends Fragment implements BaseSliderView.OnSlide
     }
 
     private void initView(View view) {
-        list = (ListView) view.findViewById(R.id.firstpage_list);
+        mHandler = new Handler();
+        list = (XListView) view.findViewById(R.id.firstpage_list);
+        list.setPullRefreshEnable(true);
+        list.setPullLoadEnable(true);
+        list.setAutoLoadEnable(false);
+        list.setXListViewListener(this);
+        list.setRefreshTime(getTime());
         View v = View.inflate(getContext(), R.layout.head, null);
         mSlider = (SliderLayout) v.findViewById(R.id.slider);
         list.addHeaderView(v);
@@ -174,5 +186,39 @@ public class HomePageFragment extends Fragment implements BaseSliderView.OnSlide
     @Override
     public void onSliderClick(BaseSliderView slider) {
 
+    }
+
+    @Override
+    public void onRefresh() {
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getAd(getContext());//获取广告
+                getData(getContext());//获取数据
+                onLoad();
+            }
+        }, 2500);
+    }
+
+    private void onLoad() {
+        list.stopRefresh();
+        list.stopLoadMore();
+        list.setRefreshTime(getTime());
+    }
+
+    @Override
+    public void onLoadMore() {
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getAd(getContext());//获取广告
+                getData(getContext());//获取数据
+                onLoad();
+            }
+        }, 2500);
+    }
+
+    private String getTime() {
+        return new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA).format(new Date());
     }
 }

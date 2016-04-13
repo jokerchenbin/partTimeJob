@@ -3,6 +3,7 @@ package com.example.longjoy.parttimejob.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,8 +20,12 @@ import com.example.longjoy.parttimejob.bean.JobInfo;
 import com.example.longjoy.parttimejob.bean.MyUser;
 import com.example.longjoy.parttimejob.common.FunctionUtils;
 import com.example.longjoy.parttimejob.common.Logger;
+import com.example.longjoy.parttimejob.widget.pullToRefresh.XListView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
@@ -31,13 +36,14 @@ import cn.bmob.v3.listener.FindListener;
  * Created by 陈彬 on 2016/3/22  13:36
  * 方法描述: 我的收藏
  */
-public class MyCollectActivity extends AppCompatActivity implements View.OnClickListener {
+public class MyCollectActivity extends AppCompatActivity implements View.OnClickListener, XListView.IXListViewListener {
 
     private Activity activity;
     private Context context;
-    private ListView mList;
+    private XListView mList;
     private JobInfoAdapter mAdapter;
     private List<JobInfo> jobList;
+    private Handler mHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +81,13 @@ public class MyCollectActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void initView() {
-        mList = (ListView) findViewById(R.id.activity_my_collect_list);
+        mHandler = new Handler();
+        mList = (XListView) findViewById(R.id.activity_my_collect_list);
+        mList.setPullRefreshEnable(true);
+        mList.setPullLoadEnable(true);
+        mList.setAutoLoadEnable(false);
+        mList.setXListViewListener(this);
+        mList.setRefreshTime(getTime());
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -111,6 +123,16 @@ public class MyCollectActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
+    private void onLoad() {
+        mList.stopRefresh();
+        mList.stopLoadMore();
+        mList.setRefreshTime(getTime());
+    }
+
+
+    private String getTime() {
+        return new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA).format(new Date());
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -119,5 +141,29 @@ public class MyCollectActivity extends AppCompatActivity implements View.OnClick
                 getData();
             }
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getData();
+                mAdapter.notifyDataSetChanged();
+                onLoad();
+            }
+        }, 2500);
+    }
+
+    @Override
+    public void onLoadMore() {
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getData();
+                mAdapter.notifyDataSetChanged();
+                onLoad();
+            }
+        }, 2500);
     }
 }
