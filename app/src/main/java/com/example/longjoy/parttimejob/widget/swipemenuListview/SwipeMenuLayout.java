@@ -302,4 +302,11 @@ public class SwipeMenuLayout extends FrameLayout {
 			mMenuView.setLayoutParams(mMenuView.getLayoutParams());
 		}
 	}
+
+	public boolean isActive() {
+		if (mContentView != null) {
+			return mContentView.getLeft() != 0;
+		}
+		return false;
+	}
 }
