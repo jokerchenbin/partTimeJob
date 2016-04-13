@@ -27,13 +27,11 @@ import com.example.longjoy.parttimejob.R;
 import com.example.longjoy.parttimejob.activity.JobDetailActivity;
 import com.example.longjoy.parttimejob.adapter.JobInfoAdapter;
 import com.example.longjoy.parttimejob.bean.JobInfo;
-import com.example.longjoy.parttimejob.common.FunctionUtils;
-import com.example.longjoy.parttimejob.widget.pullToRefresh.XListView;
+import com.example.longjoy.parttimejob.common.Logger;
 import com.example.longjoy.parttimejob.widget.swipemenuListview.SwipeMenu;
 import com.example.longjoy.parttimejob.widget.swipemenuListview.SwipeMenuCreator;
 import com.example.longjoy.parttimejob.widget.swipemenuListview.SwipeMenuItem;
 import com.example.longjoy.parttimejob.widget.swipemenuListview.SwipeMenuListView;
-import com.example.longjoy.parttimejob.widget.swipemenuListview.SwipeMenuView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -47,7 +45,7 @@ import cn.bmob.v3.listener.FindListener;
  * Created by 陈彬 on 2015/12/30  16:41
  * 方法描述: 发布兼职
  */
-public class PartTimeJobFragment extends Fragment implements View.OnClickListener, XListView.IXListViewListener {
+public class PartTimeJobFragment extends Fragment implements View.OnClickListener, SwipeMenuListView.IXListViewListener {
 
     private SwipeMenuListView mList;
     private JobInfoAdapter mAdapter;
@@ -96,7 +94,7 @@ public class PartTimeJobFragment extends Fragment implements View.OnClickListene
         mHandler = new Handler();
         mList = (SwipeMenuListView) view.findViewById(R.id.parttime_fragment_lv_listView);
         setListView();
-        /*mList.setPullRefreshEnable(true);
+        mList.setPullRefreshEnable(true);
         mList.setPullLoadEnable(true);
         mList.setAutoLoadEnable(false);
         mList.setXListViewListener(this);
@@ -109,7 +107,7 @@ public class PartTimeJobFragment extends Fragment implements View.OnClickListene
                 intent.putExtra("data", jobList.get(position - 1));
                 startActivity(intent);
             }
-        });*/
+        });
     }
 
     private void setListView() {
@@ -117,15 +115,6 @@ public class PartTimeJobFragment extends Fragment implements View.OnClickListene
 
             @Override
             public void create(SwipeMenu menu) {
-                SwipeMenuItem openItem = new SwipeMenuItem(
-                        getContext());
-                openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
-                        0xCE)));
-                openItem.setWidth(dp2px(90));
-                openItem.setTitle("Open");
-                openItem.setTitleSize(18);
-                openItem.setTitleColor(Color.WHITE);
-                menu.addMenuItem(openItem);
                 SwipeMenuItem deleteItem = new SwipeMenuItem(
                         context);
                 deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
@@ -142,28 +131,14 @@ public class PartTimeJobFragment extends Fragment implements View.OnClickListene
             public void onMenuItemClick(int position, SwipeMenu menu, int index) {
                 switch (index) {
                     case 0:
-                        break;
-                    case 1:
                         jobList.remove(position);
                         mAdapter.notifyDataSetChanged();
+                        //删除数据
                         break;
                 }
             }
         });
 
-        // set SwipeListener
-        mList.setOnSwipeListener(new SwipeMenuListView.OnSwipeListener() {
-
-            @Override
-            public void onSwipeStart(int position) {
-                // swipe start
-            }
-
-            @Override
-            public void onSwipeEnd(int position) {
-                // swipe end
-            }
-        });
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -207,9 +182,9 @@ public class PartTimeJobFragment extends Fragment implements View.OnClickListene
     }
 
     private void onLoad() {
-        /*mList.stopRefresh();
+        mList.stopRefresh();
         mList.stopLoadMore();
-        mList.setRefreshTime(getTime());*/
+        mList.setRefreshTime(getTime());
     }
 
 
