@@ -440,7 +440,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/text_bg"
                     android:gravity="center"
-                    android:text="包住"
+                    android:text="日结"
                     android:textColor="#764e00"
                     android:textSize="16sp" />
 

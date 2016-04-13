@@ -77,21 +77,18 @@
                             android:layout_marginLeft="@dimen/activity_8"
                             android:drawableLeft="@mipmap/dui"
                             android:drawablePadding="4dp"
-                            android:text="男 女"
+                            android:text="男"
                             android:textColor="#b8b8b8"
                             android:textSize="15sp" />
-
                         <TextView
                             android:id="@+id/job_info_item_tag3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_8"
-                            android:drawableLeft="@mipmap/dui"
                             android:drawablePadding="4dp"
-                            android:text="日结"
+                            android:text="女"
                             android:textColor="#b8b8b8"
-                            android:textSize="15sp"
-                            android:visibility="gone" />
+                            android:textSize="15sp" />
 
                         <TextView
                             android:id="@+id/job_info_item_tag4"
@@ -100,10 +97,22 @@
                             android:layout_marginLeft="@dimen/activity_8"
                             android:drawableLeft="@mipmap/dui"
                             android:drawablePadding="4dp"
+                            android:text="日结"
+                            android:textColor="#b8b8b8"
+                            android:textSize="15sp"
+                            android:visibility="visible" />
+
+                        <TextView
+                            android:id="@+id/job_info_item_tag5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_8"
+                            android:drawableLeft="@mipmap/dui"
+                            android:drawablePadding="4dp"
                             android:text="提成"
                             android:textColor="#b8b8b8"
                             android:textSize="15sp"
-                            android:visibility="gone" />
+                            android:visibility="visible" />
 
                     </LinearLayout>
 

@@ -1,11 +1,16 @@
 package com.example.longjoy.parttimejob.fragment;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.longjoy.parttimejob.AppConfig;
 import com.example.longjoy.parttimejob.R;
@@ -23,6 +29,11 @@ import com.example.longjoy.parttimejob.adapter.JobInfoAdapter;
 import com.example.longjoy.parttimejob.bean.JobInfo;
 import com.example.longjoy.parttimejob.common.FunctionUtils;
 import com.example.longjoy.parttimejob.widget.pullToRefresh.XListView;
+import com.example.longjoy.parttimejob.widget.swipemenuListview.SwipeMenu;
+import com.example.longjoy.parttimejob.widget.swipemenuListview.SwipeMenuCreator;
+import com.example.longjoy.parttimejob.widget.swipemenuListview.SwipeMenuItem;
+import com.example.longjoy.parttimejob.widget.swipemenuListview.SwipeMenuListView;
+import com.example.longjoy.parttimejob.widget.swipemenuListview.SwipeMenuView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -38,15 +49,17 @@ import cn.bmob.v3.listener.FindListener;
  */
 public class PartTimeJobFragment extends Fragment implements View.OnClickListener, XListView.IXListViewListener {
 
-    private XListView mList;
+    private SwipeMenuListView mList;
     private JobInfoAdapter mAdapter;
     private List<JobInfo> jobList;
     private Handler mHandler;
+    private Context context;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.parttimejob_fragment, container, false);
+        context = getContext();
         initView(view);
         getData();
         return view;
@@ -81,8 +94,9 @@ public class PartTimeJobFragment extends Fragment implements View.OnClickListene
      */
     private void initView(View view) {
         mHandler = new Handler();
-        mList = (XListView) view.findViewById(R.id.parttime_fragment_lv_list);
-        mList.setPullRefreshEnable(true);
+        mList = (SwipeMenuListView) view.findViewById(R.id.parttime_fragment_lv_listView);
+        setListView();
+        /*mList.setPullRefreshEnable(true);
         mList.setPullLoadEnable(true);
         mList.setAutoLoadEnable(false);
         mList.setXListViewListener(this);
@@ -93,6 +107,69 @@ public class PartTimeJobFragment extends Fragment implements View.OnClickListene
                 Intent intent = new Intent(getContext(), JobDetailActivity.class);
                 intent.putExtra("type", "home");
                 intent.putExtra("data", jobList.get(position - 1));
+                startActivity(intent);
+            }
+        });*/
+    }
+
+    private void setListView() {
+        SwipeMenuCreator creator = new SwipeMenuCreator() {
+
+            @Override
+            public void create(SwipeMenu menu) {
+                SwipeMenuItem openItem = new SwipeMenuItem(
+                        getContext());
+                openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
+                        0xCE)));
+                openItem.setWidth(dp2px(90));
+                openItem.setTitle("Open");
+                openItem.setTitleSize(18);
+                openItem.setTitleColor(Color.WHITE);
+                menu.addMenuItem(openItem);
+                SwipeMenuItem deleteItem = new SwipeMenuItem(
+                        context);
+                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
+                        0x3F, 0x25)));
+                deleteItem.setWidth(dp2px(90));
+                deleteItem.setIcon(R.mipmap.ic_delete);
+                menu.addMenuItem(deleteItem);
+            }
+        };
+        // set creator
+        mList.setMenuCreator(creator);
+        mList.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+            @Override
+            public void onMenuItemClick(int position, SwipeMenu menu, int index) {
+                switch (index) {
+                    case 0:
+                        break;
+                    case 1:
+                        jobList.remove(position);
+                        mAdapter.notifyDataSetChanged();
+                        break;
+                }
+            }
+        });
+
+        // set SwipeListener
+        mList.setOnSwipeListener(new SwipeMenuListView.OnSwipeListener() {
+
+            @Override
+            public void onSwipeStart(int position) {
+                // swipe start
+            }
+
+            @Override
+            public void onSwipeEnd(int position) {
+                // swipe end
+            }
+        });
+        mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(context, JobDetailActivity.class);
+                intent.putExtra("type", "home");
+                intent.putExtra("data", jobList.get(position));
                 startActivity(intent);
             }
         });
@@ -130,13 +207,18 @@ public class PartTimeJobFragment extends Fragment implements View.OnClickListene
     }
 
     private void onLoad() {
-        mList.stopRefresh();
+        /*mList.stopRefresh();
         mList.stopLoadMore();
-        mList.setRefreshTime(getTime());
+        mList.setRefreshTime(getTime());*/
     }
 
 
     private String getTime() {
         return new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA).format(new Date());
+    }
+
+    private int dp2px(int dp) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
+                getResources().getDisplayMetrics());
     }
 }

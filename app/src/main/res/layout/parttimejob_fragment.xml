@@ -5,8 +5,8 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <com.example.longjoy.parttimejob.widget.pullToRefresh.XListView
-        android:id="@+id/parttime_fragment_lv_list"
+    <com.example.longjoy.parttimejob.widget.swipemenuListview.SwipeMenuListView
+        android:id="@+id/parttime_fragment_lv_listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.example.longjoy.parttimejob.widget.pullToRefresh.XListView>
+        android:layout_height="match_parent" />
 </LinearLayout>
