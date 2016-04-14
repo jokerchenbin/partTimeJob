@@ -44,6 +44,7 @@ import com.example.longjoy.parttimejob.common.FunctionUtils;
 import com.example.longjoy.parttimejob.common.Logger;
 import com.example.longjoy.parttimejob.tools.FileTools;
 import com.example.longjoy.parttimejob.tools.SelectHeadTools;
+import com.example.longjoy.parttimejob.tools.ToastDiy;
 import com.example.longjoy.parttimejob.widget.ActionSheetDialog;
 import com.example.longjoy.parttimejob.widget.CircleImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -127,6 +128,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(context, MyCollectActivity.class));
                 break;
             case R.id.my_fragment_ly_signUp: //我的报名
+                ToastDiy.showShort(context,"功能正在建设中...");
                 break;
             case R.id.my_fragment_ly_myInfo: //我的信息
                 Intent myInfo = new Intent(context, UserInfoActivity.class);

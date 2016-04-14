@@ -54,6 +54,7 @@ public class JobInfoAdapter extends BaseAdapter {
             holder.tv_tag2 = (TextView) convertView.findViewById(R.id.job_info_item_tag2);
             holder.tv_tag3 = (TextView) convertView.findViewById(R.id.job_info_item_tag3);
             holder.tv_tag4 = (TextView) convertView.findViewById(R.id.job_info_item_tag4);
+            holder.tv_tag5 = (TextView) convertView.findViewById(R.id.job_info_item_tag5);
             holder.tv_place = (TextView) convertView.findViewById(R.id.job_info_item_place);
             holder.tv_date = (TextView) convertView.findViewById(R.id.job_info_item_date);
             holder.tv_money = (TextView) convertView.findViewById(R.id.job_info_item_money);
@@ -100,6 +101,9 @@ public class JobInfoAdapter extends BaseAdapter {
             if (arr[i].equals("4")) {
                 holder.tv_tag4.setVisibility(View.VISIBLE);
             }
+            if (arr[i].equals("5")) {
+                holder.tv_tag5.setVisibility(View.VISIBLE);
+            }
         }
     }
 
@@ -107,7 +111,7 @@ public class JobInfoAdapter extends BaseAdapter {
 
 
     private class ViewHolder {
-        TextView tv_name, tv_tag1, tv_tag2, tv_tag3, tv_tag4, tv_place, tv_date, tv_money;
+        TextView tv_name, tv_tag1, tv_tag2, tv_tag3, tv_tag4, tv_tag5,tv_place, tv_date, tv_money;
         ImageView iv_photo;
         TextView tv_state;
     }

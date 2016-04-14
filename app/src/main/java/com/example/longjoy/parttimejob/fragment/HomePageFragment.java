@@ -161,7 +161,7 @@ public class HomePageFragment extends Fragment implements BaseSliderView.OnSlide
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getContext(), JobDetailActivity.class);
                 intent.putExtra("type", "home");
-                intent.putExtra("data", jobList.get(position - 1));
+                intent.putExtra("data", jobList.get(position-2));
                 startActivity(intent);
             }
         });
@@ -211,8 +211,7 @@ public class HomePageFragment extends Fragment implements BaseSliderView.OnSlide
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                getAd(getContext());//获取广告
-                getData(getContext());//获取数据
+                //getData(getContext());//获取数据
                 onLoad();
             }
         }, 2500);

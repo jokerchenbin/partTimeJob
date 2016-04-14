@@ -45,47 +45,63 @@
                 android:id="@+id/job_info_item_tag1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/activity_8"
                 android:drawableLeft="@mipmap/dui"
                 android:drawablePadding="4dp"
                 android:text="放心"
                 android:textColor="#b8b8b8"
-                android:textSize="13sp"
+                android:textSize="15sp"
                 android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_8"
+                android:drawableLeft="@mipmap/dui" />
 
             <TextView
                 android:id="@+id/job_info_item_tag2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/activity_8"
-                android:drawableLeft="@mipmap/dui"
                 android:drawablePadding="4dp"
-                android:text="男 女"
+                android:text="男"
                 android:textColor="#b8b8b8"
-                android:textSize="13sp"
+                android:textSize="15sp"
                 android:visibility="gone" />
 
             <TextView
                 android:id="@+id/job_info_item_tag3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/activity_8"
+                android:layout_marginLeft="2dp"
+                android:drawablePadding="4dp"
+                android:text="女"
+                android:textColor="#b8b8b8"
+                android:textSize="15sp"
+                android:visibility="gone" />
+
+            <TextView
+
+                android:id="@+id/job_info_item_tag4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_8"
                 android:drawableLeft="@mipmap/dui"
                 android:drawablePadding="4dp"
                 android:text="日结"
                 android:textColor="#b8b8b8"
-                android:textSize="13sp"
+                android:textSize="15sp"
                 android:visibility="gone" />
 
             <TextView
-                android:id="@+id/job_info_item_tag4"
+                android:id="@+id/job_info_item_tag5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_8"
                 android:drawableLeft="@mipmap/dui"
                 android:drawablePadding="4dp"
                 android:text="提成"
                 android:textColor="#b8b8b8"
-                android:textSize="13sp"
+                android:textSize="15sp"
                 android:visibility="gone" />
 
         </LinearLayout>

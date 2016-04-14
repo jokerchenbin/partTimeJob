@@ -51,9 +51,10 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
     private LinearLayout layout;
     private boolean isCollect = false;//判断该用户是否收藏了该工作
     private TextView tv_collect;
-    private ImageView iv_image,iv_phone;
+    private ImageView iv_image, iv_phone;
     private String colletId;
     private String type;
+    private TextView tv_tag1,tv_tag2,tv_tag3,tv_tag4,tv_tag5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +68,6 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
         initData();
         getData();
     }
-
 
 
     /* 头部的相关视图   标题，返回，保存*/
@@ -109,7 +109,28 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
         tv_linkman.setText(jobInfo.getLinkman());
         tv_telephone.setText(jobInfo.getTelephone());
         tv_addr.setText(jobInfo.getAddr());
-        FunctionUtils.setImage(context,iv_phone,jobInfo.getType()+"");
+        FunctionUtils.setImage(context, iv_phone, jobInfo.getType() + "");
+        String[] tagArr = jobInfo.getTag().split(",");
+        for (int i = 0; i < tagArr.length; i++) {
+            int num = Integer.parseInt(tagArr[i]);
+            switch (num){
+                case 1:
+                    tv_tag1.setVisibility(View.VISIBLE);
+                    break;
+                case 2:
+                    tv_tag2.setVisibility(View.VISIBLE);
+                    break;
+                case 3:
+                    tv_tag3.setVisibility(View.VISIBLE);
+                    break;
+                case 4:
+                    tv_tag4.setVisibility(View.VISIBLE);
+                    break;
+                case 5:
+                    tv_tag5.setVisibility(View.VISIBLE);
+                    break;
+            }
+        }
     }
 
 
@@ -118,6 +139,11 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
      * 方法描述: 初始化组件
      */
     private void initView() {
+        tv_tag1 = (TextView) findViewById(R.id.job_info_item_tag1);
+        tv_tag2 = (TextView) findViewById(R.id.job_info_item_tag2);
+        tv_tag3 = (TextView) findViewById(R.id.job_info_item_tag3);
+        tv_tag4 = (TextView) findViewById(R.id.job_info_item_tag4);
+        tv_tag5 = (TextView) findViewById(R.id.job_info_item_tag5);
         iv_image = (ImageView) findViewById(R.id.activity_job_detail_iv_image);
         iv_phone = (ImageView) findViewById(R.id.activity_job_detail_iv_phono);
         tv_collect = (TextView) findViewById(R.id.activity_job_detail_tv_collect);
