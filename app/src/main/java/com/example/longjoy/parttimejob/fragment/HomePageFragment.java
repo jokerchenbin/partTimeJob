@@ -22,6 +22,7 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.example.longjoy.parttimejob.R;
+import com.example.longjoy.parttimejob.activity.AllJobActivity;
 import com.example.longjoy.parttimejob.activity.JobDetailActivity;
 import com.example.longjoy.parttimejob.activity.MainActivity;
 import com.example.longjoy.parttimejob.adapter.ImageAdapter;
@@ -47,7 +48,7 @@ import cn.bmob.v3.listener.FindListener;
  * Created by 陈彬 on 2015/12/30  16:40
  * 方法描述:  首页
  */
-public class HomePageFragment extends Fragment implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener, XListView.IXListViewListener {
+public class HomePageFragment extends Fragment implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener, XListView.IXListViewListener, View.OnClickListener {
 
     private Button btn_add;
     private XListView list;
@@ -57,6 +58,7 @@ public class HomePageFragment extends Fragment implements BaseSliderView.OnSlide
     private Handler mHandler;
     private SliderLayout mSlider;
     private List<AD> adList;
+    private TextView tv_01,tv_02,tv_03,tv_04,tv_05,tv_06,tv_07,tv_08;
 
     @Nullable
     @Override
@@ -154,6 +156,7 @@ public class HomePageFragment extends Fragment implements BaseSliderView.OnSlide
         list.setXListViewListener(this);
         list.setRefreshTime(getTime());
         View v = View.inflate(getContext(), R.layout.head, null);
+        initHeader(v);
         mSlider = (SliderLayout) v.findViewById(R.id.slider);
         list.addHeaderView(v);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -161,10 +164,33 @@ public class HomePageFragment extends Fragment implements BaseSliderView.OnSlide
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getContext(), JobDetailActivity.class);
                 intent.putExtra("type", "home");
-                intent.putExtra("data", jobList.get(position-2));
+                intent.putExtra("data", jobList.get(position - 2));
                 startActivity(intent);
             }
         });
+    }
+
+    /**
+     * Created by 陈彬 on 2016/4/14  18:26
+     * 方法描述: 初始化标签
+     */
+    private void initHeader(View v) {
+        tv_01 = (TextView) v.findViewById(R.id.head_01);
+        tv_02 = (TextView) v.findViewById(R.id.head_02);
+        tv_03 = (TextView) v.findViewById(R.id.head_03);
+        tv_04 = (TextView) v.findViewById(R.id.head_04);
+        tv_05 = (TextView) v.findViewById(R.id.head_05);
+        tv_06 = (TextView) v.findViewById(R.id.head_06);
+        tv_07 = (TextView) v.findViewById(R.id.head_07);
+        tv_08 = (TextView) v.findViewById(R.id.head_08);
+        tv_01.setOnClickListener(this);
+        tv_02.setOnClickListener(this);
+        tv_03.setOnClickListener(this);
+        tv_04.setOnClickListener(this);
+        tv_05.setOnClickListener(this);
+        tv_06.setOnClickListener(this);
+        tv_07.setOnClickListener(this);
+        tv_08.setOnClickListener(this);
     }
 
 
@@ -219,5 +245,10 @@ public class HomePageFragment extends Fragment implements BaseSliderView.OnSlide
 
     private String getTime() {
         return new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA).format(new Date());
+    }
+
+    @Override
+    public void onClick(View v) {
+        startActivity(new Intent(getContext(), AllJobActivity.class));
     }
 }

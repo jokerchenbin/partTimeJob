@@ -28,6 +28,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/head_01"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -36,6 +37,7 @@
                 android:text="拍单" />
 
             <TextView
+                android:id="@+id/head_02"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -44,6 +46,7 @@
                 android:text="促销" />
 
             <TextView
+                android:id="@+id/head_03"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -52,6 +55,7 @@
                 android:text="礼仪" />
 
             <TextView
+                android:id="@+id/head_04"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -68,6 +72,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/head_05"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -76,6 +81,7 @@
                 android:text="服务员" />
 
             <TextView
+                android:id="@+id/head_06"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -84,6 +90,7 @@
                 android:text="话务员" />
 
             <TextView
+                android:id="@+id/head_07"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -92,6 +99,7 @@
                 android:text="实习" />
 
             <TextView
+                android:id="@+id/head_08"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

@@ -499,6 +499,7 @@
             android:gravity="center">
 
             <TextView
+                android:id="@+id/activity_job_detail_tv_suggest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawablePadding="2dp"
@@ -519,6 +520,7 @@
             android:gravity="center">
 
             <Button
+                android:id="@+id/activity_job_detail_btn_call"
                 android:layout_width="140dp"
                 android:layout_height="44dp"
                 android:background="@drawable/sign_bg"

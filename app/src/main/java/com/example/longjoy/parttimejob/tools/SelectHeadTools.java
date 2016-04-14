@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import com.example.longjoy.parttimejob.AppApplication;
 import com.example.longjoy.parttimejob.AppConfig;
 import com.example.longjoy.parttimejob.Configs;
+import com.example.longjoy.parttimejob.activity.CommentActivity;
 import com.example.longjoy.parttimejob.activity.LoginActivity;
 import com.example.longjoy.parttimejob.widget.ActionSheetDialog;
 
@@ -67,6 +68,34 @@ public class SelectHeadTools {
                         BmobUser.logOut(context);   //清除缓存用户对象
                         Intent intent = new Intent(context, LoginActivity.class);
                         context.startActivity(intent);
+                    }
+                })
+                .show();
+    }
+
+
+    public static void openDialogSuggest(final Context context) {
+        new ActionSheetDialog(context)
+                .builder()
+                .setTitle("请选择")
+                .setCancelable(true)
+                .setCanceledOnTouchOutside(true)
+                .addSheetItem("该兼职已招满,还未下架", ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener() {
+                    @Override
+                    public void onClick(int which) {
+                        ToastDiy.showShort(context,"客服收到您的投诉，正在紧急处理中...");
+                    }
+                })
+                .addSheetItem("实际工作与描述不符", ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener() {
+                    @Override
+                    public void onClick(int which) {
+                        ToastDiy.showShort(context,"客服收到您的投诉，正在紧急处理中...");
+                    }
+                })
+                .addSheetItem("其他投诉意见", ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener() {
+                    @Override
+                    public void onClick(int which) {
+                        context.startActivity(new Intent(context, CommentActivity.class));
                     }
                 })
                 .show();

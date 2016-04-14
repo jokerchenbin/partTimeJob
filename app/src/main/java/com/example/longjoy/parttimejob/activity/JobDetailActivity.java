@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,6 +25,7 @@ import com.example.longjoy.parttimejob.bean.JobInfo;
 import com.example.longjoy.parttimejob.bean.MyUser;
 import com.example.longjoy.parttimejob.common.FunctionUtils;
 import com.example.longjoy.parttimejob.common.Logger;
+import com.example.longjoy.parttimejob.tools.SelectHeadTools;
 import com.example.longjoy.parttimejob.tools.ToastDiy;
 
 import java.util.List;
@@ -54,7 +57,9 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
     private ImageView iv_image, iv_phone;
     private String colletId;
     private String type;
+    private Button btn_call;
     private TextView tv_tag1,tv_tag2,tv_tag3,tv_tag4,tv_tag5;
+    private TextView tv_suggest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,6 +144,10 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
      * 方法描述: 初始化组件
      */
     private void initView() {
+        tv_suggest = (TextView) findViewById(R.id.activity_job_detail_tv_suggest);
+        tv_suggest.setOnClickListener(this);
+        btn_call = (Button) findViewById(R.id.activity_job_detail_btn_call);
+        btn_call.setOnClickListener(this);
         tv_tag1 = (TextView) findViewById(R.id.job_info_item_tag1);
         tv_tag2 = (TextView) findViewById(R.id.job_info_item_tag2);
         tv_tag3 = (TextView) findViewById(R.id.job_info_item_tag3);
@@ -180,6 +189,13 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
                 } else {
                     cancelCollet();//取消收藏
                 }
+                break;
+            case R.id.activity_job_detail_btn_call://联系商家
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+jobInfo.getTelephone()));
+                startActivity(intent);
+                break;
+            case R.id.activity_job_detail_tv_suggest://投诉
+                SelectHeadTools.openDialogSuggest(context);
                 break;
         }
     }
