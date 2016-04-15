@@ -47,10 +47,10 @@ public class JobInfoAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.job_info_item, parent,false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.job_info_item, parent, false);
             holder = new ViewHolder();
             holder.tv_name = (TextView) convertView.findViewById(R.id.job_info_item_name);
-            holder.tv_tag1 = (TextView) convertView.findViewById(R.id.job_info_item_tag1);
+            holder.tv_tag6 = (TextView) convertView.findViewById(R.id.job_info_item_tag6);
             holder.tv_tag2 = (TextView) convertView.findViewById(R.id.job_info_item_tag2);
             holder.tv_tag3 = (TextView) convertView.findViewById(R.id.job_info_item_tag3);
             holder.tv_tag4 = (TextView) convertView.findViewById(R.id.job_info_item_tag4);
@@ -71,13 +71,12 @@ public class JobInfoAdapter extends BaseAdapter {
         holder.tv_date.setText(info.getDate());
         setTag(holder, info.getTag());
         holder.tv_money.setText(info.getMoney());
-        FunctionUtils.setImage(context,holder.iv_photo, info.getType() + "");
-        if (info.isChecked()){
+        FunctionUtils.setImage(context, holder.iv_photo, info.getType() + "");
+        if (info.isChecked()) {
             holder.tv_state.setVisibility(View.GONE);
         }
         return convertView;
     }
-
 
 
     /**
@@ -87,31 +86,35 @@ public class JobInfoAdapter extends BaseAdapter {
      * @param tag
      */
     private void setTag(ViewHolder holder, String tag) {
+        int number = 0;
         String[] arr = tag.split(",");
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i].equals("1")) {
-                holder.tv_tag1.setVisibility(View.VISIBLE);
-            }
-            if (arr[i].equals("2")) {
+            if (arr[i].equals("2") && number < 3) {
                 holder.tv_tag2.setVisibility(View.VISIBLE);
+                number++;
             }
-            if (arr[i].equals("3")) {
+            if (arr[i].equals("3") && number < 3) {
                 holder.tv_tag3.setVisibility(View.VISIBLE);
+                number++;
             }
-            if (arr[i].equals("4")) {
+            if (arr[i].equals("4") && number < 3) {
                 holder.tv_tag4.setVisibility(View.VISIBLE);
+                number++;
             }
-            if (arr[i].equals("5")) {
+            if (arr[i].equals("5") && number < 3) {
                 holder.tv_tag5.setVisibility(View.VISIBLE);
+                number++;
+            }
+            if (arr[i].equals("6") && number < 3) {
+                holder.tv_tag6.setVisibility(View.VISIBLE);
+                number++;
             }
         }
     }
 
 
-
-
     private class ViewHolder {
-        TextView tv_name, tv_tag1, tv_tag2, tv_tag3, tv_tag4, tv_tag5,tv_place, tv_date, tv_money;
+        TextView tv_name, tv_tag1, tv_tag2, tv_tag6, tv_tag3, tv_tag4, tv_tag5, tv_place, tv_date, tv_money;
         ImageView iv_photo;
         TextView tv_state;
     }

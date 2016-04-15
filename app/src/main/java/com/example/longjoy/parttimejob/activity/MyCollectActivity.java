@@ -93,7 +93,7 @@ public class MyCollectActivity extends AppCompatActivity implements View.OnClick
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(context, JobDetailActivity.class);
                 intent.putExtra("type", "collect");
-                intent.putExtra("data", jobList.get(position));
+                intent.putExtra("data", jobList.get(position-1));
                 startActivityForResult(intent, 10086);
             }
         });

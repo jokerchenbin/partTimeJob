@@ -17,6 +17,7 @@ import com.example.longjoy.parttimejob.AppConfig;
 import com.example.longjoy.parttimejob.R;
 import com.example.longjoy.parttimejob.bean.JobInfo;
 import com.example.longjoy.parttimejob.common.FunctionUtils;
+import com.example.longjoy.parttimejob.common.Logger;
 import com.example.longjoy.parttimejob.tools.ToastDiy;
 import com.example.longjoy.parttimejob.widget.AppDateDialog;
 
@@ -66,7 +67,7 @@ public class PublishJobActivity extends AppCompatActivity implements View.OnClic
     private void initView() {
         tv_eat = (TextView) findViewById(R.id.parttime_fragment_tv_eat);
         tv_live = (TextView) findViewById(R.id.parttime_fragment_tv_live);
-        tv_money = (TextView) findViewById(R.id.activity_publish_et_money);
+        tv_money = (TextView) findViewById(R.id.parttime_fragment_tv_money);
         tv_sex = (TextView) findViewById(R.id.parttime_fragment_tv_sex);
         tv_name = (TextView) findViewById(R.id.parttime_fragment_tv_name);
         tv_type = (TextView) findViewById(R.id.activity_publish_tv_type);
@@ -149,7 +150,7 @@ public class PublishJobActivity extends AppCompatActivity implements View.OnClic
                 if (checkInfo()) {
                     publicJob();
                 } else {
-                    ToastDiy.showShort(context,errMess);
+                    ToastDiy.showShort(context, errMess);
                 }
                 break;
         }
@@ -162,34 +163,43 @@ public class PublishJobActivity extends AppCompatActivity implements View.OnClic
      * 方法描述: 核对消息
      */
     private boolean checkInfo() {
-        if (et_name.getText().toString().isEmpty()){
+        if (et_name.getText().toString().isEmpty()) {
             errMess = "请填写正确的岗位名称";
             return false;
-        }if (et_company.getText().toString().isEmpty()){
+        }
+        if (et_company.getText().toString().isEmpty()) {
             errMess = "请填写正确的发布方名称";
             return false;
-        }if (tv_type.getText().toString().isEmpty()){
+        }
+        if (tv_type.getText().toString().isEmpty()) {
             errMess = "请选择岗位类型";
             return false;
-        }if (tv_startTime.getText().toString().isEmpty()){
+        }
+        if (tv_startTime.getText().toString().isEmpty()) {
             errMess = "请选择工作开始时间";
             return false;
-        }if (tv_endTime.getText().toString().isEmpty()){
+        }
+        if (tv_endTime.getText().toString().isEmpty()) {
             errMess = "请选择工作结束时间";
             return false;
-        }if (et_place.getText().toString().isEmpty()){
+        }
+        if (et_place.getText().toString().isEmpty()) {
             errMess = "请输入工作区域";
             return false;
-        }if (et_addr.getText().toString().isEmpty()){
+        }
+        if (et_addr.getText().toString().isEmpty()) {
             errMess = "请输入工作地点";
             return false;
-        }if (et_number.getText().toString().isEmpty()){
+        }
+        if (et_number.getText().toString().isEmpty()) {
             errMess = "请输入招聘人数";
             return false;
-        }if (et_desc.getText().toString().isEmpty()){
+        }
+        if (et_desc.getText().toString().isEmpty()) {
             errMess = "请输入职位秒速";
             return false;
-        }if (et_telephone.getText().toString().isEmpty()){
+        }
+        if (et_telephone.getText().toString().isEmpty()) {
             errMess = "请输入联系电话";
             return false;
         }
@@ -205,14 +215,14 @@ public class PublishJobActivity extends AppCompatActivity implements View.OnClic
         FunctionUtils.showLoadingDialog(this);
         JobInfo info = new JobInfo();
         info.setType(type);
-        info.setWorkDate(startDate + "至" + endDate);
+        info.setWorkDate(startDate + " 至 " + endDate);
         info.setDate(format.format(new Date()));
-        info.setMoney(tv_money.getText().toString());
+        info.setMoney(et_money.getText().toString());
         info.setTelephone(et_telephone.getText().toString());
         info.setName(et_name.getText().toString());
         info.setNumber(Integer.parseInt(et_number.getText().toString()));
         info.setPalce(et_place.getText().toString());
-        info.setTag("1,3");
+        info.setTag(getTag(tv_sex.getText().toString(),isEat,isLive,isMoney));
         info.setCompany(et_company.getText().toString());
         info.setDesc(et_desc.getText().toString());
         info.setLinkman(AppConfig.prefs.getString("username", ""));
@@ -321,6 +331,28 @@ public class PublishJobActivity extends AppCompatActivity implements View.OnClic
         });
     }
 
+
+    private String getTag(String sexText, boolean isEat, boolean isLive, boolean isMoney) {
+        String result = "1,";
+        if (sexText.equals("不限")) {
+            result = result + "2,3,";
+        } else if (sexText.equals("男")) {
+            result = result + "2,";
+        } else if (sexText.equals("女")) {
+            result = result + "3,";
+        }
+        if (isEat) {
+            result = result + "4,";
+        }
+        if (isLive) {
+            result = result + "5,";
+        }
+        if (isMoney) {
+            result = result + "6,";
+        }
+        result = result.substring(0,result.length()-1);
+        return result;
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

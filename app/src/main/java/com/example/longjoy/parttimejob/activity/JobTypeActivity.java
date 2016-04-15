@@ -58,7 +58,6 @@ public class JobTypeActivity extends AppCompatActivity implements View.OnClickLi
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ToastDiy.showShort(context, typeArr[position]+"  "+(position+1));
                 Intent intent = new Intent();
                 intent.putExtra("type", typeArr[position]);
                 intent.putExtra("id",position+1);

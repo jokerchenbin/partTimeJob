@@ -58,7 +58,7 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
     private String colletId;
     private String type;
     private Button btn_call;
-    private TextView tv_tag1,tv_tag2,tv_tag3,tv_tag4,tv_tag5;
+    private TextView tv_tag6,tv_tag2,tv_tag3,tv_tag4,tv_tag5;
     private TextView tv_suggest;
 
     @Override
@@ -119,9 +119,6 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
         for (int i = 0; i < tagArr.length; i++) {
             int num = Integer.parseInt(tagArr[i]);
             switch (num){
-                case 1:
-                    tv_tag1.setVisibility(View.VISIBLE);
-                    break;
                 case 2:
                     tv_tag2.setVisibility(View.VISIBLE);
                     break;
@@ -133,6 +130,9 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
                     break;
                 case 5:
                     tv_tag5.setVisibility(View.VISIBLE);
+                    break;
+                case 6:
+                    tv_tag6.setVisibility(View.VISIBLE);
                     break;
             }
         }
@@ -148,7 +148,7 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
         tv_suggest.setOnClickListener(this);
         btn_call = (Button) findViewById(R.id.activity_job_detail_btn_call);
         btn_call.setOnClickListener(this);
-        tv_tag1 = (TextView) findViewById(R.id.job_info_item_tag1);
+        tv_tag6 = (TextView) findViewById(R.id.job_info_item_tag6);
         tv_tag2 = (TextView) findViewById(R.id.job_info_item_tag2);
         tv_tag3 = (TextView) findViewById(R.id.job_info_item_tag3);
         tv_tag4 = (TextView) findViewById(R.id.job_info_item_tag4);
@@ -207,12 +207,14 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
     private void cancelCollet() {
         FunctionUtils.showLoadingDialog(this);
         MyUser myUser = BmobUser.getCurrentUser(context, MyUser.class);
+        MyUser user = new MyUser();
+        user.setObjectId(myUser.getObjectId());
         JobInfo jobInfo = new JobInfo();
         jobInfo.setObjectId(jobId);
         BmobRelation relation = new BmobRelation();
         relation.remove(jobInfo);
-        myUser.setLikes(relation);
-        myUser.update(context, new UpdateListener() {
+        user.setLikes(relation);
+        user.update(context, new UpdateListener() {
             @Override
             public void onSuccess() {
                 isCollect = false;
@@ -236,14 +238,16 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
     private void colletJob() {
         FunctionUtils.showLoadingDialog(this);
         MyUser myUser = BmobUser.getCurrentUser(context, MyUser.class);
+        MyUser user = new MyUser();
+        user.setObjectId(myUser.getObjectId());
         JobInfo jobInfo = new JobInfo();
         jobInfo.setObjectId(jobId);
         BmobRelation relation = new BmobRelation();
         //将当前用户添加到多对多关联中
         relation.add(jobInfo);
         //多对多关联指向`post`的`likes`字段
-        myUser.setLikes(relation);
-        myUser.update(context, new UpdateListener() {
+        user.setLikes(relation);
+        user.update(context, new UpdateListener() {
             @Override
             public void onSuccess() {
                 isCollect = true;
