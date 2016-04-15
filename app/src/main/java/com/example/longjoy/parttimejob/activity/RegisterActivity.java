@@ -39,7 +39,7 @@ import cn.bmob.v3.listener.VerifySMSCodeListener;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String TAG = "RegisterActivity";
+    private static final String TAG = "chenbin";
     private static final int RESULT_ERROR = 0;
     private static final int RESULT_OK = 1;
     private EditText et_telephone, et_username, et_password, et_nextpassword,et_messageNumber;
@@ -183,6 +183,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 FunctionUtils.dissmisLoadingDialog();
                 Intent intent = new Intent(context,LoginActivity.class);
                 startActivity(intent);
+                finish();
             }
 
             @Override

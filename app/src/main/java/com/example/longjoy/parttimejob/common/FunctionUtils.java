@@ -536,10 +536,11 @@ public class FunctionUtils {
      * Created by 陈彬 on 2016/1/4  15:29
      * 方法描述: 将获取到用户基本信息写入本地
      */
-    public static void writeUserInfoToLocal(MyUser user) {
+    public static void writeUserInfoToLocal(MyUser user,String password) {
         AppConfig.prefs.edit()
                 .putString("id",user.getObjectId())
                 .putString("username", user.getUsername())
+                .putString("password",password)
                 .putString("mobilePhoneNumber", user.getMobilePhoneNumber())
                 .putInt("age", user.getAge())
                 .putString("school", user.getSchool())

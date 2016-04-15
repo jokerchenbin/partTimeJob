@@ -77,6 +77,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         context = this;
         ((AppApplication) getApplication()).addActivity(activity);
         initViewID();
+        initData();
+    }
+
+    /**
+     * Created by 陈彬 on 2016/4/15  9:50
+     * 方法描述: 初始化数据
+     */
+    private void initData() {
+        if (!AppConfig.prefs.getString("mobilePhoneNumber","").isEmpty()){
+            et_username.setText(AppConfig.prefs.getString("mobilePhoneNumber",""));
+            et_password.setText(AppConfig.prefs.getString("password",""));
+        }
     }
 
     private void initViewID() {
@@ -149,7 +161,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onSuccess() {
                 Toast.makeText(context, "登录成功", Toast.LENGTH_SHORT).show();
                 //将个人信息写入本地
-                FunctionUtils.writeUserInfoToLocal(BmobUser.getCurrentUser(context, MyUser.class));
+                FunctionUtils.writeUserInfoToLocal(BmobUser.getCurrentUser(context, MyUser.class),password);
                 //跳转到主页面
                 Intent intent = new Intent(activity,MainActivity.class);
                 startActivity(intent);

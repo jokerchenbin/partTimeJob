@@ -108,7 +108,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
             public void onSuccess() {
                 ToastDiy.showShort(context,"更新成功");
                 //将个人信息写入本地
-                FunctionUtils.writeUserInfoToLocal(user);
+                FunctionUtils.writeUserInfoToLocal(user,AppConfig.prefs.getString("password",""));
                 MyFragment.handler.sendEmptyMessage(1);//通知页面更改姓名
                 finish();
                 FunctionUtils.dissmisLoadingDialog();

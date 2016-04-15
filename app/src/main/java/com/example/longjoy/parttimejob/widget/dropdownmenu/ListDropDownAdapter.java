@@ -6,12 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
-
 import com.example.longjoy.parttimejob.R;
-
 import java.util.List;
-
 
 
 public class ListDropDownAdapter extends BaseAdapter {
@@ -49,6 +45,7 @@ public class ListDropDownAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
         if (convertView != null) {
+
             viewHolder = (ViewHolder) convertView.getTag();
         } else {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_default_drop_down, null);
