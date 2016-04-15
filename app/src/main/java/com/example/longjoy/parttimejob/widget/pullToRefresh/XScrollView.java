@@ -44,7 +44,7 @@ public class XScrollView extends ScrollView implements OnScrollListener {
     // for mScroller, scroll back from header or footer.
     private int mScrollBack;
 
-    // the interface to trigger refresh and load more.
+    // the inter to trigger refresh and load more.
     private IXScrollViewListener mListener;
 
     private LinearLayout mLayout;
@@ -503,7 +503,7 @@ public class XScrollView extends ScrollView implements OnScrollListener {
     }
 
     /**
-     * Implements this interface to get refresh/load more event.
+     * Implements this inter to get refresh/load more event.
      */
     public interface IXScrollViewListener {
         public void onRefresh();

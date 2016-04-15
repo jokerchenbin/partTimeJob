@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 
 import com.example.longjoy.parttimejob.R;
+import com.example.longjoy.parttimejob.inter.OnCloseLisener;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ import java.util.List;
 /**
  * Created by dongjunkun on 2015/6/17.
  */
-public class DropDownMenu extends LinearLayout {
+public class DropDownMenu extends LinearLayout implements OnCloseLisener {
 
     //顶部菜单布局
     private LinearLayout tabMenuView;
@@ -54,8 +55,11 @@ public class DropDownMenu extends LinearLayout {
     private int menuUnselectedIcon = R.mipmap.drop_down_unselected_icon;
 
 
+    private OnCloseLisener onCloseLisener;
+
     public DropDownMenu(Context context) {
         super(context, null);
+
     }
 
     public DropDownMenu(Context context, AttributeSet attrs) {
@@ -64,7 +68,7 @@ public class DropDownMenu extends LinearLayout {
 
     public DropDownMenu(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
+        onCloseLisener = this;
         setOrientation(VERTICAL);
 
         //为DropDownMenu添加自定义属性
@@ -200,7 +204,7 @@ public class DropDownMenu extends LinearLayout {
         maskView.setVisibility(GONE);
         maskView.setAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.dd_mask_out));
         current_tab_position = -1;
-
+        onCloseLisener.close();
     }
 
     /**
@@ -250,5 +254,15 @@ public class DropDownMenu extends LinearLayout {
     public int dpTpPx(float value) {
         DisplayMetrics dm = getResources().getDisplayMetrics();
         return (int) (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, dm) + 0.5);
+    }
+
+
+    public void setOnCloseLisener(OnCloseLisener onCloseLisener) {
+        this.onCloseLisener = onCloseLisener;
+    }
+
+    @Override
+    public void close() {
+
     }
 }

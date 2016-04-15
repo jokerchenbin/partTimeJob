@@ -51,7 +51,7 @@ public class XListView extends ListView implements OnScrollListener {
     // for mScroller, scroll back from header or footer.
     private int mScrollBack;
 
-    // the interface to trigger refresh and load more.
+    // the inter to trigger refresh and load more.
     private IXListViewListener mListener;
 
     private XHeaderView mHeader;
@@ -445,7 +445,7 @@ public class XListView extends ListView implements OnScrollListener {
     }
 
     /**
-     * Implements this interface to get refresh/load more event.
+     * Implements this inter to get refresh/load more event.
      *
      * @author markmjw
      */

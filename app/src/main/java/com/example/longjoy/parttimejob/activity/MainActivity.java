@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rbtn_My.setOnClickListener(this);
         tv_chooseCity = (TextView) findViewById(R.id.top_button_tim);
         tv_chooseCity.setText("重庆市");
+        AppConfig.prefs.edit().putString("cityName","重庆市").commit();
         tv_chooseCity.setOnClickListener(this);
         bg = getSupportFragmentManager();
         homeFragment = new HomePageFragment();
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.activity_main_rbtn_firstPage://首页
                 viewPager.setCurrentItem(0);
-                changeTopBarState("蜂鸟兼职");
+                changeTopBarState("鲁大兼职");
                 break;
             case R.id.activity_main_rbtn_partTimeJob: // 兼职工作
                 viewPager.setCurrentItem(1);
@@ -135,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case AppConfig.DEFAULT_REQUEST: // 城市选择的返回数据
                 if (!"".equals(data.getStringExtra("cityName"))) {
                     tv_chooseCity.setText(data.getStringExtra("cityName"));
+                    AppConfig.prefs.edit().putString("cityName",data.getStringExtra("cityName")).commit();
                 }
                 break;
         }
@@ -175,12 +177,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         public void onReceiveLocation(BDLocation location) {
             if (location.getCity().length() > 1) {
                 tv_chooseCity.setText(location.getCity());
+                AppConfig.prefs.edit().putString("cityName",location.getCity()).commit();
                 mLocationClient.stop();
             }
         }
 
     }
-
 
     private void InitLocation() {
         // 设置定位参数

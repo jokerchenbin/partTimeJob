@@ -101,7 +101,7 @@ public class AppAlertDialog extends AlertDialog implements OnClickListener {
 		negativeButton.setOnClickListener(this);
 	}
 
-	//Dialog listener interface
+	//Dialog listener inter
 	public interface AppAlertDialogListener{   
 		public void onClick(View view);
 	}

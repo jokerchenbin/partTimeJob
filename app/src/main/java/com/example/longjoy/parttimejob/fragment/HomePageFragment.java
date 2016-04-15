@@ -21,6 +21,7 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
+import com.example.longjoy.parttimejob.AppConfig;
 import com.example.longjoy.parttimejob.R;
 import com.example.longjoy.parttimejob.activity.AllJobActivity;
 import com.example.longjoy.parttimejob.activity.JobDetailActivity;
@@ -249,6 +250,42 @@ public class HomePageFragment extends Fragment implements BaseSliderView.OnSlide
 
     @Override
     public void onClick(View v) {
-        startActivity(new Intent(getContext(), AllJobActivity.class));
+        Intent intent = new Intent(getContext(), AllJobActivity.class);
+        intent.putExtra("cityName", AppConfig.prefs.getString("cityName",""));
+        switch (v.getId()){
+            case R.id.head_01:
+                intent.putExtra("type","派单");
+                intent.putExtra("typeId",6);
+                break;
+            case R.id.head_02:
+                intent.putExtra("type","促销");
+                intent.putExtra("typeId",1);
+                break;
+            case R.id.head_03:
+                intent.putExtra("type","礼仪");
+                intent.putExtra("typeId",4);
+                break;
+            case R.id.head_04:
+                intent.putExtra("type","家教");
+                intent.putExtra("typeId",5);
+                break;
+            case R.id.head_05:
+                intent.putExtra("type","服务员");
+                intent.putExtra("typeId",2);
+                break;
+            case R.id.head_06:
+                intent.putExtra("type","话务员");
+                intent.putExtra("typeId",3);
+                break;
+            case R.id.head_07:
+                intent.putExtra("type","实习");
+                intent.putExtra("typeId",9);
+                break;
+            case R.id.head_08:
+                intent.putExtra("type","其他");
+                intent.putExtra("typeId",10);
+                break;
+        }
+        startActivity(intent);
     }
 }

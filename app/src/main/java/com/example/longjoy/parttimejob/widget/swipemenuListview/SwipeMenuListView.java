@@ -255,7 +255,7 @@ public class SwipeMenuListView extends ListView implements AbsListView.OnScrollL
     }
 
     /**
-     * Implements this interface to get refresh/load more event.
+     * Implements this inter to get refresh/load more event.
      *
      * @author markmjw
      */

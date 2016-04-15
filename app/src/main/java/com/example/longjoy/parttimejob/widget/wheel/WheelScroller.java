@@ -14,7 +14,7 @@ import android.widget.Scroller;
  */
 public class WheelScroller {
 	/**
-	 * Scrolling listener interface
+	 * Scrolling listener inter
 	 */
 	public interface ScrollingListener {
 		/**
