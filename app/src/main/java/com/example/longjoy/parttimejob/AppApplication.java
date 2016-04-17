@@ -14,6 +14,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
+import cn.bmob.push.BmobPush;
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobInstallation;
 
@@ -37,8 +38,8 @@ public class AppApplication extends Application {
         // 使用时请将第二个参数Application ID替换成你在Bmob服务器端创建的Application ID
         Bmob.initialize(this, "fd7d827e175eaee39ab299f944c564dc");
         BmobInstallation.getCurrentInstallation(this).save();
-        //得到一个全局的数据
-        list = ProvinceInit.initPrivince();
+        // 启动推送服务
+        BmobPush.startWork(this);
         initImageLoader();
     }
 
