@@ -88,7 +88,8 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
         tv_topBar = (TextView) findViewById(R.id.top_bar_common_title);
         tv_topBar.setText("详情");
         tv_save = (TextView) findViewById(R.id.top_bar_common_tv_save);
-        tv_save.setVisibility(View.GONE);
+        tv_save.setVisibility(View.VISIBLE);
+        tv_save.setBackgroundDrawable(getResources().getDrawable(R.drawable.share_bg));
         tv_save.setOnClickListener(this);
         tv_back = (TextView) findViewById(R.id.top_button_tim);
         tv_back.setText("");
