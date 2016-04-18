@@ -13,6 +13,7 @@ import com.example.longjoy.parttimejob.tools.ProvinceInit;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.umeng.socialize.PlatformConfig;
 
 import cn.bmob.push.BmobPush;
 import cn.bmob.v3.Bmob;
@@ -41,6 +42,13 @@ public class AppApplication extends Application {
         // 启动推送服务
         BmobPush.startWork(this);
         initImageLoader();
+    }
+
+    {
+        PlatformConfig.setWeixin("wx967daebe835fbeac",
+                "5bb696d9ccd75a38c8a0bfe0675559b3");
+        PlatformConfig.setQQZone("100424468",
+                "c7394704798a158208a74ab60104f0ba");
     }
 
     /**

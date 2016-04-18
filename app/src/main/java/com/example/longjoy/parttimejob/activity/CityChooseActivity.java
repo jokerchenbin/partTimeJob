@@ -35,7 +35,6 @@ import com.baidu.location.LocationClientOption;
 import com.example.longjoy.parttimejob.AppApplication;
 import com.example.longjoy.parttimejob.AppConfig;
 import com.example.longjoy.parttimejob.R;
-import com.example.longjoy.parttimejob.adapter.CityListAdapter;
 import com.example.longjoy.parttimejob.bean.City;
 import com.example.longjoy.parttimejob.common.Logger;
 import com.example.longjoy.parttimejob.db.DBHelper;

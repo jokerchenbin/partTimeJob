@@ -3,6 +3,8 @@ package com.example.longjoy.parttimejob.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Handler;
@@ -27,6 +29,10 @@ import com.example.longjoy.parttimejob.common.FunctionUtils;
 import com.example.longjoy.parttimejob.common.Logger;
 import com.example.longjoy.parttimejob.tools.SelectHeadTools;
 import com.example.longjoy.parttimejob.tools.ToastDiy;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
 
 import java.util.List;
 
@@ -60,6 +66,7 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
     private Button btn_call;
     private TextView tv_tag6,tv_tag2,tv_tag3,tv_tag4,tv_tag5;
     private TextView tv_suggest;
+    private UMShareListener listener;;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,11 +95,13 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
         tv_topBar = (TextView) findViewById(R.id.top_bar_common_title);
         tv_topBar.setText("详情");
         tv_save = (TextView) findViewById(R.id.top_bar_common_tv_save);
+        tv_save.setText("");
         tv_save.setVisibility(View.VISIBLE);
         tv_save.setBackgroundDrawable(getResources().getDrawable(R.drawable.share_bg));
         tv_save.setOnClickListener(this);
         tv_back = (TextView) findViewById(R.id.top_button_tim);
         tv_back.setText("");
+
         tv_back.setOnClickListener(this);
     }
 
@@ -198,7 +207,45 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
             case R.id.activity_job_detail_tv_suggest://投诉
                 SelectHeadTools.openDialogSuggest(context);
                 break;
+            case R.id.top_bar_common_tv_save://分享
+                showShare();
+                break;
         }
+    }
+
+    private void showShare() {
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
+                R.mipmap.ic_launcher);
+        UMImage image = new UMImage(context, bitmap);
+        final SHARE_MEDIA[] displaylist = new SHARE_MEDIA[]
+                {
+                        SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE,SHARE_MEDIA.SINA,
+                        SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE,SHARE_MEDIA.DOUBAN
+                };
+        new ShareAction(this).setDisplayList( displaylist )
+                .withText( "呵呵" )
+                .withTitle("title")
+                .withTargetUrl("http://www.baidu.com")
+                .withMedia( image )
+                .setListenerList(listener)
+                .open();
+        listener = new UMShareListener() {
+            @Override
+            public void onResult(SHARE_MEDIA platform) {
+                ToastDiy.showShort(context, platform + "分享成功");
+            }
+
+            @Override
+            public void onError(SHARE_MEDIA platform, Throwable t) {
+                ToastDiy.showShort(context, platform + "分享错误"+t);
+            }
+
+            @Override
+            public void onCancel(SHARE_MEDIA platform) {
+                ToastDiy.showShort(context, platform + "分享取消" );
+            }
+        };
+
     }
 
     /**
