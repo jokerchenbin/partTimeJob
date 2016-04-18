@@ -215,7 +215,7 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
 
     private void showShare() {
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
-                R.mipmap.ic_launcher);
+                R.mipmap.timg_big);
         UMImage image = new UMImage(context, bitmap);
         final SHARE_MEDIA[] displaylist = new SHARE_MEDIA[]
                 {
@@ -223,9 +223,9 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
                         SHARE_MEDIA.QQ, SHARE_MEDIA.QZONE,SHARE_MEDIA.DOUBAN
                 };
         new ShareAction(this).setDisplayList( displaylist )
-                .withText( "呵呵" )
-                .withTitle("title")
-                .withTargetUrl("http://www.baidu.com")
+                .withText( "鲁大兼职" )
+                .withTitle("鲁大兼职等着你")
+                .withTargetUrl("https://www.pgyer.com/PJNB")
                 .withMedia( image )
                 .setListenerList(listener)
                 .open();
