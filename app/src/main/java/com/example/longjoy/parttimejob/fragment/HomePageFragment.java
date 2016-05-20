@@ -131,6 +131,8 @@ public class HomePageFragment extends Fragment implements BaseSliderView.OnSlide
         FunctionUtils.showLoadingDialog(getActivity());
         BmobQuery<JobInfo> query = new BmobQuery<>();
         query.addWhereEqualTo("isChecked", true);
+        query.order("-createdAt");
+        query.setLimit(10);
         query.findObjects(context, new FindListener<JobInfo>() {
             @Override
             public void onSuccess(List<JobInfo> jobInfolist) {
@@ -220,7 +222,7 @@ public class HomePageFragment extends Fragment implements BaseSliderView.OnSlide
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                getAd(getContext());//获取广告
+                //getAd(getContext());//获取广告
                 getData(getContext());//获取数据
                 onLoad();
             }

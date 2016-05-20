@@ -97,17 +97,13 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         iv_header.setOnClickListener(this);
         ImageLoader.getInstance().displayImage(AppConfig.prefs.getString("imageUrl", ""),
                 iv_header, AppConfig.options);
-
-
-
         ly_resume = (LinearLayout) view.findViewById(R.id.my_fragment_ly_myResume);
         ly_myCollect = (LinearLayout) view.findViewById(R.id.my_fragment_ly_myCollect);
-        ly_signUp = (LinearLayout) view.findViewById(R.id.my_fragment_ly_signUp);
+
         ly_myInfo = (LinearLayout) view.findViewById(R.id.my_fragment_ly_myInfo);
         ly_checkUpdate = (LinearLayout) view.findViewById(R.id.my_fragment_ly_checkUpdate);
         ly_resume.setOnClickListener(this);
         ly_myCollect.setOnClickListener(this);
-        ly_signUp.setOnClickListener(this);
         ly_myInfo.setOnClickListener(this);
         ly_checkUpdate.setOnClickListener(this);
         tv_logotext = (TextView) view.findViewById(R.id.my_fragment_tv_logontext);
@@ -127,9 +123,6 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             case R.id.my_fragment_ly_myCollect: //我的收藏
                 startActivity(new Intent(context, MyCollectActivity.class));
                 break;
-            case R.id.my_fragment_ly_signUp: //我的报名
-                ToastDiy.showShort(context,"功能正在建设中...");
-                break;
             case R.id.my_fragment_ly_myInfo: //我的信息
                 Intent myInfo = new Intent(context, UserInfoActivity.class);
                 startActivity(myInfo);
@@ -145,9 +138,9 @@ public class MyFragment extends Fragment implements View.OnClickListener {
      * 方法描述:  图片点击的动画加载
      */
     private void showPicAnim() {
-        //加载 点击动画
+       /* //加载 点击动画
         Animation alpha = AnimationUtils.loadAnimation(context, R.anim.image_anim);
-        iv_header.startAnimation(alpha);
+        iv_header.startAnimation(alpha);*/
 
         //弹出头像选择
         if (!FileTools.hasSdcard()) {

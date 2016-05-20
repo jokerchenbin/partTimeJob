@@ -96,14 +96,15 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
      * 方法描述: 更新用户数据
      */
     private void updataUserInfo() {
+        MyUser u = BmobUser.getCurrentUser(context,MyUser.class);
         final MyUser user = new MyUser();
+        user.setObjectId(u.getObjectId());
         user.setUsername(et_name.getText().toString());
         user.setAge(Integer.parseInt(et_age.getText().toString()));
         user.setHeight(et_height.getText().toString());
         user.setSchool(et_school.getText().toString());
         user.setSex(tv_sex.getText().toString());
-        BmobUser b = BmobUser.getCurrentUser(this);
-        user.update(this, b.getObjectId(), new UpdateListener() {
+        user.update(this, new UpdateListener() {
             @Override
             public void onSuccess() {
                 ToastDiy.showShort(context,"更新成功");
